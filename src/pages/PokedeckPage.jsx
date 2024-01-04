@@ -1,4 +1,4 @@
-const Pokedeck = ()=>{
+const PokedeckPage = ()=>{
     return(
         <>
         <h1>Pokedeck</h1>
@@ -6,4 +6,4 @@ const Pokedeck = ()=>{
     )
 }
 
-export default Pokedeck;
+export default PokedeckPage;

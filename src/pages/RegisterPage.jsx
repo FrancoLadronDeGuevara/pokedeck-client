@@ -1,4 +1,4 @@
-const Register = ()=>{
+const RegisterPage = ()=>{
     return(
         <>
         <h1>Register</h1>
@@ -6,4 +6,4 @@ const Register = ()=>{
     )
 }
 
-export default Register;
+export default RegisterPage;

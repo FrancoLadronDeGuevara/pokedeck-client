@@ -4,7 +4,7 @@ import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import RootLayout from './components/layout/RootLayout'
 import { routes } from './routes'
-import Error404 from './pages/Error404'
+import Error404Page from './pages/Error404Page'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -14,7 +14,7 @@ const router = createBrowserRouter(
           <Route key={path} path={path} element={<Element/>}/>
         ))
       }
-      <Route path='*' element={<Error404/>}/>
+      <Route path='*' element={<Error404Page/>}/>
     </Route>
   )
 )

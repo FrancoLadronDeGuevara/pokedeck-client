@@ -1,162 +1,195 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import {AiOutlineMenu, AiOutlineMinus, AiOutlineBell} from "react-icons/ai";
-import { Link } from 'react-router-dom'
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const navigation = [
-    { name: 'Inicio', to: '/', current: false },
-    { name: 'Pokedeck', to: '/pokedeck', current: false },
-    { name: 'Tienda', to: '/store', current: false },
-    { name: 'Minijuegos', to: '/minigames', current: false },
-]
+const pages = [{
+    name: 'Mi Pokedeck',
+    to: '/pokedeck',
+},
+{
+    name: 'Tienda',
+    to: '/store',
+},
+{
+    name: 'Minijuegos',
+    to: '/minigames',
+}];
 
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
+const settings = [{
+    name: 'Perfil',
+    to: '/profile',
+},
+{
+    name: 'Configuración',
+    to: '/userConfiguration',
+},
+{
+    name: 'Dashboard',
+    to: '/dashboard',
+},
+{
+    name: 'Salir',
+    to: '/logout'
+}];
 
 const Navbar = () => {
+
+    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
+
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
     return (
-        <Disclosure as="nav" className="bg-gray-800 sticky">
-            {({ open }) => (
-                <>
-                    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                        <div className="relative flex h-16 items-center justify-between">
-                            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                                {/* Mobile menu button*/}
-                                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                                    <span className="absolute -inset-0.5" />
-                                    <span className="sr-only">Abrir Menú</span>
-                                    {open ? (
-                                        <AiOutlineMinus  className="block h-6 w-6" aria-hidden="true" />
-                                    ) : (
-                                        <AiOutlineMenu className="block h-6 w-6" aria-hidden="true"/>
-                                    )}
-                                </Disclosure.Button>
-                            </div>
-                            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                                <div className="flex flex-shrink-0 items-center">
-                                    <img
-                                        className="h-8 w-auto"
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/800px-Pokebola-pokeball-png-0.png"
-                                        alt="Your Company"
-                                    />
-                                </div>
-                                <div className="hidden sm:ml-6 sm:block">
-                                    <div className="flex space-x-4">
-                                        {navigation.map((item) => (
-                                            <Link key={item.name} to={item.to} className={classNames(
-                                                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                'rounded-md px-3 py-2 text-sm font-medium'
-                                            )}
-                                                aria-current={item.current ? 'page' : undefined}>
-                                                {item.name}
-                                            </Link>
-                                            // <a
-                                            //     key={item.name}
-                                            //     href={item.href}
-                                            //     className={classNames(
-                                            //         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                            //         'rounded-md px-3 py-2 text-sm font-medium'
-                                            //     )}
-                                            //     aria-current={item.current ? 'page' : undefined}
-                                            // >
-                                            //     {item.name}
-                                            // </a>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <button
-                                    type="button"
-                                    className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                                >
-                                    <span className="absolute -inset-1.5" />
-                                    <span className="sr-only">Ver Notificaciones</span>
-                                    <AiOutlineBell className="h-6 w-6" aria-hidden="true" />
-                                </button>
+        <>
+            <AppBar position="sticky" sx={{ backgroundColor: 'gray' }}>
+                <Container maxWidth="xl">
+                    <Toolbar disableGutters>
+                        <CatchingPokemonIcon sx={{ display: { xs: 'none', sm: 'flex' }, mr: 1 }} color="error" />
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component={Link}
+                            href="/"
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'none', sm: 'flex' },
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            Pokedeck
+                        </Typography>
 
-                                {/* Profile dropdown */}
-                                <Menu as="div" className="relative ml-3">
-                                    <div>
-                                        <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                                            <span className="absolute -inset-1.5" />
-                                            <span className="sr-only">Abrir Menú Usuario</span>
-                                            <img
-                                                className="h-8 w-8 rounded-full"
-                                                src="https://w7.pngwing.com/pngs/529/832/png-transparent-computer-icons-avatar-user-profile-avatar.png"
-                                                alt=""
-                                            />
-                                        </Menu.Button>
-                                    </div>
-                                    <Transition
-                                        as={Fragment}
-                                        enter="transition ease-out duration-100"
-                                        enterFrom="transform opacity-0 scale-95"
-                                        enterTo="transform opacity-100 scale-100"
-                                        leave="transition ease-in duration-75"
-                                        leaveFrom="transform opacity-100 scale-100"
-                                        leaveTo="transform opacity-0 scale-95"
-                                    >
-                                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                    >
-                                                        Mi perfil
-                                                    </a>
-                                                )}
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                    >
-                                                        Configuración
-                                                    </a>
-                                                )}
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                    >
-                                                        Salir
-                                                    </a>
-                                                )}
-                                            </Menu.Item>
-                                        </Menu.Items>
-                                    </Transition>
-                                </Menu>
-                            </div>
-                        </div>
-                    </div>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleOpenNavMenu}
+                                color="inherit"
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorElNav}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                open={Boolean(anchorElNav)}
+                                onClose={handleCloseNavMenu}
+                                sx={{
+                                    display: { xs: 'block', sm: 'none' },
+                                }}
+                            >
+                                {pages.map((page) => (
+                                    <Link key={page} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
+                                        <MenuItem>
+                                            <Typography textAlign="center" sx={{ color: 'black' }}>{page.name}</Typography>
+                                        </MenuItem>
+                                    </Link>
+                                ))}
+                            </Menu>
+                        </Box>
+                        <CatchingPokemonIcon sx={{ display: { xs: 'flex', sm: 'none' }, mr: 1 }} color="error" />
+                        <Typography
+                            variant="h5"
+                            noWrap
+                            component={Link}
+                            href="/"
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'flex', sm: 'none' },
+                                flexGrow: 1,
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            Pokedeck
+                        </Typography>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
+                            {pages.map((page) => (
+                                <Link key={page} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
+                                    <MenuItem>
+                                        <Typography textAlign="center" sx={{ color: 'white' }}>{page.name}</Typography>
+                                    </MenuItem>
+                                </Link>
 
-                    <Disclosure.Panel className="sm:hidden">
-                        <div className="space-y-1 px-2 pb-3 pt-2">
-                            {navigation.map((item) => (
-                                <Disclosure.Button
-                                    key={item.name}
-                                    as="a"
-                                    href={item.href}
-                                    className={classNames(
-                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                        'block rounded-md px-3 py-2 text-base font-medium'
-                                    )}
-                                    aria-current={item.current ? 'page' : undefined}
-                                >
-                                    {item.name}
-                                </Disclosure.Button>
                             ))}
-                        </div>
-                    </Disclosure.Panel>
-                </>
-            )}
-        </Disclosure>
+                        </Box>
+
+                        <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip title="Open settings">
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                {settings.map((setting) => (
+                                    <Link key={setting} onClick={handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
+                                        <MenuItem>
+                                            <Typography textAlign="center" sx={{ color: 'black' }}>{setting.name}</Typography>
+                                        </MenuItem>
+                                    </Link>
+                                ))}
+                            </Menu>
+                        </Box>
+                    </Toolbar>
+                </Container>
+            </AppBar>
+
+        </>
     )
 }
 

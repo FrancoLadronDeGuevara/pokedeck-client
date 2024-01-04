@@ -1,4 +1,6 @@
-const Store = ()=>{
+
+
+const StorePage = ()=>{
     return(
         <>
         <h1>Store</h1>
@@ -6,4 +8,4 @@ const Store = ()=>{
     )
 }
 
-export default Store;
+export default StorePage;

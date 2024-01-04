@@ -1,8 +1,8 @@
 import HomePage from "./pages/HomePage";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Pokedeck from "./pages/Pokedeck";
-import Store from "./pages/Store";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import PokedeckPage from "./pages/PokedeckPage";
+import StorePage from "./pages/StorePage";
 
 const routes = [
     {
@@ -11,19 +11,19 @@ const routes = [
     },
     {
         path: '/register',
-        Element: Register,
+        Element: RegisterPage,
     },
     {
         path: '/login',
-        Element: Login,
+        Element: LoginPage,
     },
     {
         path: '/pokedeck',
-        Element: Pokedeck,
+        Element: PokedeckPage,
     },
     {
         path: '/store',
-        Element: Store,
+        Element: StorePage,
     }
 ];
 
