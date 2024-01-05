@@ -11,7 +11,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import LoginIcon from '@mui/icons-material/Login';
 
 const pages = [{
     name: 'Mi Pokedeck',
@@ -35,16 +37,13 @@ const settings = [{
     to: '/userConfiguration',
 },
 {
-    name: 'Dashboard',
-    to: '/dashboard',
-},
-{
     name: 'Salir',
     to: '/logout'
 }];
 
 const Navbar = () => {
-
+    const location = useLocation();
+    const [isAuth, setIsAuth] = useState(false)
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -64,7 +63,7 @@ const Navbar = () => {
     };
     return (
         <>
-            <AppBar position="sticky" sx={{ backgroundColor: 'gray' }}>
+            <AppBar position="sticky" sx={{ backgroundColor: 'rgba(60, 24, 221, 0.2)' }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <CatchingPokemonIcon sx={{ display: { xs: 'none', sm: 'flex' }, mr: 1 }} color="error" />
@@ -154,37 +153,63 @@ const Navbar = () => {
                             ))}
                         </Box>
 
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Open settings">
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                                </IconButton>
-                            </Tooltip>
-                            <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
-                            >
-                                {settings.map((setting) => (
-                                    <Link key={setting} onClick={handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
-                                        <MenuItem>
-                                            <Typography textAlign="center" sx={{ color: 'black' }}>{setting.name}</Typography>
-                                        </MenuItem>
-                                    </Link>
-                                ))}
-                            </Menu>
-                        </Box>
+                        {isAuth ?
+                            (<Box sx={{ flexGrow: 0 }}>
+                                <Tooltip title="Open settings">
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <Avatar alt="Remy Sharp" src="https://avatarfiles.alphacoders.com/755/75537.jpg" />
+                                    </IconButton>
+                                </Tooltip>
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    {settings.map((setting) => (
+                                        <Link key={setting} onClick={handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
+                                            <MenuItem>
+                                                <Typography textAlign="center" sx={{ color: 'black' }}>{setting.name}</Typography>
+                                            </MenuItem>
+                                        </Link>
+                                    ))}
+                                </Menu>
+                            </Box>)
+                            :
+                            (<Box sx={{ flexGrow: 0 }}>
+                                {location.pathname !== '/login' && location.pathname !== '/register' && (
+                                    <Box>
+                                        <Button variant="contained" size='small' sx={{ display: { xs: 'none', sm: 'block' } }}>
+                                            <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>Ingresar</Link>
+                                        </Button>
+                                        <IconButton color="primary" variant="contained" size='small' sx={{ display: { xs: 'block', sm: 'none' } }}>
+                                            <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}><LoginIcon/></Link>
+                                        </IconButton>
+                                    </Box>
+
+                                )}
+                                {location.pathname == '/login' && (
+                                    <Button variant="contained" color='success' size='small'>
+                                        <Link to="/register" style={{ textDecoration: 'none', color: 'inherit' }}>Registrarse</Link>
+                                    </Button>
+                                )}
+                                {location.pathname == '/register' && (
+                                    <Button variant="contained" size='small'>
+                                        <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>Ingresar</Link>
+                                    </Button>
+                                )}
+                            </Box>)
+                        }
                     </Toolbar>
                 </Container>
             </AppBar>

@@ -1,20 +1,46 @@
-const Landing = ()=>{
-    return(
+import { Box, Container, Grid, Typography } from "@mui/material";
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+
+const Landing = () => {
+
+    const Item = styled(Paper)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 280,
+        height: 200,
+        margin: 50,
+        color: theme.palette.text.secondary,
+    }));
+
+    return (
         <>
-        <main>
-            <div className="container border p-5 rounded m-auto mb-3 text-center">
-                <p>
-                    Pokedeck es un proyecto pensado para aquellos que les gusta coleccionar!
-                    Es muy simple: juega, ganá puntos, abre cofres y colecciona!
-                </p>
-            </div>
-            <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 place-items-center">
-                <a href="#" className="p-2 rounded border w-72 sm:w-96 h-52 shadow flex justify-center items-center my-5">Puzzle</a>
-                <a href="#" className="p-2 rounded border w-72 sm:w-96 h-52 shadow flex justify-center items-center my-5">Memoria</a>
-                <a href="#" className="p-2 rounded border w-72 sm:w-96 h-52 shadow flex justify-center items-center my-5">Flappybird</a>
-                <a href="#" className="p-2 rounded border w-72 sm:w-96 h-52 shadow flex justify-center items-center my-5">Quizz</a>
-            </div>
-        </main>
+            <Container maxWidth='xl'>
+                <Box textAlign="center">
+                    <Typography variant="h5" sx={{my: 10}}>
+                        Pokedeck es un proyecto pensado para aquellos que les gusta coleccionar!
+                        Es muy simple: juega, ganá puntos, abre cofres y colecciona!
+                    </Typography>
+                </Box>
+                <Grid container >
+                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center'>
+                        <Item>Cup Game</Item>
+                    </Grid>
+                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center'>
+                        <Item >Memoria</Item>
+                    </Grid>
+                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center'>
+                        <Item>FlappyBird</Item>
+                    </Grid>
+                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center'>
+                        <Item>Quizz</Item>
+                    </Grid>
+                </Grid>
+            </Container>
         </>
     )
 }

@@ -1,46 +1,94 @@
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { Link } from 'react-router-dom';
+
+
 const LoginForm = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const data = new FormData(e.currentTarget);
+        console.log({
+            email: data.get('email'),
+            password: data.get('password'),
+        });
+    };
+
     return (
-        <>
-            <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-                <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <img className="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company"/>
-                        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Iniciar Sesión</h2>
-                </div>
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" action="#" method="POST">
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email</label>
-                            <div className="mt-2">
-                                <input id="email" name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className="flex items-center justify-between">
-                                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
-                                <div className="text-sm">
-                                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">Olvidaste tu contraseña?</a>
-                                </div>
-                            </div>
-                            <div className="mt-2">
-                                <input id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
-                            </div>
-                        </div>
-
-                        <div>
-                            <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ingresar</button>
-                        </div>
-                    </form>
-
-                    <p className="mt-10 text-center text-sm text-gray-500">
-                        No estas registrado?
-                        <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Registrate</a>
-                    </p>
-                </div>
-            </div>
-        </>
-    )
+        <Container component="main" maxWidth="xs" sx={{marginBottom: 5}}>
+            <CssBaseline />
+            <Box
+                sx={{
+                    marginTop: 5,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Iniciar Sesión
+                </Typography>
+                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Contraseña"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                    />
+                    <FormControlLabel
+                        control={<Checkbox value="remember" color="primary" />}
+                        label="Mantener sesión iniciada"
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Ingresar
+                    </Button>
+                    <Grid container>
+                        <Grid item xs>
+                            <Link to='/forgotpassword' variant="body2">
+                                Olvidaste tu contraseña?
+                            </Link>
+                        </Grid>
+                        <Grid item>
+                            <Link to='/register' variant="body2">
+                                {"No tienes una cuenta? Regístrate"}
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </Box>
+            </Box>
+        </Container>
+    );
 }
 
 export default LoginForm;
