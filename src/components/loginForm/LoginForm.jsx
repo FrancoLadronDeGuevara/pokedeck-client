@@ -9,17 +9,28 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import clientAxios from '../../utils/clientAxios';
+import { setLocalStorage } from '../../utils/localStorageHelper';
 
 
 const LoginForm = () => {
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = new FormData(e.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        const dataForm = new FormData(e.currentTarget);
+
+        try {
+            const { data } = await clientAxios.post('/login', {
+            email: dataForm.get('email'),
+            password: dataForm.get('password'),
+        })
+        setLocalStorage("token", data.token);
+        navigate('/')
+        } catch (error) {
+            console.log(error)
+        }        
     };
 
     return (

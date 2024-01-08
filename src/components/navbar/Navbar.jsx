@@ -10,10 +10,12 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../../redux/actions/userActions';
 
 const pages = [{
     name: 'Mi Pokedeck',
@@ -42,10 +44,15 @@ const settings = [{
 }];
 
 const Navbar = () => {
+    const dispatch = useDispatch();
     const location = useLocation();
-    const [isAuth, setIsAuth] = useState(false)
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+    const { user } = useSelector((state) => state.user)
+
+    useEffect(()=>{
+        dispatch(getUser())
+    }, [])
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -114,8 +121,8 @@ const Navbar = () => {
                                     display: { xs: 'block', sm: 'none' },
                                 }}
                             >
-                                {pages.map((page) => (
-                                    <Link key={page} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
+                                {pages.map((page, index) => (
+                                    <Link key={index} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
                                         <MenuItem>
                                             <Typography textAlign="center" sx={{ color: 'black' }}>{page.name}</Typography>
                                         </MenuItem>
@@ -143,8 +150,8 @@ const Navbar = () => {
                             Pokedeck
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
-                            {pages.map((page) => (
-                                <Link key={page} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
+                            {pages.map((page, index) => (
+                                <Link key={index} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
                                     <MenuItem>
                                         <Typography textAlign="center" sx={{ color: 'white' }}>{page.name}</Typography>
                                     </MenuItem>
@@ -153,7 +160,7 @@ const Navbar = () => {
                             ))}
                         </Box>
 
-                        {isAuth ?
+                        {user ?
                             (<Box sx={{ flexGrow: 0 }}>
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -176,8 +183,8 @@ const Navbar = () => {
                                     open={Boolean(anchorElUser)}
                                     onClose={handleCloseUserMenu}
                                 >
-                                    {settings.map((setting) => (
-                                        <Link key={setting} onClick={handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
+                                    {settings.map((setting, index) => (
+                                        <Link key={index} onClick={handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
                                             <MenuItem>
                                                 <Typography textAlign="center" sx={{ color: 'black' }}>{setting.name}</Typography>
                                             </MenuItem>
@@ -189,24 +196,32 @@ const Navbar = () => {
                             (<Box sx={{ flexGrow: 0 }}>
                                 {location.pathname !== '/login' && location.pathname !== '/register' && (
                                     <Box>
-                                        <Button variant="contained" size='small' sx={{ display: { xs: 'none', sm: 'block' } }}>
-                                            <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>Ingresar</Link>
-                                        </Button>
-                                        <IconButton color="primary" variant="contained" size='small' sx={{ display: { xs: 'block', sm: 'none' } }}>
-                                            <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}><LoginIcon/></Link>
-                                        </IconButton>
+                                        <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Button variant="contained" size='small' sx={{ display: { xs: 'none', sm: 'block' } }}>
+                                                Ingresar
+                                            </Button>
+                                        </Link>
+                                        <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <IconButton color="primary" variant="contained" size='small' sx={{ display: { xs: 'block', sm: 'none' } }}>
+                                                <LoginIcon />
+                                            </IconButton>
+                                        </Link>
                                     </Box>
 
                                 )}
                                 {location.pathname == '/login' && (
-                                    <Button variant="contained" color='success' size='small'>
-                                        <Link to="/register" style={{ textDecoration: 'none', color: 'inherit' }}>Registrarse</Link>
-                                    </Button>
+                                    <Link to="/register" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Button variant="contained" color='success' size='small'>
+                                            Registrarse
+                                        </Button>
+                                    </Link>
                                 )}
                                 {location.pathname == '/register' && (
-                                    <Button variant="contained" size='small'>
-                                        <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>Ingresar</Link>
-                                    </Button>
+                                    <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Button variant="contained" size='small'>
+                                            Ingresar
+                                        </Button>
+                                    </Link>
                                 )}
                             </Box>)
                         }

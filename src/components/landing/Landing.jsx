@@ -27,16 +27,16 @@ const Landing = () => {
                     </Typography>
                 </Box>
                 <Grid container >
-                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center'>
+                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item>
                         <Item>Cup Game</Item>
                     </Grid>
-                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center'>
+                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item>
                         <Item >Memoria</Item>
                     </Grid>
-                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center'>
+                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item>
                         <Item>FlappyBird</Item>
                     </Grid>
-                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center'>
+                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item>
                         <Item>Quizz</Item>
                     </Grid>
                 </Grid>
