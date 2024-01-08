@@ -19,7 +19,6 @@ clientAxios.interceptors.response.use(
     (error) => {
         console.error(error);
         if (error.response && error.response.status === 401) {
-            console.error('Token inexistente o inválido');
             removeLocalStorage('token');
         }
         return Promise.reject(error);

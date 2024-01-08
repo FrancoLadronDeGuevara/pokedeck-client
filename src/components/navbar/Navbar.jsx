@@ -10,12 +10,14 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '../../redux/actions/userActions';
+import { useSelector } from 'react-redux';
+import { removeLocalStorage } from '../../utils/localStorageHelper';
+import { customAlert } from '../../utils/alerts';
+
 
 const pages = [{
     name: 'Mi Pokedeck',
@@ -30,29 +32,30 @@ const pages = [{
     to: '/minigames',
 }];
 
-const settings = [{
-    name: 'Perfil',
-    to: '/profile',
-},
-{
-    name: 'Configuración',
-    to: '/userConfiguration',
-},
-{
-    name: 'Salir',
-    to: '/logout'
-}];
+const settings = [
+    {
+        name: 'Dashboard',
+        to: '/dashboard',
+        role: 'admin',
+    },
+    {
+        name: 'Perfil',
+        to: '/userProfile',
+    },
+    {
+        name: 'Configuración',
+        to: '/userConfiguration',
+    },
+    {
+        name: 'Salir',
+        to: '/'
+    }];
 
 const Navbar = () => {
-    const dispatch = useDispatch();
     const location = useLocation();
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const { user } = useSelector((state) => state.user)
-
-    useEffect(()=>{
-        dispatch(getUser())
-    }, [])
+    const { user } = useSelector((state) => state.userState);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -60,6 +63,13 @@ const Navbar = () => {
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
+
+    const handleLogoutUser = () => {
+        customAlert('¿Cerrar sesión?', '', 'question', () => {
+            removeLocalStorage('token');
+            setTimeout(() => { window.location.reload() }, 1000)
+        })
+    }
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
@@ -184,7 +194,7 @@ const Navbar = () => {
                                     onClose={handleCloseUserMenu}
                                 >
                                     {settings.map((setting, index) => (
-                                        <Link key={index} onClick={handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
+                                        <Link key={index} onClick={setting.name == 'Salir' ? handleLogoutUser : handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
                                             <MenuItem>
                                                 <Typography textAlign="center" sx={{ color: 'black' }}>{setting.name}</Typography>
                                             </MenuItem>

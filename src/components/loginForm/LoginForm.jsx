@@ -2,8 +2,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -12,6 +10,7 @@ import Container from '@mui/material/Container';
 import { Link, useNavigate } from 'react-router-dom';
 import clientAxios from '../../utils/clientAxios';
 import { setLocalStorage } from '../../utils/localStorageHelper';
+import { autoCloseAlert } from '../../utils/alerts';
 
 
 const LoginForm = () => {
@@ -27,9 +26,13 @@ const LoginForm = () => {
             password: dataForm.get('password'),
         })
         setLocalStorage("token", data.token);
-        navigate('/')
+        autoCloseAlert('Bienvenido', 'success', 'green');
+        setTimeout(()=>{
+            navigate('/')
+            window.location.reload()
+        }, 1000)
         } catch (error) {
-            console.log(error)
+            autoCloseAlert(error.response.data, 'error', 'red')
         }        
     };
 
@@ -71,10 +74,6 @@ const LoginForm = () => {
                         type="password"
                         id="password"
                         autoComplete="current-password"
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Mantener sesión iniciada"
                     />
                     <Button
                         type="submit"

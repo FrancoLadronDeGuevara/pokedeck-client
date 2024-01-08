@@ -1,7 +1,7 @@
 const UserConfigurationPage = ()=>{
     return(
         <>
-        <h1>User</h1>
+        <h1>Configuration</h1>
         </>
     )
 }

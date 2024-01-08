@@ -7,7 +7,6 @@ const userSlice = createSlice({
         list: [],
         user: {},
         loading: false,
-        error: null,
         searchData: [],
     },
     reducers: {
@@ -28,6 +27,7 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.list = action.payload;
             })
+
             .addCase(getUser.pending, (state) => {
                 state.loading = true;
             })
@@ -38,7 +38,9 @@ const userSlice = createSlice({
             .addCase(getUser.rejected, (state, action) => {
                 state.loading = true;
                 state.user = action.payload;
+
             })
+
             .addCase(updateUser.pending, (state) => {
                 state.loading = true;
             })
@@ -52,6 +54,7 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload.message;
             })
+
             .addCase(deleteUser.pending, (state) => {
                 state.loading = true;
             })
