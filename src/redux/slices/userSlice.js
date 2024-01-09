@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createUser, getUser, updateUser, deleteUser } from "../actions/userActions";
+import {  getUser, updateUser, deleteUser } from "../actions/userActions";
 
 const userSlice = createSlice({
     name: 'users',
     initialState: {
-        list: [],
         user: {},
         loading: false,
         searchData: [],
@@ -16,18 +15,6 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(createUser.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(createUser.fulfilled, (state, action) => {
-                state.loading = false;
-                state.list.push(action.payload);
-            })
-            .addCase(createUser.rejected, (state, action) => {
-                state.loading = false;
-                state.list = action.payload;
-            })
-
             .addCase(getUser.pending, (state) => {
                 state.loading = true;
             })

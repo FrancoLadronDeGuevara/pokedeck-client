@@ -34,11 +34,6 @@ const pages = [{
 
 const settings = [
     {
-        name: 'Dashboard',
-        to: '/dashboard',
-        role: 'admin',
-    },
-    {
         name: 'Perfil',
         to: '/userProfile',
     },
@@ -193,6 +188,13 @@ const Navbar = () => {
                                     open={Boolean(anchorElUser)}
                                     onClose={handleCloseUserMenu}
                                 >
+                                    {user?.role == 'admin' && 
+                                    <Link to='/dashboard' onClick={handleCloseUserMenu} style={{ textDecoration: 'none' }}>
+                                        <MenuItem>
+                                            <Typography textAlign="center" sx={{ color: 'black' }}>Dashboard</Typography>
+                                        </MenuItem>
+                                    </Link>
+                                    }
                                     {settings.map((setting, index) => (
                                         <Link key={index} onClick={setting.name == 'Salir' ? handleLogoutUser : handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
                                             <MenuItem>
@@ -200,6 +202,7 @@ const Navbar = () => {
                                             </MenuItem>
                                         </Link>
                                     ))}
+                                    
                                 </Menu>
                             </Box>)
                             :
