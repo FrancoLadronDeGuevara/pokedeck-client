@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { Outlet, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { autoCloseAlert } from "./utils/alerts";
 
-const AdminRoutes = () => {
+const AdminRoutes = ({children}) => {
     const {user}  = useSelector((state) => state.userState);
 
     if(user.role !== 'admin') {
@@ -10,9 +10,7 @@ const AdminRoutes = () => {
         return <Navigate to='/' replace/>
     }
 
-    return(
-        <Outlet></Outlet>
-    )
+    return children
 }
 
 export default AdminRoutes;

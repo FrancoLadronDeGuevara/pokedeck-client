@@ -75,7 +75,7 @@ const Navbar = () => {
     };
     return (
         <>
-            <AppBar position="sticky" sx={{ backgroundColor: 'rgba(60, 24, 221, 0.2)' }}>
+            <AppBar position="sticky" sx={{ backgroundColor: 'rgb(60, 24, 221)', zIndex: 9999 }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <CatchingPokemonIcon sx={{ display: { xs: 'none', sm: 'flex' }, mr: 1 }} color="error" />

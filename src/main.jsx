@@ -1,16 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import RootLayout from './components/layout/RootLayout'
-import { routes, adminRoutes, protectedRoutes } from './routes'
-import Error404Page from './pages/Error404Page'
-import { store } from './redux/store'
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
-import { persistStore } from 'redux-persist'
-import AdminRoutes from './AdminRoutes'
-import ProtectedRoutes from './ProtectedRoutes'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import RootLayout from './components/layout/RootLayout';
+import { routes, protectedRoutes, dashboardRoutes } from './routes';
+import Error404Page from './pages/Error404Page';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
+import AdminRoutes from './AdminRoutes';
+import ProtectedRoutes from './ProtectedRoutes';
+import AdminPage from './pages/AdminPage';
 
 const persistor = persistStore(store)
 
@@ -23,18 +24,21 @@ const router = createBrowserRouter(
         ))
       }
       <Route path='*' element={<Error404Page />} />
-      <Route element={<AdminRoutes/>}>
-        {adminRoutes.map(({Element, path}) => (
-          <Route key={path} path={path} element={<Element/>}/>
+      <Route path='/dashboard/*' element={
+        <AdminRoutes>
+          <AdminPage/>
+        </AdminRoutes>}>
+        {dashboardRoutes.map(({ Element, path }) => (
+          <Route key={path} path={path} element={<Element />} />
         ))}
       </Route>
-      <Route element={<ProtectedRoutes/>}>
-        {protectedRoutes.map(({Element, path}) => (
-          <Route key={path} path={path} element={<Element/>}/>
+      <Route element={<ProtectedRoutes />}>
+        {protectedRoutes.map(({ Element, path }) => (
+          <Route key={path} path={path} element={<Element />} />
         ))}
       </Route>
     </Route>
-    
+
   )
 )
 
