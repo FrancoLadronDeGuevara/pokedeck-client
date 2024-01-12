@@ -43,7 +43,7 @@ const settings = [
     },
     {
         name: 'Salir',
-        to: '/'
+        to: () => {},
     }];
 
 const Navbar = () => {
@@ -53,10 +53,19 @@ const Navbar = () => {
     const { user } = useSelector((state) => state.userState);
 
     const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
+        if (anchorElNav && anchorElNav.contains(event.target)) {
+            handleCloseNavMenu();
+        } else {
+            setAnchorElNav(event.currentTarget);
+        }
     };
+
     const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
+        if (anchorElUser && anchorElUser.contains(event.target)) {
+            handleCloseUserMenu();
+        } else {
+            setAnchorElUser(event.currentTarget);
+        }
     };
 
     const handleLogoutUser = () => {
@@ -188,12 +197,12 @@ const Navbar = () => {
                                     open={Boolean(anchorElUser)}
                                     onClose={handleCloseUserMenu}
                                 >
-                                    {user?.role == 'admin' && 
-                                    <Link to='/dashboard' onClick={handleCloseUserMenu} style={{ textDecoration: 'none' }}>
-                                        <MenuItem>
-                                            <Typography textAlign="center" sx={{ color: 'black' }}>Dashboard</Typography>
-                                        </MenuItem>
-                                    </Link>
+                                    {user?.role == 'admin' &&
+                                        <Link to='/dashboard' onClick={handleCloseUserMenu} style={{ textDecoration: 'none' }}>
+                                            <MenuItem>
+                                                <Typography textAlign="center" sx={{ color: 'black' }}>Dashboard</Typography>
+                                            </MenuItem>
+                                        </Link>
                                     }
                                     {settings.map((setting, index) => (
                                         <Link key={index} onClick={setting.name == 'Salir' ? handleLogoutUser : handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
@@ -202,7 +211,7 @@ const Navbar = () => {
                                             </MenuItem>
                                         </Link>
                                     ))}
-                                    
+
                                 </Menu>
                             </Box>)
                             :
