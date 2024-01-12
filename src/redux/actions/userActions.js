@@ -1,6 +1,14 @@
 import { createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
 import clientAxios from "../../utils/clientAxios";
 
+export const getAllUsers = createAsyncThunk("getAllUsers", async() => {
+    try {
+        const response = await clientAxios.get(`users/`);
+        return response.data;
+    } catch (error) {
+        return isRejectedWithValue(error.response)
+    }
+})
 
 export const getUser = createAsyncThunk("getUser", async () => {
     try {
@@ -12,9 +20,9 @@ export const getUser = createAsyncThunk("getUser", async () => {
 });
 
 
-export const updateUser = createAsyncThunk("updateUser", async (data) => {
+export const editUser = createAsyncThunk("editUser", async (data) => {
     try {
-        const response = await clientAxios.put(`/users/edit/${data.id}`, data);
+        const response = await clientAxios.patch(`/users/edit/${data.id}`, data);
         return response.data;
     } catch (error) {
         return isRejectedWithValue(error.response);

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {  getUser, updateUser, deleteUser } from "../actions/userActions";
+import { getUser, editUser, deleteUser, getAllUsers } from "../actions/userActions";
 
 const userSlice = createSlice({
     name: 'users',
     initialState: {
+        users: [],
         user: {},
         loading: false,
         searchData: [],
@@ -15,6 +16,18 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(getAllUsers.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getAllUsers.fulfilled, (state, action) => {
+                state.loading = false;
+                state.users = action.payload;
+            })
+            .addCase(getAllUsers.rejected, (state, action) => {
+                state.loading = true;
+                state.users = action.payload;
+            })
+
             .addCase(getUser.pending, (state) => {
                 state.loading = true;
             })
@@ -25,19 +38,21 @@ const userSlice = createSlice({
             .addCase(getUser.rejected, (state, action) => {
                 state.loading = true;
                 state.user = action.payload;
-
             })
 
-            .addCase(updateUser.pending, (state) => {
+            .addCase(editUser.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(updateUser.fulfilled, (state, action) => {
-                state.loading = false;
-                state.list = state.list.map((element) =>
-                    element.id === action.payload.id ? action.payload : element
-                );
+            .addCase(editUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.users = state.users.map(user => {
+                    if (user.id === action.payload.id) {
+                        return action.payload
+                    }
+                    return user;
+                })
             })
-            .addCase(updateUser.rejected, (state, action) => {
+            .addCase(editUser.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload.message;
             })

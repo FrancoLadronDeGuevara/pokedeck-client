@@ -10,16 +10,7 @@ import { Link } from 'react-router-dom';
 
 export const mainListItems = (
     <>
-        <Link to='/dashboard/users' style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ListItemButton>
-                <ListItemIcon>
-                    <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Editar usuarios" />
-            </ListItemButton>
-        </Link>
-
-        <Link to='/dashboard/cards' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to='cards' style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton>
                 <ListItemIcon>
                     <CatchingPokemonTwoToneIcon />
@@ -28,7 +19,7 @@ export const mainListItems = (
             </ListItemButton>
         </Link>
 
-        <Link to='/dashboard/chests' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to='chests' style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton>
                 <ListItemIcon>
                     <AllInboxTwoToneIcon />
@@ -37,7 +28,7 @@ export const mainListItems = (
             </ListItemButton>
         </Link>
 
-        <Link to='/dashboard/games' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to='games' style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton>
                 <ListItemIcon>
                     <SportsEsportsTwoToneIcon />
@@ -54,7 +45,7 @@ export const secondaryListItems = (
             Ver todo
         </ListSubheader>
 
-        <Link to='/dashboard/allCards' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to='allCards' style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton>
                 <ListItemIcon>
                     <CatchingPokemonTwoToneIcon />
@@ -63,7 +54,7 @@ export const secondaryListItems = (
             </ListItemButton>
         </Link>
 
-        <Link to='/dashboard/allChests' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to='allChests' style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton>
                 <ListItemIcon>
                     <AllInboxTwoToneIcon />
@@ -72,7 +63,7 @@ export const secondaryListItems = (
             </ListItemButton>
         </Link>
 
-        <Link to='/dashboard/allUsers' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to='allUsers' style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton>
                 <ListItemIcon>
                     <PeopleIcon />

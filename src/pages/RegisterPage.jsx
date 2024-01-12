@@ -1,6 +1,19 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import RegisterForm from "../components/registerForm/RegisterForm";
+import { autoCloseAlert } from "../utils/alerts";
 
 const RegisterPage = ()=>{
+    const navigate = useNavigate()
+    const {user} = useSelector((state) => state.userState);
+
+    useEffect(()=>{
+        if(user){
+            navigate('/')
+            autoCloseAlert('Ya estas logueado', 'warning', 'green')
+        }
+    }, [])
     return(
         <>
             <RegisterForm/>

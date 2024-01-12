@@ -3,13 +3,12 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import PokedeckPage from "./pages/PokedeckPage";
 import StorePage from "./pages/StorePage";
-import ItemUsers from './components/dashboardAdmin/ItemUsers';
-import ItemCards from './components/dashboardAdmin/ItemCards';
-import ItemChests from './components/dashboardAdmin/ItemChests';
-import ItemGames from './components/dashboardAdmin/ItemGames';
-import ItemAllCards from './components/dashboardAdmin/ItemAllCards';
-import ItemAllChests from './components/dashboardAdmin/ItemAllChests';
-import ItemAllUsers from './components/dashboardAdmin/ItemAllUsers';
+import ItemCards from './components/dashboardAdmin/Cards/ItemCards';
+import ItemChests from './components/dashboardAdmin/Chests/ItemChests';
+import ItemGames from './components/dashboardAdmin/Games/ItemGames';
+import ItemAllCards from './components/dashboardAdmin/Cards/ItemAllCards';
+import ItemAllChests from './components/dashboardAdmin/Chests/ItemAllChests';
+import ItemAllUsers from './components/dashboardAdmin/Users/ItemAllUsers';
 import UserProfilePage from "./pages/UserProfilePage";
 import UserConfigurationPage from "./pages/UserConfigurationPage";
 
@@ -31,10 +30,6 @@ const routes = [
 
 
 const dashboardRoutes = [
-    {
-        path: 'users',
-        Element: ItemUsers,
-    },
     {
         path: 'cards',
         Element: ItemCards,

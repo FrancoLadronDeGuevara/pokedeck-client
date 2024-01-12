@@ -8,7 +8,11 @@ export const customAlert = (title, text, icon, action = null) => {
         showCancelButton: true,
         confirmButtonColor: '#3085D6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'De acuerdo',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar',
+        customClass: {
+            container: 'custom-alert-container',
+        },
     }).then((result) => {
         if (result.isConfirmed) {
             if (typeof action === 'function') {
