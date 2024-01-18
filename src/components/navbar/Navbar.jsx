@@ -50,7 +50,8 @@ const Navbar = () => {
     const location = useLocation();
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const { user } = useSelector((state) => state.userState);
+    const { user, isAuthenticated } = useSelector((state) => state.userState);
+
 
     const handleOpenNavMenu = (event) => {
         if (anchorElNav && anchorElNav.contains(event.target)) {
@@ -174,11 +175,11 @@ const Navbar = () => {
                             ))}
                         </Box>
 
-                        {user ?
+                        {isAuthenticated ?
                             (<Box sx={{ flexGrow: 0 }}>
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar alt="Remy Sharp" src={user.avatar} />
+                                        <Avatar variant="rounded" alt="Image user avatar" src={user?.avatar?.url} />
                                     </IconButton>
                                 </Tooltip>
                                 <Menu

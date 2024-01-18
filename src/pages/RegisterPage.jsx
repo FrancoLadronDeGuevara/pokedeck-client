@@ -4,19 +4,19 @@ import { useNavigate } from "react-router-dom";
 import RegisterForm from "../components/registerForm/RegisterForm";
 import { autoCloseAlert } from "../utils/alerts";
 
-const RegisterPage = ()=>{
+const RegisterPage = () => {
     const navigate = useNavigate()
-    const {user} = useSelector((state) => state.userState);
+    const { isAuthenticated } = useSelector((state) => state.userState);
 
-    useEffect(()=>{
-        if(user){
+    useEffect(() => {
+        if (isAuthenticated) {
             navigate('/')
             autoCloseAlert('Ya estas logueado', 'warning', 'green')
         }
     }, [])
-    return(
+    return (
         <>
-            <RegisterForm/>
+            <RegisterForm />
         </>
     )
 }

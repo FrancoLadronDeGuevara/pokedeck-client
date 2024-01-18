@@ -8,37 +8,38 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Link, useNavigate } from 'react-router-dom';
-import clientAxios from '../../utils/clientAxios';
 import { setLocalStorage } from '../../utils/localStorageHelper';
 import { autoCloseAlert } from '../../utils/alerts';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/actions/userActions';
 
 
 const LoginForm = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const dataForm = new FormData(e.currentTarget);
-
-        try {
-            const { data } = await clientAxios.post('/login', {
+        
+        await dispatch(login({
             email: dataForm.get('email'),
-            password: dataForm.get('password'),
+            password: dataForm.get('password')
+        })).then(res => {
+            if(res.error) return autoCloseAlert(res.error.message, 'error', 'red')
+            setLocalStorage('token', res.payload)
+            autoCloseAlert('Bienvenido', 'success', 'green');
+            setTimeout(() => {
+                navigate('/')
+                window.location.reload()
+            }, 1000)
         })
-        setLocalStorage("token", data.token);
-        autoCloseAlert('Bienvenido', 'success', 'green');
-        setTimeout(()=>{
-            navigate('/')
-            window.location.reload()
-        }, 1000)
-        } catch (error) {
-            autoCloseAlert(error.response.data, 'error', 'red')
-        }        
+
     };
 
     return (
 
-        <Container component="main" maxWidth="xs" sx={{marginBottom: 5}}>
+        <Container component="main" maxWidth="xs" sx={{ marginBottom: 5 }}>
             <CssBaseline />
             <Box
                 sx={{

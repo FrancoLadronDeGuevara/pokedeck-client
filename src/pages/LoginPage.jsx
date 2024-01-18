@@ -4,20 +4,20 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/loginForm/LoginForm"
 import { autoCloseAlert } from "../utils/alerts";
 
-const LoginPage = ()=>{
+const LoginPage = () => {
     const navigate = useNavigate()
-    const {user} = useSelector((state) => state.userState);
+    const { isAuthenticated } = useSelector((state) => state.userState);
 
-    useEffect(()=>{
-        if(user){
+    useEffect(() => {
+        if (isAuthenticated) {
             navigate('/')
             autoCloseAlert('Ya estas logueado', 'warning', 'green')
         }
     }, [])
 
-    return(
+    return (
         <>
-        <LoginForm/>
+            <LoginForm />
         </>
     )
 }

@@ -60,7 +60,7 @@ const Row = ({ row }) => {
                 <TableCell component="th" scope="row">
                     {row.username}
                 </TableCell>
-                <TableCell align="right"><Avatar alt={row.avatar} src={row.avatar} /></TableCell>
+                <TableCell align="right"><Avatar variant="rounded" alt={row.avatar} src={row.avatar} /></TableCell>
                 <TableCell align="center">{row.banned ? 'Si' : 'No'}</TableCell>
                 <TableCell align="center">{row.deck && row.deck.map(deck => deck.quantity).reduce((a, b) => a + b, 0)}</TableCell>
                 <TableCell align="center">{row.coins}</TableCell>

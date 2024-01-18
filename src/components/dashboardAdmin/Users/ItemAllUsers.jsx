@@ -39,7 +39,7 @@ const ItemAllUsers = () => {
     }, [])
 
 
-    const rows = users.map(user => createData(user.username, user.avatar, user.disabled, user.userDeck, user.coins, user.email, user.createdAt, user.role, user._id))
+    const rows = users.map(user => createData(user.username, user.avatar.url, user.disabled, user.userDeck, user.coins, user.email, user.createdAt, user.role, user._id))
 
     return (
         <TableContainer sx={{ overflowX: 'auto' }}>

@@ -23,7 +23,7 @@ const UserProfilePage = () => {
     return (
         <Container disableGutters sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, mb: 1 }}>
             <Box sx={{ width: { xs: '100%', md: 300 }, p: 2, border: '1px solid black', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Avatar src={user.avatar} sx={{ width: 200, height: 200 }} />
+                <Avatar variant="rounded" src={user.avatar.url} sx={{ width: 200, height: 200 }} />
                 <Typography align='center' variant='h5' sx={{ my: 1, fontWeight: 'bolder' }}>
                     {user.username}
                 </Typography>
