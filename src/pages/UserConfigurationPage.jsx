@@ -43,7 +43,7 @@ const UserConfigurationPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.userState);
-    const [value, setValue] = useState(null);
+    const [value, setValue] = useState(0);
     const [actualAvatar, setActualAvatar] = useState(user.avatar.url);
     const [defaultAvatar, setDefaultAvatar] = useState(null);
     const [uploadedImage, setUploadedImage] = useState(null);
@@ -97,7 +97,7 @@ const UserConfigurationPage = () => {
         setLoading(true)
         e.preventDefault();
 
-        if (oldPasswordError || newPasswordError || usernameError || oldPassword.length > 0 && newPassword.length == 0){
+        if (oldPasswordError || newPasswordError || usernameError || oldPassword.length > 0 && newPassword.length == 0) {
             setLoading(false)
             return autoCloseAlert('Por favor, rellena bien el formulario', 'error', 'red')
         }
@@ -125,16 +125,16 @@ const UserConfigurationPage = () => {
 
         try {
             await dispatch(updateUser(userData))
-            .then(res => {
-                if(res.error) return autoCloseAlert(res.error.message, 'error', 'red')
-                dispatch(getUser());
-                autoCloseAlert('Cambios guardados', 'success', 'green');
-                setTimeout(()=> navigate('/'), 2000)
-            })
+                .then(res => {
+                    if (res.error) return autoCloseAlert(res.error.message, 'error', 'red')
+                    dispatch(getUser());
+                    autoCloseAlert('Cambios guardados', 'success', 'green');
+                    setTimeout(() => navigate('/'), 2000)
+                })
         } catch (error) {
             console.log(error)
             autoCloseAlert('Error al actualizar el usuario', 'error', 'red');
-        }finally{
+        } finally {
             setLoading(false)
         }
 
@@ -142,87 +142,90 @@ const UserConfigurationPage = () => {
 
     return (
         <Container disableGutters>
-            <Box sx={{ display: 'flex'}}>
-                <Box sx={{ position: 'relative' }}>
-                    <Avatar variant="rounded" src={actualAvatar} sx={{ width: 200, height: 200 }} />
-                    <Button size="small" sx={{ position: 'absolute', bottom: 0, right: 0 }} component="label" variant="contained" startIcon={<UploadFileTwoToneIcon />}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                <Box sx={{ position: 'relative', margin: '2rem' }}>
+                    <Avatar variant="rounded" src={actualAvatar} sx={{ width: { xs: 200, sm: 300, md: 400 }, height: { xs: 200, sm: 300, md: 400 } }} />
+                    <Button size="small" sx={{ position: 'absolute', bottom: 0, left: 0 }} component="label" variant="contained" startIcon={<UploadFileTwoToneIcon />}>
                         Subir imagen
                         <VisuallyHiddenInput type="file" onChange={handleUploadImage} accept="image/*" />
                     </Button>
                 </Box>
-                <Box sx={{ my: 5 }}>
+                <Box sx={{ display: 'flex', width: '60%', height: { xs: 400, sm: 300, md: 200 } }}>
                     <BottomNavigation
-                        sx={{ display: 'flex', flexWrap: 'wrap' }}
-                        showLabels
                         value={value}
                         onChange={(e, newValue) => {
                             setValue(newValue);
                         }}>
-                        {defaultAvatars.map((avatar, index) => (
-                            <BottomNavigationAction onClick={() => handleAvatar(index)} sx={{ fontWeight: 'bolder' }} key={index} label={avatar.name} icon={<Avatar variant="rounded" src={avatar.url} alt={avatar.name} sx={{ width: 64, height: 64 }} />} />
-                        ))}
+                        <Grid container spacing={2} >
+                            {defaultAvatars.map((avatar, index) => (
+                                <Grid key={index} xs={4} sm={3} md={2} my='1rem' sx={{ display: 'flex' }}>
+                                    
+                                    <BottomNavigationAction showLabel onClick={() => handleAvatar(index)} sx={{ padding: 0, fontWeight: 'bolder' }} key={index} label={avatar.name} icon={<Avatar variant="rounded" src={avatar.url} alt={avatar.name} sx={{ width: 64, height: 64 }} />} />
+                                </Grid>
+                            ))}
+                        </Grid>
                     </BottomNavigation>
                 </Box>
             </Box>
-                <Box component="form" fullWidth noValidate onSubmit={handleSubmit} sx={{ mt: 3, p: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Grid container direction='column' spacing={2} maxWidth='sm'>
-                        <Grid item>
-                            <TextField
-                                fullWidth
-                                id="username"
-                                label="Nombre de Usuario"
-                                name="username"
-                                autoComplete="username"
-                                onChange={e => handleError(e, setUsername, setUsernameError, usernameRegex)}
-                                value={username}
-                                error={usernameError}
-                                color={usernameError ? '' : 'success'}
-                                helperText={usernameError ? 'Debe ser de 8 a 20 caracteres (letras y/o números)' : ''}
-                            />
-                        </Grid>
-                        <Grid item>
-                            <FormControl fullWidth required variant="outlined">
-                                <TextField
-                                    id="password"
-                                    type={showOldPassword ? 'text' : 'password'}
-                                    label="Contraseña actual"
-                                    value={oldPassword}
-                                    error={oldPasswordError}
-                                    color={oldPasswordError ? '' : 'success'}
-                                    helperText={oldPasswordError ? 'La contraseña debe tener al menos 8 carácteres y contener al menos una letra mayúscula, una letra minúscula y un número' : ''}
-                                    onChange={e => handleError(e, setOldPassword, setOldPasswordError, strongPasswordRegex)}
-                                />
-                                {showOldPassword ? <VisibilityOff sx={confIcon} onClick={handleClickShowPassword} /> : <Visibility sx={confIcon} onClick={handleClickShowPassword} />}
-                            </FormControl>
-                        </Grid>
-                        <Grid item>
-                            <FormControl fullWidth required variant="outlined">
-                                <TextField
-                                    required={oldPasswordError}
-                                    id="password2"
-                                    type={showNewPassword ? 'text' : 'password'}
-                                    label="Contraseña nueva"
-                                    value={newPassword}
-                                    error={newPasswordError}
-                                    color={newPasswordError ? '' : 'success'}
-                                    helperText={newPasswordError ? 'La contraseña nueva debe tener al menos 8 carácteres y contener al menos una letra mayúscula, una letra minúscula y un número' : ''}
-                                    onChange={e => handleError(e, setNewPassword, setNewPasswordError, strongPasswordRegex)}
-                                />
-                                {showNewPassword ? <VisibilityOff sx={confIcon} onClick={handleClickShowNewPassword} /> : <Visibility sx={confIcon} onClick={handleClickShowNewPassword} />}
-                            </FormControl>
-                        </Grid>
+            <Box component="form" fullWidth noValidate onSubmit={handleSubmit} sx={{ mt: 3, p: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Grid container direction='column' spacing={2} maxWidth='sm'>
+                    <Grid item>
+                        <TextField
+                            fullWidth
+                            id="username"
+                            label="Nombre de Usuario"
+                            name="username"
+                            autoComplete="username"
+                            onChange={e => handleError(e, setUsername, setUsernameError, usernameRegex)}
+                            value={username}
+                            error={usernameError}
+                            color={usernameError ? '' : 'success'}
+                            helperText={usernameError ? 'Debe ser de 8 a 20 caracteres (letras y/o números)' : ''}
+                        />
                     </Grid>
-                    {loading && <Loader />}
-                    <Button
-                        disabled={!hasChanges}
-                        type="submit"
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                    >
-                        {loading ? 'Guardando...' : 'Guardar cambios'}
-                    </Button>
-                </Box>
-        </Container>
+                    <Grid item>
+                        <FormControl fullWidth required variant="outlined">
+                            <TextField
+                                id="password"
+                                type={showOldPassword ? 'text' : 'password'}
+                                label="Contraseña actual"
+                                value={oldPassword}
+                                error={oldPasswordError}
+                                color={oldPasswordError ? '' : 'success'}
+                                helperText={oldPasswordError ? 'La contraseña debe tener al menos 8 carácteres y contener al menos una letra mayúscula, una letra minúscula y un número' : ''}
+                                onChange={e => handleError(e, setOldPassword, setOldPasswordError, strongPasswordRegex)}
+                            />
+                            {showOldPassword ? <VisibilityOff sx={confIcon} onClick={handleClickShowPassword} /> : <Visibility sx={confIcon} onClick={handleClickShowPassword} />}
+                        </FormControl>
+                    </Grid>
+                    <Grid item>
+                        <FormControl fullWidth required variant="outlined">
+                            <TextField
+                                required={oldPasswordError}
+                                id="password2"
+                                type={showNewPassword ? 'text' : 'password'}
+                                label="Contraseña nueva"
+                                value={newPassword}
+                                error={newPasswordError}
+                                color={newPasswordError ? '' : 'success'}
+                                helperText={newPasswordError ? 'La contraseña nueva debe tener al menos 8 carácteres y contener al menos una letra mayúscula, una letra minúscula y un número' : ''}
+                                onChange={e => handleError(e, setNewPassword, setNewPasswordError, strongPasswordRegex)}
+                            />
+                            {showNewPassword ? <VisibilityOff sx={confIcon} onClick={handleClickShowNewPassword} /> : <Visibility sx={confIcon} onClick={handleClickShowNewPassword} />}
+                        </FormControl>
+                    </Grid>
+                </Grid>
+                {loading && <Loader />}
+                <Button
+                    disabled={!hasChanges}
+                    type="submit"
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                >
+                    {loading ? 'Guardando...' : 'Guardar cambios'}
+                </Button>
+            </Box>
+        </Container >
     )
 }
 
