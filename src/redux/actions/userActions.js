@@ -24,7 +24,6 @@ export const editUser = createAsyncThunk("editUser", async (data) => {
 export const updateUser = createAsyncThunk("updateUser", async (data) => {
     const response = await clientAxios.patch(`/users/update/${data.id}`, data);
     return response.data;
-
 });
 
 

@@ -48,3 +48,29 @@ export const defaultAvatars = [
         url: 'https://res.cloudinary.com/dnlvoza12/image/upload/v1705046989/avatars/oowp3szrr8al1gayxg3e.png'
     }
 ]
+
+export const pokemonTipes = [
+    "Normal",
+    "Planta",
+    "Fuego",
+    "Agua",
+    "Volador",
+    "Lucha",
+    "Veneno",
+    "Tierra",
+    "Roca",
+    "Bicho",
+    "Fantasma",
+    "Eléctrico",
+    "Psíquico",
+    "Hielo",
+    "Dragón",
+    "Acero",
+];
+
+export const cardRarity = [
+    'Normal', 
+    'Rara', 
+    'Epica', 
+    'Legendaria'
+]
