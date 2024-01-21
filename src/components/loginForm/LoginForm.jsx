@@ -7,26 +7,37 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import FormControl from '@mui/material/FormControl';
 import { Link, useNavigate } from 'react-router-dom';
 import { setLocalStorage } from '../../utils/localStorageHelper';
 import { autoCloseAlert } from '../../utils/alerts';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions/userActions';
+import { useState } from 'react';
 
+const confIcon = {
+    position: 'absolute', right: 10, top: 30, cursor: 'pointer'
+}
 
 const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const dataForm = new FormData(e.currentTarget);
-        
+
         await dispatch(login({
             email: dataForm.get('email'),
             password: dataForm.get('password')
         })).then(res => {
-            if(res.error) return autoCloseAlert(res.error.message, 'error', 'red')
+            if (res.error) return autoCloseAlert(res.error.message, 'error', 'red')
             setLocalStorage('token', res.payload)
             autoCloseAlert('Bienvenido', 'success', 'green');
             setTimeout(() => {
@@ -66,16 +77,19 @@ const LoginForm = () => {
                         autoComplete="email"
                         autoFocus
                     />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Contraseña"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                    />
+                    <FormControl fullWidth required variant="outlined">
+                        <TextField
+                            id="password"
+                            margin="normal"
+                            required
+                            fullWidth
+                            type={showPassword ? 'text' : 'password'}
+                            label="Contraseña"
+                            name='password'
+                            autoComplete="current-password"
+                        />
+                        {showPassword ? <VisibilityOff sx={confIcon} onClick={handleClickShowPassword} /> : <Visibility sx={confIcon} onClick={handleClickShowPassword} />}
+                    </FormControl>
                     <Button
                         type="submit"
                         fullWidth

@@ -12,6 +12,7 @@ export const getCard = createAsyncThunk("getCard", async () => {
     return response.data;
 });
 
+
 export const editCard = createAsyncThunk("editCard", async (data) => {
     const response = await clientAxios.patch(`/cards/edit/${data.id}`, data);
     return response.data;

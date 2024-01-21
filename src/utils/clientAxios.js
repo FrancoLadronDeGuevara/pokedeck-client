@@ -31,7 +31,7 @@ clientAxios.interceptors.response.use(
             }
             return Promise.reject(error.response.data);
         } else if (error.request) {
-            return Promise.reject({ message: 'No se recibió respuesta del servidor' });
+            return Promise.reject(error.request);
         } else {
             return Promise.reject({ message: 'Error en la configuración de la solicitud' });
         }

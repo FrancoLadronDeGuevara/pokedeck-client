@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
-.custom-alert-container{
+.alert-container{
   z-index: 9999;
+}
+
+.css-rf1tng-MuiContainer-root{
+  max-width: 2000px !important;
 }

@@ -52,7 +52,7 @@ const userCard = createSlice({
             })
             .addCase(editCard.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.payload.message;
+                state.error = action.payload;
             })
 
             .addCase(deleteCard.pending, (state) => {

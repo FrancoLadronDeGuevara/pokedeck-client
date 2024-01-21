@@ -17,6 +17,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import FormControl from '@mui/material/FormControl';
 import clientAxios from '../../utils/clientAxios';
 import Loader from '../loader/Loader';
+import { handleError } from '../../utils/handleInputError';
 
 const apiUrl = import.meta.env.VITE_URL_BASE_API;
 const strongPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
@@ -43,24 +44,6 @@ const RegisterForm = () => {
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
 
-    const handleErrorEmail = (e) =>{
-        setEmail(e.target.value)
-        if (!strongEmailRegex.test(e.target.value) ) {
-            return setEmailError(true)
-        }else{
-            setEmailError(false)
-        }
-    }
-
-    const handleErrorPassword = (e) => {
-        setPassword(e.target.value)
-
-        if(!strongPasswordRegex.test(e.target.value)){
-            return setPasswordError(true)
-        }else{
-            setPasswordError(false)
-        }
-    }
 
     const handleErrorConfirmPassword = (e) => {
         setConfirmPassword(e.target.value)
@@ -126,7 +109,7 @@ const RegisterForm = () => {
                                 label="Email"
                                 name="email"
                                 autoComplete="email"
-                                onChange={e => handleErrorEmail(e)}
+                                onChange={e => handleError(e, setEmail, setEmailError, strongEmailRegex)}
                                 value={email}
                                 error={emailError}
                                 color={emailError ? '' : 'success'}
@@ -143,7 +126,7 @@ const RegisterForm = () => {
                                     error={passwordError}
                                     color={passwordError? '' : 'success'}
                                     helperText={ passwordError ? 'La contraseña debe tener al menos 8 carácteres y contener al menos una letra mayúscula, una letra minúscula y un número' : ''}
-                                    onChange={e => handleErrorPassword(e)}
+                                    onChange={e => handleError(e, setPassword, setPasswordError, strongPasswordRegex)}
                                 />
                                 {showPassword ? <VisibilityOff sx={confIcon} onClick={handleClickShowPassword}/> : <Visibility sx={confIcon}  onClick={handleClickShowPassword}/>}
                             </FormControl>

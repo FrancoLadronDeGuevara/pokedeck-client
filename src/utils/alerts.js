@@ -11,7 +11,7 @@ export const customAlert = (title, text, icon, action = null) => {
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar',
         customClass: {
-            container: 'custom-alert-container',
+            container: 'alert-container',
         },
     }).then((result) => {
         if (result.isConfirmed) {
@@ -31,6 +31,9 @@ export const autoCloseAlert = (title, icon, background) => {
         color: "#fff",
         showConfirmButton: false,
         toast: true,
-        timer: 2000
+        timer: 2000,
+        customClass: {
+            container: 'alert-container',
+        },
     });
 }

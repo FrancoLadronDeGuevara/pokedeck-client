@@ -10,15 +10,16 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { cardRarity, pokemonTipes } from '../../../utils/pokemonHelper';
+import { cardRarity, firstTypeList, secondTypeList } from '../../../utils/pokemonHelper';
 import Avatar from '@mui/material/Avatar';
 import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
 import { autoCloseAlert } from '../../../utils/alerts';
 import { handleAvatarUpload } from '../../../utils/uploadImage';
 import clientAxios from '../../../utils/clientAxios';
 import Loader from '../../loader/Loader';
+import { handleError } from '../../../utils/handleInputError';
 
-const VisuallyHiddenInput = styled('input')({
+export const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
     height: 1,
@@ -44,12 +45,6 @@ const CreateCards = () => {
     const [secondTipe, setSecondTipe] = useState('')
     const [imageUpload, setImageUpload] = useState('')
     const [loading, setLoading] = useState(false)
-
-    const handleError = (e, setter, setError, regex) => {
-        setter(e.target.value)
-        const error = !regex.test(e.target.value)
-        setError(error)
-    }
 
     const handleUploadImage = async (e) => {
         const file = e.target.files[0];
@@ -81,10 +76,14 @@ const CreateCards = () => {
         }
 
         if(secondTipe){
-            types = [firstTipe, secondTipe]
+            if(secondTipe == "SIN 2° TIPO"){
+                types = [firstTipe]
+            }else{
+                types = [firstTipe, secondTipe]
+            }
         }
 
-        const imageCard = await handleAvatarUpload(imageUpload)
+        const imageCard = await handleAvatarUpload(imageUpload, 'cardsImages')
 
 
         try {
@@ -103,7 +102,7 @@ const CreateCards = () => {
     };
 
     return (
-        <Container component="main" maxWidth="xs" sx={{ marginBottom: 5, overflowX: 'auto' }}>
+        <Container component="main" maxWidth="xs" sx={{ marginBottom: 5, overflowX: 'auto'}}>
             <CssBaseline />
             <Box
                 sx={{
@@ -113,11 +112,11 @@ const CreateCards = () => {
                     alignItems: 'center',
                 }}
             >
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                <Box component="form" noValidate onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
-                            <Box sx={{ position: 'relative', margin: '2rem' }}>
-                                <Avatar variant="rounded" src={imageUpload} sx={{minWidth: 100, width: { xs: 'auto', sm: 200, md: 300 }, height: { xs: 150, sm: 200, md: 300 } }} />
+                            <Box sx={{ position: 'relative'}}>
+                                <Avatar variant="rounded" src={imageUpload} sx={{minWidth: 100, width: { xs: 'auto', sm: 150, md: 200 }, height: { xs: 150, sm: 200, md: 300 } }} />
                                 <Button size="small" sx={{ position: 'absolute', bottom: 0, left: 0, fontSize: 8 }} component="label" variant="contained" startIcon={<UploadFileTwoToneIcon />}>
                                     Subir imagen*
                                     <VisuallyHiddenInput type="file" onChange={handleUploadImage} accept="image/*" />
@@ -181,7 +180,7 @@ const CreateCards = () => {
                                     label="Tipo 1"
                                     onChange={e => setFirstTipe(e.target.value)}
                                 >
-                                    {pokemonTipes.map((tipe, index) => (
+                                    {firstTypeList.map((tipe, index) => (
                                         <MenuItem key={index} value={tipe}>{tipe}</MenuItem>
                                     ))}
                                 </Select>
@@ -197,7 +196,7 @@ const CreateCards = () => {
                                     label="Tipo 2"
                                     onChange={e => setSecondTipe(e.target.value)}
                                 >
-                                    {pokemonTipes.map((tipe, index) => (<MenuItem key={index} value={tipe}>{tipe}</MenuItem>))}
+                                    {secondTypeList.map((tipe, index) => (<MenuItem key={index} value={tipe}>{tipe}</MenuItem>))}
                                 </Select>
                             </FormControl>
                         </Grid>

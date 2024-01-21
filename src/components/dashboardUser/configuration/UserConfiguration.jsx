@@ -19,6 +19,7 @@ import { defaultAvatars } from '../../../utils/pokemonHelper';
 import { handleAvatarUpload } from '../../../utils/uploadImage';
 import Loader from '../../loader/Loader';
 import { useNavigate } from 'react-router-dom';
+import { handleError } from '../../../utils/handleInputError';
 
 const strongPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 const usernameRegex = /^[a-zA-Z0-9]{8,20}$/;
@@ -66,13 +67,6 @@ const UserConfiguration = () => {
         username !== user.username ||
         actualAvatar !== user.avatar.url ||
         oldPassword;
-
-
-    const handleError = (e, setter, setError, regex) => {
-        setter(e.target.value)
-        const error = !regex.test(e.target.value)
-        setError(error)
-    }
 
     const handleAvatar = (index) => {
         const selectedAvatar = defaultAvatars[index];

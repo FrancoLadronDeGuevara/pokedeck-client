@@ -22,6 +22,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.enteringScreen,
             }),
+            zIndex: 1,
             boxSizing: 'border-box',
             ...(!open && {
                 overflowX: 'hidden',
