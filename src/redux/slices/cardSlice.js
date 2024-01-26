@@ -18,11 +18,11 @@ const userCard = createSlice({
             .addCase(getAllCards.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.cards = action.payload;
+                state.cards = action.payload.sort((a, b) => a.pokedexNumber - b.pokedexNumber);
             })
             .addCase(getAllCards.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message;
+                state.error = action.error;
             })
 
             .addCase(getCard.pending, (state) => {
@@ -62,13 +62,12 @@ const userCard = createSlice({
                 state.loading = false;
                 const { id } = action.payload;
                 if (id) {
-                    state.list = state.list.filter((element) => element.id !== id);
+                    state.cards = state.cards.filter((card) => card.id !== id);
                 }
-                console.log("delete action", action.payload);
             })
             .addCase(deleteCard.rejected, (state, action) => {
                 state.loading = true;
-                state.list = action.payload;
+                state.error = action.payload;
             });
     },
 })

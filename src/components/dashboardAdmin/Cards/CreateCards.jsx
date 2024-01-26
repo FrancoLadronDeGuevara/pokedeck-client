@@ -14,7 +14,7 @@ import { cardRarity, firstTypeList, secondTypeList } from '../../../utils/pokemo
 import Avatar from '@mui/material/Avatar';
 import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
 import { autoCloseAlert } from '../../../utils/alerts';
-import { handleAvatarUpload } from '../../../utils/uploadImage';
+import { handleAvatarUpload, handleUploadImage } from '../../../utils/uploadImage';
 import clientAxios from '../../../utils/clientAxios';
 import Loader from '../../loader/Loader';
 import { handleError } from '../../../utils/handleInputError';
@@ -46,18 +46,7 @@ const CreateCards = () => {
     const [imageUpload, setImageUpload] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const handleUploadImage = async (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-
-        if (!file.type.startsWith('image/')) return autoCloseAlert('Archivo no válido', 'error', 'red');
-
-        reader.onload = (e) => {
-            const previewImage = e.target.result;
-            setImageUpload(previewImage);
-        };
-        reader.readAsDataURL(file);
-    };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -87,7 +76,7 @@ const CreateCards = () => {
 
 
         try {
-            await clientAxios.post(`${apiUrl}/cards/create`, { imageCard, name, pokedexNumber, rarity, types })
+            await clientAxios.post(`${apiUrl}/cards/create`, { imageCard, name, pokedexNumber, rarity, types }, {withCredentials: true})
             autoCloseAlert('Carta creada con éxito', 'success', 'green')
             setTimeout(()=> {
                 window.location.reload()
@@ -119,12 +108,13 @@ const CreateCards = () => {
                                 <Avatar variant="rounded" src={imageUpload} sx={{minWidth: 100, width: { xs: 'auto', sm: 150, md: 200 }, height: { xs: 150, sm: 200, md: 300 } }} />
                                 <Button size="small" sx={{ position: 'absolute', bottom: 0, left: 0, fontSize: 8 }} component="label" variant="contained" startIcon={<UploadFileTwoToneIcon />}>
                                     Subir imagen*
-                                    <VisuallyHiddenInput type="file" onChange={handleUploadImage} accept="image/*" />
+                                    <VisuallyHiddenInput type="file" onChange={(e) => handleUploadImage(e, setImageUpload)} accept="image/*" />
                                 </Button>
                             </Box>
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                            size='small'
                                 required
                                 fullWidth
                                 id="name"
@@ -140,6 +130,7 @@ const CreateCards = () => {
                         <Grid item xs={12}>
                             <FormControl fullWidth required variant="outlined">
                                 <TextField
+                                size='small'
                                     required
                                     id="pokedex"
                                     type='number'
@@ -174,8 +165,8 @@ const CreateCards = () => {
                                 <InputLabel id="first">Tipo 1*</InputLabel>
                                 <Select
                                     required
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
+                                    labelId="Tipo 1"
+                                    id="Tipo 1"
                                     value={firstTipe}
                                     label="Tipo 1"
                                     onChange={e => setFirstTipe(e.target.value)}
@@ -190,8 +181,8 @@ const CreateCards = () => {
                             <FormControl fullWidth>
                                 <InputLabel id="second">Tipo 2</InputLabel>
                                 <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
+                                    labelId="Tipo 2"
+                                    id="Tipo 2"
                                     value={secondTipe}
                                     label="Tipo 2"
                                     onChange={e => setSecondTipe(e.target.value)}

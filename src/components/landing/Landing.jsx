@@ -1,6 +1,7 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import FeaturedCards from './FeaturedCards';
 
 const Landing = () => {
 
@@ -40,6 +41,9 @@ const Landing = () => {
                         <Item>Quizz</Item>
                     </Grid>
                 </Grid>
+                <Box>
+                    <FeaturedCards/>
+                </Box>
             </Container>
         </>
     )

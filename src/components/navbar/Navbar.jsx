@@ -11,12 +11,14 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
 import { useSelector } from 'react-redux';
-import { removeLocalStorage } from '../../utils/localStorageHelper';
 import { customAlert } from '../../utils/alerts';
+import axios from 'axios';
+
+const apiUrl = import.meta.env.VITE_URL_BASE_API
 
 
 const pages = [{
@@ -43,14 +45,15 @@ const settings = [
     },
     {
         name: 'Salir',
-        to: () => {},
+        to: () => { },
     }];
 
 const Navbar = () => {
+    const navigate = useNavigate()
     const location = useLocation();
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const { user, isAuthenticated } = useSelector((state) => state.userState);
+    const { user, isAuthenticated, loading } = useSelector((state) => state.user);
 
 
     const handleOpenNavMenu = (event) => {
@@ -70,9 +73,16 @@ const Navbar = () => {
     };
 
     const handleLogoutUser = () => {
-        customAlert('¿Cerrar sesión?', '', 'question', () => {
-            removeLocalStorage('token');
-            setTimeout(() => { window.location.reload() }, 1000)
+        customAlert('¿Cerrar sesión?', '', 'question', async () => {
+            try {
+                await axios.get(`${apiUrl}/users/logout-user`, { withCredentials: true })
+                setTimeout(() => {
+                    navigate('/')
+                    window.location.reload()
+                }, 1000)
+            } catch (error) {
+                console.log(error)
+            }
         })
     }
 
@@ -92,8 +102,8 @@ const Navbar = () => {
                         <Typography
                             variant="h6"
                             noWrap
-                            component={Link}
-                            href="/"
+                            component={NavLink}
+                            to="/"
                             sx={{
                                 mr: 2,
                                 display: { xs: 'none', sm: 'flex' },
@@ -137,11 +147,11 @@ const Navbar = () => {
                                 }}
                             >
                                 {pages.map((page, index) => (
-                                    <Link key={index} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
+                                    <NavLink key={index} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
                                         <MenuItem>
                                             <Typography textAlign="center" sx={{ color: 'black' }}>{page.name}</Typography>
                                         </MenuItem>
-                                    </Link>
+                                    </NavLink>
                                 ))}
                             </Menu>
                         </Box>
@@ -149,8 +159,8 @@ const Navbar = () => {
                         <Typography
                             variant="h5"
                             noWrap
-                            component={Link}
-                            href="/"
+                            component={NavLink}
+                            to="/"
                             sx={{
                                 mr: 2,
                                 display: { xs: 'flex', sm: 'none' },
@@ -166,17 +176,17 @@ const Navbar = () => {
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
                             {pages.map((page, index) => (
-                                <Link key={index} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
+                                <NavLink key={index} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
                                     <MenuItem>
                                         <Typography textAlign="center" sx={{ color: 'white' }}>{page.name}</Typography>
                                     </MenuItem>
-                                </Link>
+                                </NavLink>
 
                             ))}
                         </Box>
 
-                        {isAuthenticated ?
-                            (<Box sx={{ flexGrow: 0 }}>
+                        {isAuthenticated &&
+                            <Box sx={{ flexGrow: 0 }}>
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                         <Avatar variant="rounded" alt="Image user avatar" src={user?.avatar?.url} />
@@ -199,24 +209,25 @@ const Navbar = () => {
                                     onClose={handleCloseUserMenu}
                                 >
                                     {user?.role == 'admin' &&
-                                        <Link to='/dashboard' onClick={handleCloseUserMenu} style={{ textDecoration: 'none' }}>
+                                        <NavLink to='/admin' onClick={handleCloseUserMenu} style={{ textDecoration: 'none' }}>
                                             <MenuItem>
                                                 <Typography textAlign="center" sx={{ color: 'black' }}>Dashboard</Typography>
                                             </MenuItem>
-                                        </Link>
+                                        </NavLink>
                                     }
                                     {settings.map((setting, index) => (
-                                        <Link key={index} onClick={setting.name == 'Salir' ? handleLogoutUser : handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
+                                        <NavLink key={index} onClick={setting.name == 'Salir' ? handleLogoutUser : handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
                                             <MenuItem>
                                                 <Typography textAlign="center" sx={{ color: 'black' }}>{setting.name}</Typography>
                                             </MenuItem>
-                                        </Link>
+                                        </NavLink>
                                     ))}
 
                                 </Menu>
-                            </Box>)
-                            :
-                            (<Box sx={{ flexGrow: 0 }}>
+                            </Box>
+                        }
+                        {
+                            !loading && !isAuthenticated && <Box sx={{ flexGrow: 0 }}>
                                 {location.pathname !== '/login' && location.pathname !== '/register' && (
                                     <Box>
                                         <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -246,8 +257,10 @@ const Navbar = () => {
                                         </Button>
                                     </Link>
                                 )}
-                            </Box>)
+                            </Box>
                         }
+
+
                     </Toolbar>
                 </Container>
             </AppBar>

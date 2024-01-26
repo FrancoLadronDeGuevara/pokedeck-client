@@ -11,19 +11,17 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import FormControl from '@mui/material/FormControl';
 import { Link, useNavigate } from 'react-router-dom';
-import { setLocalStorage } from '../../utils/localStorageHelper';
 import { autoCloseAlert } from '../../utils/alerts';
-import { useDispatch } from 'react-redux';
-import { login } from '../../redux/actions/userActions';
 import { useState } from 'react';
+import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_URL_BASE_API
 const confIcon = {
     position: 'absolute', right: 10, top: 30, cursor: 'pointer'
 }
 
 const LoginForm = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch()
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -33,18 +31,21 @@ const LoginForm = () => {
         e.preventDefault();
         const dataForm = new FormData(e.currentTarget);
 
-        await dispatch(login({
+        await axios.post(`${apiUrl}/users/login-user`, {
             email: dataForm.get('email'),
             password: dataForm.get('password')
-        })).then(res => {
-            if (res.error) return autoCloseAlert(res.error.message, 'error', 'red')
-            setLocalStorage('token', res.payload)
-            autoCloseAlert('Bienvenido', 'success', 'green');
-            setTimeout(() => {
-                navigate('/')
-                window.location.reload()
-            }, 1000)
-        })
+        },
+            { withCredentials: true }
+        )
+            .then(res => {
+                autoCloseAlert('Bienvenido', 'success', 'green');
+                setTimeout(() => {
+                    navigate('/')
+                    window.location.reload()
+                }, 1000)
+            }).catch(error => {
+                autoCloseAlert(error.response.data.message, 'error', 'red')
+            })
 
     };
 

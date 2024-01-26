@@ -17,10 +17,11 @@ import Avatar from '@mui/material/Avatar';
 import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
 import Grid from '@mui/material/Grid';
 import { handleError } from '../../../utils/handleInputError';
-import { VisuallyHiddenInput } from './ItemCards';
+import { VisuallyHiddenInput } from './CreateCards';
 import Loader from '../../loader/Loader';
 import { handleAvatarUpload } from '../../../utils/uploadImage';
-import { editCard } from '../../../redux/actions/cardActions';
+import CloseIcon from '@mui/icons-material/Close';
+import { deleteCard, editCard } from '../../../redux/actions/cardActions';
 
 const regexPokedex = /^(?:[1-9]|[1-9][0-9]|1[0-4][0-9]|150|151)$/
 const regexName = /^[A-Za-z\s.'-]{3,10}$/
@@ -31,11 +32,11 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -45%)',
     minWidth: 250,
-    height: 500,
+    height: 450,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 3,
+    px: 3,
     borderRadius: '1rem',
     display: 'flex',
     flexDirection: 'column',
@@ -69,10 +70,31 @@ const ModalEditCard = ({ idCard, pokedex, pokemonName, pokemonTypes, pokemonRari
         reader.readAsDataURL(file);
     };
 
+    const handleDeleteCard = async () => {
+        setLoading(true)
+        try {
+            await customAlert('¿Eliminar Carta?', '', 'warning', () => {
+                dispatch(deleteCard(idCard))
+                    .then(res => {
+                        if (res.error) return autoCloseAlert(res.error.message, 'error', 'red');
+                        autoCloseAlert('Carta eliminada', 'success', 'green')
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1000)
+                    })
+            })
+        } catch (error) {
+            console.log(error)
+            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error', 'red');
+        } finally {
+            setLoading(false)
+        }
+    }
+
     const handleUpdateCard = async (e) => {
         e.preventDefault()
         setLoading(true)
-        let cardData = {id: idCard}
+        let cardData = { id: idCard }
 
         if (nameError || pokedexError) {
             setLoading(false)
@@ -84,46 +106,46 @@ const ModalEditCard = ({ idCard, pokedex, pokemonName, pokemonTypes, pokemonRari
             return autoCloseAlert('No puede tener el mismo tipo dos veces', 'error', 'red')
         }
 
-        if(pokedexNumber !== pokedex){
-            cardData = {...cardData, pokedexNumber}
+        if (pokedexNumber !== pokedex) {
+            cardData = { ...cardData, pokedexNumber }
         }
 
-        if(name !== pokemonName){
-            cardData = {...cardData, name}
-        }
-        
-        if(rarity !== pokemonRarity){
-            cardData = {...cardData, rarity}
+        if (name !== pokemonName) {
+            cardData = { ...cardData, name }
         }
 
-        if(firstType !== pokemonTypes[0]){
-            cardData = {...cardData, firstType}
+        if (rarity !== pokemonRarity) {
+            cardData = { ...cardData, rarity }
         }
 
-        if(secondType && secondType !== pokemonTypes[1]){
-            cardData = {...cardData, secondType}
+        if (firstType !== pokemonTypes[0]) {
+            cardData = { ...cardData, firstType }
+        }
+
+        if (secondType && secondType !== pokemonTypes[1]) {
+            cardData = { ...cardData, secondType }
         }
 
         if (imageUpload !== cardImage) {
             const imageCard = await handleAvatarUpload(imageUpload, 'cardsImages')
-            cardData = {...cardData, imageCard}
+            cardData = { ...cardData, imageCard }
         }
 
         try {
             await customAlert('¿Guardar cambios?', '', 'warning', () => {
                 dispatch(editCard(cardData))
-                .then(res => {
-                    if(res.error) return autoCloseAlert(res.error.message, 'error', 'red');
-                    autoCloseAlert('Carta actualizada', 'success', 'green')
-                    setTimeout(()=>{
-                        window.location.reload()
-                    }, 1000)
-                })
+                    .then(res => {
+                        if (res.error) return autoCloseAlert(res.error.message, 'error', 'red');
+                        autoCloseAlert('Carta actualizada', 'success', 'green')
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1000)
+                    })
             })
         } catch (error) {
             console.log(error)
-            autoCloseAlert( error.message|| "Ups, ocurrió un error", 'error', 'red');
-        } finally{
+            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error', 'red');
+        } finally {
             setLoading(false)
         }
 
@@ -145,6 +167,12 @@ const ModalEditCard = ({ idCard, pokedex, pokemonName, pokemonTypes, pokemonRari
                 <Fade in={true}>
                     <Box sx={style}>
                         <Box component="form" noValidate onSubmit={handleUpdateCard} sx={{ mt: 3 }}>
+                            <Button
+                            sx={{position: 'absolute', right: 0, top: 0}}
+                            onClick={onClose}
+                            >
+                                <CloseIcon/>
+                            </Button>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                                     <Box sx={{ position: 'relative' }}>
@@ -239,14 +267,28 @@ const ModalEditCard = ({ idCard, pokedex, pokemonName, pokemonTypes, pokemonRari
                                 </Grid>
 
                             </Grid>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                            >
-                                Guardar Cambios
-                            </Button>
+                            <Box sx={{ display: 'flex' }}>
+                                <Button
+                                    size='small'
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color='success'
+                                    sx={{ mt: 1, mr: 2 }}
+                                >
+                                    Guardar
+                                </Button>
+                                <Button
+                                    size='small'
+                                    fullWidth
+                                    variant='contained'
+                                    color='error'
+                                    sx={{ mt: 1 }}
+                                    onClick={handleDeleteCard}
+                                >
+                                    Eliminar
+                                </Button>
+                            </Box>
                             {loading && <Loader />}
                         </Box>
                     </Box>

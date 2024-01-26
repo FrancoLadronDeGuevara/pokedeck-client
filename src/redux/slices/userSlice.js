@@ -1,30 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, editUser, deleteUser, getAllUsers, updateUser, login } from "../actions/userActions";
+import { getUser, editUser, deleteUser, getAllUsers, updateUser } from "../actions/userActions";
 
 const userSlice = createSlice({
     name: 'users',
     initialState: {
         isAuthenticated: false,
-        users: [],
-        user: {},
-        loading: false,
     },
     reducers: {
     },
     extraReducers: (builder) => {
         builder
-            .addCase(login.pending, (state) => {
+            .addCase(getUser.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(login.fulfilled, (state) => {
+            .addCase(getUser.fulfilled, (state, action) => {
+                state.isAuthenticated = true;
                 state.loading = false;
                 state.error = null;
-                state.isAuthenticated = true;
+                state.user = action.payload;
             })
-            .addCase(login.rejected, (state, action) => {
+            .addCase(getUser.rejected, (state, action) => {
                 state.loading = false;
-                state.isAuthenticated = false;
                 state.error = action.error.message;
+                state.isAuthenticated = false;
             })
 
             .addCase(getAllUsers.pending, (state) => {
@@ -32,6 +30,7 @@ const userSlice = createSlice({
             })
             .addCase(getAllUsers.fulfilled, (state, action) => {
                 state.loading = false;
+                state.isAuthenticated = true;
                 state.error = null;
                 state.users = action.payload;
             })
@@ -39,21 +38,6 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
-
-            .addCase(getUser.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(getUser.fulfilled, (state, action) => {
-                state.loading = false;
-                state.error = null;
-                state.user = action.payload;
-            })
-            .addCase(getUser.rejected, (state, action) => {
-                state.loading = false;
-                state.isAuthenticated = false;
-                state.error = action.error.message;
-            })
-
             .addCase(editUser.pending, (state) => {
                 state.loading = true;
             })
@@ -101,7 +85,5 @@ const userSlice = createSlice({
             });
     },
 })
-
-export const { searchUser } = userSlice.actions;
 
 export default userSlice.reducer;

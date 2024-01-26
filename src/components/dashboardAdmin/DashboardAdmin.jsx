@@ -1,78 +1,48 @@
-import { styled } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiDrawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems } from './ListItems';
 import { useState } from 'react';
-
-const drawerWidth = 200;
-
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
-        '& .MuiDrawer-paper': {
-            position: 'relative',
-            whiteSpace: 'nowrap',
-            width: drawerWidth,
-            transition: theme.transitions.create('width', {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-            zIndex: 1,
-            boxSizing: 'border-box',
-            ...(!open && {
-                overflowX: 'hidden',
-                transition: theme.transitions.create('width', {
-                    easing: theme.transitions.easing.sharp,
-                    duration: theme.transitions.duration.leavingScreen,
-                }),
-                width: theme.spacing(7),
-                [theme.breakpoints.up('sm')]: {
-                    width: theme.spacing(9),
-                },
-            }),
-        },
-    }),
-);
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import CatchingPokemonTwoToneIcon from '@mui/icons-material/CatchingPokemonTwoTone';
+import AllInboxTwoToneIcon from '@mui/icons-material/AllInboxTwoTone';
+import SportsEsportsTwoToneIcon from '@mui/icons-material/SportsEsportsTwoTone';
+import PeopleIcon from '@mui/icons-material/People';
+import { Link } from 'react-router-dom';
+import { useMediaQuery } from '@mui/material';
 
 const DashboardAdmin = () => {
-    const [open, setOpen] = useState(true);
-    const toggleDrawer = () => {
-        setOpen(!open);
+    const [value, setValue] = useState(0);
+    const isSmallScreen = useMediaQuery('(max-width: 600px)');
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
 
     return (
-        <>
-            <Box sx={{ display: 'flex' }}>
-                <CssBaseline />
 
-                <Drawer variant="permanent" open={open} sx={{ mb: 1 }}>
-                    <Toolbar
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'flex-end',
-                            px: [1],
-                        }}
-                    >
-                        <IconButton onClick={toggleDrawer}>
-                            <ChevronLeftIcon />
-                        </IconButton>
-                    </Toolbar>
-                    <Divider />
-                    <List component="nav">
-                        {secondaryListItems}
-                        <Divider sx={{ my: 1 }} />
-                        {mainListItems}
-                    </List>
-                </Drawer>
-            </Box>
-        </>
-    )
+        <Tabs 
+        value={value} 
+        onChange={handleChange}
+        aria-label="icon label tabs example" 
+        variant={isSmallScreen ? 'scrollable' : 'fullWidth'}
+        scrollButtons={isSmallScreen ? 'auto' : false} 
+        allowScrollButtonsMobile
+        sx={{position: 'sticky', top: 56, zIndex: 999, backgroundColor: 'cyan'}}
+        >
+
+            <Tab icon={<PeopleIcon />} label="Todos los usuarios" component={Link} to='allUsers' />
+
+            <Tab icon={<AllInboxTwoToneIcon />} label="Todos los cofres" component={Link} to='allChests' />
+
+            <Tab icon={<CatchingPokemonTwoToneIcon />} label="Todas las cartas" component={Link} to='allCards' />
+
+            <Tab icon={<CatchingPokemonTwoToneIcon />} label="Crear Carta" component={Link} to='cards' />
+
+            <Tab icon={<AllInboxTwoToneIcon />} label="Crear Cofre" component={Link} to='chests' />
+
+            <Tab icon={<SportsEsportsTwoToneIcon />} label="Editar juegos" component={Link} to='editGames' />
+
+        </Tabs>
+
+    );
 }
 
 export default DashboardAdmin;

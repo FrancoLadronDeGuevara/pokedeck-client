@@ -44,9 +44,9 @@ const VisuallyHiddenInput = styled('input')({
 const UserConfiguration = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.userState);
+    const { user, loading } = useSelector((state) => state.user);
     const [value, setValue] = useState(0);
-    const [actualAvatar, setActualAvatar] = useState(user.avatar.url);
+    const [actualAvatar, setActualAvatar] = useState(user?.avatar?.url);
     const [defaultAvatar, setDefaultAvatar] = useState(null);
     const [uploadedImage, setUploadedImage] = useState(null);
     const [showOldPassword, setShowOldPassword] = useState(false);
@@ -55,17 +55,16 @@ const UserConfiguration = () => {
     const [newPassword, setNewPassword] = useState('');
     const [newPasswordError, setNewPasswordError] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
-    const [username, setUsername] = useState(user.username);
+    const [username, setUsername] = useState(user?.username);
     const [usernameError, setUsernameError] = useState(false);
-    const [loading, setLoading] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleClickShowPassword = () => setShowOldPassword((show) => !show);
     const handleClickShowNewPassword = () => setShowNewPassword((show) => !show);
 
     const hasChanges =
-        username !== user.username ||
-        actualAvatar !== user.avatar.url ||
+        username !== user?.username ||
+        actualAvatar !== user?.avatar?.url ||
         oldPassword;
 
     const handleAvatar = (index) => {
@@ -89,11 +88,11 @@ const UserConfiguration = () => {
     };
 
     const handleSubmit = async (e) => {
-        setLoading(true)
+        setIsLoading(true)
         e.preventDefault();
 
         if (oldPasswordError || newPasswordError || usernameError || oldPassword.length > 0 && newPassword.length == 0) {
-            setLoading(false)
+            setIsLoading(false)
             return autoCloseAlert('Por favor, rellena bien el formulario', 'error', 'red')
         }
 
@@ -106,7 +105,7 @@ const UserConfiguration = () => {
             avatarUrl = defaultAvatar.url
             userData = { id: user._id, avatar: { url: avatarUrl } };
         } else {
-            const avatarUrl = await handleAvatarUpload(uploadedImage)
+            const avatarUrl = await handleAvatarUpload(uploadedImage, 'avatarsUsers')
             userData = { id: user._id, avatar: { url: avatarUrl } }
         }
 
@@ -130,10 +129,10 @@ const UserConfiguration = () => {
             console.log(error)
             autoCloseAlert('Error al actualizar el usuario', 'error', 'red');
         } finally {
-            setLoading(false)
+            setIsLoading(false)
         }
-
     }
+
 
     return (
         <Container disableGutters>
@@ -207,7 +206,7 @@ const UserConfiguration = () => {
                         </FormControl>
                     </Grid>
                 </Grid>
-                {loading && <Loader />}
+                {isLoading && <Loader />}
                 <Button
                     disabled={!hasChanges}
                     type="submit"
