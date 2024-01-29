@@ -55,7 +55,7 @@ const CreateChests = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setLoading(true)
+        // setLoading(true)
 
         if (!imageUpload || !name || !description || !chestType) {
             setLoading(false)
@@ -83,6 +83,8 @@ const CreateChests = () => {
         if (selectedCards) {
             chestData = { ...chestData, selectedCards }
         }
+
+        console.log( selectedCards)
 
         try {
             await clientAxios.post(`${server}/chests/create`, chestData, { withCredentials: true })

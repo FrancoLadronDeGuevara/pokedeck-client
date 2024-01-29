@@ -14,6 +14,10 @@ const ChestStore = () => {
     const handleOpenChest = async (chestId) => {
         try {
             await axios.post(`${apiUrl}/chests/openChest`, {userId: user._id, chestId}, {withCredentials: true})
+            .then(res => console.log(res.data.cards))
+            setTimeout(()=> {
+                window.location.reload()
+            })
         } catch (error) {
             autoCloseAlert(error.response.data.message, 'error', 'red')
         }
