@@ -7,6 +7,11 @@ export const getUser = createAsyncThunk("getUser", async () => {
     return response.data;
 });
 
+export const getUserDeck = createAsyncThunk("getUserDeck", async () => {
+    const response = await clientAxios.get(`/users/userDeck`, {withCredentials: true});
+    return response.data;
+})
+
 export const getAllUsers = createAsyncThunk("getAllUsers", async () => {
     const response = await clientAxios.get(`/users`, { withCredentials: true });
     return response.data;

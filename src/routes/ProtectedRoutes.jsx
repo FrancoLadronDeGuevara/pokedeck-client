@@ -10,8 +10,8 @@ const ProtectedRoutes = ({ children }) => {
             autoCloseAlert('Primero debes loguearte', 'warning', '#F56903' )
             return <Navigate to="/login" replace />;
         }
-        return children;
     }
+    return children;
 };
 
 export default ProtectedRoutes;

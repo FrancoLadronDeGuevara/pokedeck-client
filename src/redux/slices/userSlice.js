@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, editUser, deleteUser, getAllUsers, updateUser } from "../actions/userActions";
+import { getUser, editUser, deleteUser, getAllUsers, updateUser, getUserDeck } from "../actions/userActions";
 
 const userSlice = createSlice({
     name: 'users',
@@ -23,6 +23,19 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
                 state.isAuthenticated = false;
+            })
+
+            .addCase(getUserDeck.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getUserDeck.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.userDeck = action.payload;
+            })
+            .addCase(getUserDeck.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
             })
 
             .addCase(getAllUsers.pending, (state) => {

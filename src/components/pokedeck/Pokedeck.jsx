@@ -1,14 +1,20 @@
 import { useSelector } from "react-redux";
+import Loader from "../loader/Loader";
 
 const Pokedeck = () => {
-    const {user} = useSelector((state) => state.user)
 
-    return(
+    const { userDeck, loading } = useSelector((state) => state.user)
+
+    return (
         <>
-        {user.userDeck.map((card, index) => (
-        <img key={index} src={card.cardImage}/>
-        )
-        )}
+            {loading ?
+                <Loader />
+                :
+                userDeck && userDeck.map((card, index) => (
+                    <img key={index} src={card.imageCard} style={{width: 100, height: 150}}/>
+                )
+                )
+            }
         </>
     )
 }
