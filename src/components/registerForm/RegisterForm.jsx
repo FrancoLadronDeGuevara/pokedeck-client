@@ -18,8 +18,8 @@ import FormControl from '@mui/material/FormControl';
 import clientAxios from '../../utils/clientAxios';
 import Loader from '../loader/Loader';
 import { handleError } from '../../utils/handleInputError';
+import { server } from '../../server';
 
-const apiUrl = import.meta.env.VITE_URL_BASE_API;
 const strongPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 const strongEmailRegex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
@@ -67,7 +67,7 @@ const RegisterForm = () => {
         } 
 
         try {
-            await clientAxios.post(`${apiUrl}/users/create`, {email, password})
+            await clientAxios.post(`${server}/users/create`, {email, password})
             autoCloseAlert('Cuenta creada con éxito', 'success', 'green')
             setEmail('')
             setPassword('')

@@ -18,6 +18,7 @@ import { handleAvatarUpload, handleUploadImage } from '../../../utils/uploadImag
 import clientAxios from '../../../utils/clientAxios';
 import Loader from '../../loader/Loader';
 import { handleError } from '../../../utils/handleInputError';
+import { server } from '../../../server';
 
 export const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -31,7 +32,6 @@ export const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-const apiUrl = import.meta.env.VITE_URL_BASE_API;
 const regexPokedex = /^(?:[1-9]|[1-9][0-9]|1[0-4][0-9]|150|151)$/
 const regexName = /^[A-Za-z\s.'-]{3,10}$/
 
@@ -76,7 +76,7 @@ const CreateCards = () => {
 
 
         try {
-            await clientAxios.post(`${apiUrl}/cards/create`, { imageCard, name, pokedexNumber, rarity, types }, {withCredentials: true})
+            await clientAxios.post(`${server}/cards/create`, { imageCard, name, pokedexNumber, rarity, types }, {withCredentials: true})
             autoCloseAlert('Carta creada con éxito', 'success', 'green')
             setTimeout(()=> {
                 window.location.reload()

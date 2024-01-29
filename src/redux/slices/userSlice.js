@@ -75,13 +75,12 @@ const userSlice = createSlice({
                 state.loading = false;
                 const { id } = action.payload;
                 if (id) {
-                    state.list = state.list.filter((element) => element.id !== id);
+                    state.users = state.users.filter((element) => element.id !== id);
                 }
-                console.log("delete action", action.payload);
             })
             .addCase(deleteUser.rejected, (state, action) => {
-                state.loading = true;
-                state.list = action.payload;
+                state.loading = false;
+                state.error = action.payload.message;
             });
     },
 })

@@ -14,8 +14,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { autoCloseAlert } from '../../utils/alerts';
 import { useState } from 'react';
 import axios from 'axios';
+import { server } from '../../server';
 
-const apiUrl = import.meta.env.VITE_URL_BASE_API
 const confIcon = {
     position: 'absolute', right: 10, top: 30, cursor: 'pointer'
 }
@@ -31,7 +31,7 @@ const LoginForm = () => {
         e.preventDefault();
         const dataForm = new FormData(e.currentTarget);
 
-        await axios.post(`${apiUrl}/users/login-user`, {
+        await axios.post(`${server}/users/login-user`, {
             email: dataForm.get('email'),
             password: dataForm.get('password')
         },

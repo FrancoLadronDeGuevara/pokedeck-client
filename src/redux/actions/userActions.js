@@ -1,4 +1,4 @@
-import { createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import clientAxios from "../../utils/clientAxios";
 
 
@@ -22,12 +22,7 @@ export const updateUser = createAsyncThunk("updateUser", async (data) => {
     return response.data;
 });
 
-
 export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
-    try {
-        const response = await clientAxios.delete(`/users/delete/${id}`);
-        return response.data;
-    } catch (error) {
-        return isRejectedWithValue(error.response);
-    }
+    const response = await clientAxios.delete(`/users/delete/${id}`);
+    return response.data;
 });

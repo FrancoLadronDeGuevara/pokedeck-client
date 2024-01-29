@@ -20,12 +20,14 @@ import UserConfigurationPage from "./pages/UserConfigurationPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import AdminRoutes from "./routes/AdminRoutes";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
+import { getAllChests } from "./redux/actions/chestActions";
 
 const App = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getUser())
+        dispatch(getAllChests())
     }, [])
 
     return (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { handleError } from "../../../utils/handleInputError";
 import { cardRarity } from "../../../utils/pokemonHelper";
 import Loader from "../../loader/Loader";
@@ -13,16 +13,23 @@ import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
 import { VisuallyHiddenInput } from "../Cards/CreateCards";
-import { handleUploadImage } from "../../../utils/uploadImage";
-import CardPicker from "./CardPicker";
+import { handleAvatarUpload, handleUploadImage } from "../../../utils/uploadImage";
+import Autocomplete from '@mui/material/Autocomplete';
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCards } from "../../../redux/actions/cardActions";
+import { autoCloseAlert } from "../../../utils/alerts";
+import clientAxios from "../../../utils/clientAxios";
+import { server } from "../../../server";
 
 const quantityOfCardsList = [1, 2, 3, 4, 5];
 const chestTypeList = ["Normal", "Raro", "Épico", "Legendario"]
-const regexName = /^[A-Za-z\s.'-]{3,10}$/
+const regexName = /^[A-Za-z\s.'-]{3,20}$/
 const regexDescription = /^.{10,100}$/
 const regexPrice = /^([0-9]|[1-9][0-9]{1,3}|10000)$/
 
 const CreateChests = () => {
+    const dispatch = useDispatch()
+    const { cards } = useSelector((state) => state.card)
     const [name, setName] = useState('');
     const [nameError, setNameError] = useState(false);
     const [description, setDescription] = useState('');
@@ -33,15 +40,66 @@ const CreateChests = () => {
     const [rarityOfCards, setRarityOfCards] = useState('');
     const [quantityOfCards, setQuantityOfCards] = useState(1);
     const [imageUpload, setImageUpload] = useState('')
+    const [selectedCards, setSelectedCards] = useState([]);
+    const [filteredCards, setFilteredCards] = useState([]);
     const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        dispatch(getAllCards())
+    }, [])
+
+    const filterCardsByRarity = (rarity) => {
+        const filtered = cards.filter(card => card.rarity !== rarity);
+        setFilteredCards(filtered);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
+
+        if (!imageUpload || !name || !description || !chestType) {
+            setLoading(false)
+            return autoCloseAlert('Los campos con * son obligatorios', 'error', 'red');
+        }
+
+        if (nameError || descriptionError || priceError) {
+            setLoading(false)
+            return autoCloseAlert('Por favor, completa el formulario', 'error', 'red');
+        }
+
+        if (!rarityOfCards && selectedCards.length === 0) {
+            setLoading(false)
+            return autoCloseAlert('El cofre debe tener al menos una carta o el tipo de cartas', 'error', 'red');
+        }
+
+        const chestImage = await handleAvatarUpload(imageUpload, 'chestsImages');
+
+        let chestData = { chestImage, name, description, chestType, quantityOfCards, price };
+
+        if (rarityOfCards) {
+            chestData = { ...chestData, rarityOfCards }
+        }
+
+        if (selectedCards) {
+            chestData = { ...chestData, selectedCards }
+        }
+
+        try {
+            await clientAxios.post(`${server}/chests/create`, chestData, { withCredentials: true })
+            autoCloseAlert('Cofre creado con éxito', 'success', 'green')
+            setTimeout(()=> {
+                window.location.reload()
+            }, 1000)
+        } catch (error) {
+            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error', 'red');
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
         <>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{px: 3}}>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ px: 3 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Box sx={{ position: 'relative' }}>
@@ -52,7 +110,7 @@ const CreateChests = () => {
                             </Button>
                         </Box>
                     </Grid>
-                    
+
                     <Grid item xs={6}>
                         <TextField
                             required
@@ -63,7 +121,7 @@ const CreateChests = () => {
                             value={name}
                             error={nameError}
                             color={nameError ? '' : 'success'}
-                            helperText={nameError ? 'Nombre de pokemón inválido' : ''}
+                            helperText={nameError ? 'Nombre de cofre inválido' : ''}
                         />
                     </Grid>
                     <Grid item xs={6}>
@@ -101,7 +159,6 @@ const CreateChests = () => {
                     <Grid item xs={6}>
                         <FormControl fullWidth required variant="outlined">
                             <TextField
-                                required
                                 id="price"
                                 type='number'
                                 label="Precio"
@@ -117,12 +174,14 @@ const CreateChests = () => {
                         <FormControl fullWidth>
                             <InputLabel id="rarity">Rareza de cartas*</InputLabel>
                             <Select
-                                required
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={rarityOfCards}
                                 label="Rareza de cartas"
-                                onChange={e => setRarityOfCards(e.target.value)}
+                                onChange={(e) => {
+                                    setRarityOfCards(e.target.value);
+                                    filterCardsByRarity(e.target.value);
+                                }}
                             >
                                 {cardRarity.map((rarity, index) => (
                                     <MenuItem key={index} value={rarity}>{rarity}</MenuItem>
@@ -148,7 +207,28 @@ const CreateChests = () => {
                         </FormControl>
                     </Grid>
                     <Grid item xs={12}>
-                        <CardPicker/>
+                        <Autocomplete
+                            size="small"
+                            multiple
+                            id="tags-outlined"
+                            options={filteredCards.length == 0 ?
+                                cards.map((card) => card.name)
+                                :
+                                filteredCards.map((card) => card.name)
+                            }
+                            filterSelectedOptions
+                            value={selectedCards}
+                            onChange={(event, newValue) => {
+                                setSelectedCards(newValue);
+                            }}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Agregar manualmente"
+                                    placeholder="Buscar carta"
+                                />
+                            )}
+                        />
                     </Grid>
 
                 </Grid>
