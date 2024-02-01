@@ -1,9 +1,9 @@
 import Landing from "../components/landing/Landing";
 
-const HomePage = ()=>{
-    return(
+const HomePage = () => {
+    return (
         <>
-        <Landing/>
+            <Landing />
         </>
     )
 }

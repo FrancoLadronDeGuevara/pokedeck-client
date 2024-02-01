@@ -1,0 +1,61 @@
+.question-image-guess-pokemon {
+    animation: 1.5s ease 0s infinite beat;
+    position: absolute;
+    right: 0;
+}
+
+.pokemon-image-guess-pokemon {
+    animation: 1.5s ease 0s infinite beat;
+    position: absolute;
+    right: 0;
+    top: -50%;
+}
+
+.pokemon-filterON {
+    filter: brightness(0);
+    animation: 2s ease-in slide-right;
+}
+
+.pokemon-filterOFF {
+    filter: initial;
+    animation: 2s ease slide-left 1s;
+}
+
+
+@keyframes beat {
+
+    0%,
+    50%,
+    100% {
+        transform: scale(1, 1);
+    }
+
+    30%,
+    80% {
+        transform: scale(0.92, 0.95);
+    }
+}
+
+@keyframes slide-left {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    100% {
+        -webkit-transform: translateX(-1000px);
+        transform: translateX(-1000px);
+    }
+}
+
+@keyframes slide-right {
+    0% {
+        -webkit-transform: translateX(-1000px);
+        transform: translateX(-1000px);
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}

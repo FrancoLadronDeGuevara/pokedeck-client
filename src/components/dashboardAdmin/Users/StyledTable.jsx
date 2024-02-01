@@ -62,7 +62,7 @@ const Row = ({ row }) => {
                 </TableCell>
                 <TableCell align="right"><Avatar variant="rounded" alt={row.avatar} src={row.avatar} /></TableCell>
                 <TableCell align="center">{row.banned ? 'Si' : 'No'}</TableCell>
-                <TableCell align="center">{row.deck && row.deck.map(deck => deck.quantity).reduce((a, b) => a + b, 0)}</TableCell>
+                <TableCell align="center">{row.deck && row.deck.length}</TableCell>
                 <TableCell align="center">{row.coins}</TableCell>
             </StyledTableRow>
             <TableRow>

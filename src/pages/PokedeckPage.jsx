@@ -1,19 +1,24 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../components/loader/Loader";
 import Pokedeck from "../components/pokedeck/Pokedeck";
 import { getUserDeck } from "../redux/actions/userActions";
 
-const PokedeckPage = ()=>{
+const PokedeckPage = () => {
     const dispatch = useDispatch()
+    const { loading } = useSelector((state) => state.user)
 
-    useEffect(()=> {
-        dispatch(getUserDeck())
+    useEffect(() => {
+            dispatch(getUserDeck())
     }, [])
 
-    return(
+    return (
         <>
-        <h1>Pokedeck</h1>
-        <Pokedeck/>
+            {loading ?
+                <Loader />
+                :
+                <Pokedeck />
+            }
         </>
     )
 }

@@ -28,10 +28,6 @@ const pages = [{
 {
     name: 'Tienda',
     to: '/store',
-},
-{
-    name: 'Minijuegos',
-    to: '/minigames',
 }];
 
 const settings = [
@@ -264,6 +260,11 @@ const Navbar = () => {
                     </Toolbar>
                 </Container>
             </AppBar>
+            <Box sx={{ position: 'fixed', top: 70, right: 30, zIndex: 999 }}>
+                <Typography variant='h3'>
+                    {user?.coins}
+                </Typography>
+            </Box>
 
         </>
     )

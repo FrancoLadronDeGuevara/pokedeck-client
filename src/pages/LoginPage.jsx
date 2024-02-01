@@ -6,7 +6,7 @@ import { autoCloseAlert } from "../utils/alerts";
 const LoginPage = () => {
     const { isAuthenticated, loading } = useSelector((state) => state.user);
 
-    if(!loading && isAuthenticated) {
+    if(loading === false && isAuthenticated) {
         autoCloseAlert('Ya estas logueado', 'warning', 'green')
         return <Navigate to='/' replace />
     }

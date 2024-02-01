@@ -20,7 +20,7 @@ import { VisuallyHiddenInput } from '../Cards/CreateCards';
 import Loader from '../../loader/Loader';
 import { handleAvatarUpload, handleUploadImage } from '../../../utils/uploadImage';
 import CloseIcon from '@mui/icons-material/Close';
-import { editChest } from '../../../redux/actions/chestActions';
+import { deleteChest, editChest } from '../../../redux/actions/chestActions';
 
 const quantityOfCardsList = [1, 2, 3, 4, 5];
 const chestTypeList = ["Normal", "Raro", "Épico", "Legendario"]
@@ -62,24 +62,24 @@ const ModalEditChest = ({ chestName, chestPrice, chestDescription, chestType, qu
     const [loading, setLoading] = useState(false)
 
     const handleDeleteChest = async () => {
-        // setLoading(true)
-        // try {
-        //     await customAlert('¿Eliminar Carta?', '', 'warning', () => {
-        //         dispatch(deleteCard(idCard))
-        //             .then(res => {
-        //                 if (res.error) return autoCloseAlert(res.error.message, 'error', 'red');
-        //                 autoCloseAlert('Carta eliminada', 'success', 'green')
-        //                 setTimeout(() => {
-        //                     window.location.reload()
-        //                 }, 1000)
-        //             })
-        //     })
-        // } catch (error) {
-        //     console.log(error)
-        //     autoCloseAlert(error.message || "Ups, ocurrió un error", 'error', 'red');
-        // } finally {
-        //     setLoading(false)
-        // }
+        setLoading(true)
+        try {
+            await customAlert('¿Eliminar Cofre?', '', 'warning', () => {
+                dispatch(deleteChest(idChest))
+                    .then(res => {
+                        if (res.error) return autoCloseAlert(res.error.message, 'error', 'red');
+                        autoCloseAlert('Cofre eliminado', 'success', 'green')
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1000)
+                    })
+            })
+        } catch (error) {
+            console.log(error)
+            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error', 'red');
+        } finally {
+            setLoading(false)
+        }
     }
 
     const handleUpdateCard = async (e) => {

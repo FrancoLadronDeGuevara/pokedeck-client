@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { editChest, getAllChests } from "../actions/chestActions";
+import { deleteChest, editChest, getAllChests } from "../actions/chestActions";
 
 const chestSlice = createSlice({
     name: 'chests',
@@ -23,7 +23,7 @@ const chestSlice = createSlice({
         })
         .addCase(getAllChests.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.payload.message;
+            state.error = action.payload;
         })
 
         .addCase(editChest.pending, (state) => {
@@ -41,7 +41,24 @@ const chestSlice = createSlice({
         })
         .addCase(editChest.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.payload.message;
+            state.error = action.payload;
+        })
+
+        .addCase(deleteChest.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(deleteChest.fulfilled, (state, action) => {
+            state.loading = false;
+            state.error = null;
+            const { id } = action.payload;
+            if (id) {
+                state.chests = state.chests.filter((chest) => chest.id !== id);
+            }
+        })
+        .addCase(deleteChest.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+            console.log(action)
         })
     }
 })

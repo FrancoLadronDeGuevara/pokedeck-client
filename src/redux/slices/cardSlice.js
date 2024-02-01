@@ -66,7 +66,7 @@ const cardSlice = createSlice({
                 }
             })
             .addCase(deleteCard.rejected, (state, action) => {
-                state.loading = true;
+                state.loading = false;
                 state.error = action.payload;
             });
     },

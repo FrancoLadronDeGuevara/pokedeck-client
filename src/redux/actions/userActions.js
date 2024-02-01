@@ -12,6 +12,11 @@ export const getUserDeck = createAsyncThunk("getUserDeck", async () => {
     return response.data;
 })
 
+export const getCoins = createAsyncThunk("getCoins", async (data) => {
+    const response = await clientAxios.patch(`/users/getCoins`, data, {withCredentials: true});
+    return response.data;
+})
+
 export const getAllUsers = createAsyncThunk("getAllUsers", async () => {
     const response = await clientAxios.get(`/users`, { withCredentials: true });
     return response.data;

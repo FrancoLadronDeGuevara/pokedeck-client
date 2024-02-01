@@ -6,10 +6,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import {  useState } from 'react';
-import {  useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import ModalEditChest from './ModalEditChest';
 import Loader from '../../loader/Loader';
+import { Typography } from '@mui/material';
 
 const columns = [
     { id: 'name', label: 'Nombre', minWidth: 120 },
@@ -28,7 +29,7 @@ const columns = [
     {
         id: 'quantityOfCards',
         label: 'Cartas que da',
-        minWidth: 100,
+        minWidth: 120,
         align: 'center',
     },
     {
@@ -48,8 +49,8 @@ const columns = [
     },
 ];
 
-function createData( name, price, description, typeName, quantityOfCards, rarityOfCards, chestImage, idChest) {
-    return { name, price, description, typeName, quantityOfCards, rarityOfCards, chestImage, idChest};
+function createData(name, price, description, typeName, quantityOfCards, rarityOfCards, chestImage, idChest) {
+    return { name, price, description, typeName, quantityOfCards, rarityOfCards, chestImage, idChest };
 }
 
 const AllChests = () => {
@@ -100,9 +101,16 @@ const AllChests = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows
-                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    .map((row, index) => {
+                                {rows.length == 0 ?
+                                    <TableRow>
+                                        <TableCell>
+                                            <Typography variant='h4'>
+                                                Todavía no hay cofres
+                                            </Typography>
+                                        </TableCell>
+                                    </TableRow>
+                                    :
+                                    rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                         return (
                                             <TableRow
                                                 key={index}

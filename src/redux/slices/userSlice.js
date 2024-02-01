@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, editUser, deleteUser, getAllUsers, updateUser, getUserDeck } from "../actions/userActions";
+import { getUser, editUser, deleteUser, getAllUsers, updateUser, getUserDeck, getCoins } from "../actions/userActions";
 
 const userSlice = createSlice({
     name: 'users',
     initialState: {
         isAuthenticated: false,
+        loading: true,
     },
     reducers: {
     },
@@ -30,13 +31,29 @@ const userSlice = createSlice({
             })
             .addCase(getUserDeck.fulfilled, (state, action) => {
                 state.loading = false;
+                state.isAuthenticated = true;
                 state.error = null;
                 state.userDeck = action.payload;
             })
             .addCase(getUserDeck.rejected, (state, action) => {
                 state.loading = false;
+                state.isAuthenticated = false;
                 state.error = action.payload;
             })
+
+            .addCase(getCoins.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getCoins.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.user.coins = action.payload;
+            })
+            .addCase(getCoins.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            
 
             .addCase(getAllUsers.pending, (state) => {
                 state.loading = true;

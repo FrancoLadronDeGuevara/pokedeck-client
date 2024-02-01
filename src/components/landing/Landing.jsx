@@ -2,6 +2,7 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import FeaturedCards from './FeaturedCards';
+import { Link } from "react-router-dom";
 
 const Landing = () => {
 
@@ -22,7 +23,7 @@ const Landing = () => {
         <>
             <Container maxWidth='xl'>
                 <Box textAlign="center">
-                    <Typography variant="h5" sx={{my: 10}}>
+                    <Typography variant="h5" sx={{ my: 10 }}>
                         Pokedeck es un proyecto pensado para aquellos que les gusta coleccionar!
                         Es muy simple: juega, ganá puntos, abre cofres y colecciona!
                     </Typography>
@@ -38,11 +39,13 @@ const Landing = () => {
                         <Item>FlappyBird</Item>
                     </Grid>
                     <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item>
-                        <Item>Quizz</Item>
+                        <Link to='/guesspokemon'>
+                            <Item>Quien es ese pokemon</Item>
+                        </Link>
                     </Grid>
                 </Grid>
                 <Box>
-                    <FeaturedCards/>
+                    <FeaturedCards />
                 </Box>
             </Container>
         </>

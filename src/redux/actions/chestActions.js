@@ -10,3 +10,8 @@ export const editChest = createAsyncThunk("editChest", async (data) => {
     const response = await clientAxios.patch(`/chests/edit/${data.id}`, data, {withCredentials: true});
     return response.data;
 })
+
+export const deleteChest = createAsyncThunk("deleteChest", async (id) => {
+    const response = await clientAxios.delete(`/chests/delete/${id}`, {withCredentials: true});
+    return response.data;
+})

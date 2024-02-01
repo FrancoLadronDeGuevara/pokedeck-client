@@ -21,6 +21,7 @@ import UserProfilePage from "./pages/UserProfilePage";
 import AdminRoutes from "./routes/AdminRoutes";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 import { getAllChests } from "./redux/actions/chestActions";
+import GuessPokemonPage from "./pages/Minigames/GuessPokemonPage";
 
 const App = () => {
     const dispatch = useDispatch()
@@ -60,6 +61,12 @@ const App = () => {
                     <Route path="/userConfiguration" element={
                         <ProtectedRoutes>
                             <UserConfigurationPage />
+                        </ProtectedRoutes>
+                    } />
+
+                    <Route path="/guesspokemon" element={
+                        <ProtectedRoutes>
+                            <GuessPokemonPage />
                         </ProtectedRoutes>
                     } />
 
