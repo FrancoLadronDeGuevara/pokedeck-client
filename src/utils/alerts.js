@@ -37,3 +37,19 @@ export const autoCloseAlert = (title, icon, background) => {
         },
     });
 }
+
+export const autoCloseAlertWithImage = (title, imagen, background) => {
+    Swal.fire({
+        position: "bottom",
+        title,
+        iconHtml: `<img src=${imagen} style="width: 200px; height: 200px;" />`,
+        background,
+        color: "#fff",
+        showConfirmButton: false,
+        toast: true,
+        timer: 3000,
+        customClass: {
+            container: 'alert-container',
+        },
+    });
+}
