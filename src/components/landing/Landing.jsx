@@ -21,7 +21,7 @@ const Landing = () => {
 
     return (
         <>
-            <Container maxWidth='xl'>
+            <Container maxWidth={false} disableGutters sx={{ mt: 16, mx: 'auto' }}>
                 <Box textAlign="center">
                     <Typography variant="h5" sx={{ my: 10 }}>
                         Pokedeck es un proyecto pensado para aquellos que les gusta coleccionar!
@@ -38,10 +38,12 @@ const Landing = () => {
                     <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item>
                         <Item>FlappyBird</Item>
                     </Grid>
-                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item>
-                        <Link to='/guesspokemon'>
-                            <Item>Quien es ese pokemon</Item>
-                        </Link>
+                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item minWidth={200}>
+                        <Item>
+                            <Link to='/guesspokemon'>
+                                Quien es ese pokemon
+                            </Link>
+                        </Item>
                     </Grid>
                 </Grid>
                 <Box>

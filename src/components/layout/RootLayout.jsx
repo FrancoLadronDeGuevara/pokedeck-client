@@ -1,17 +1,15 @@
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 
-const RootLayout = ({children}) => {
-    
+const RootLayout = ({ children }) => {
+
     return (
         <>
-            <div>
-                <Navbar />
-                <main>
-                    {children}
-                </main>
-                <Footer />
-            </div>
+            <Navbar />
+            <main>
+                {children}
+            </main>
+            <Footer />
         </>
     )
 }

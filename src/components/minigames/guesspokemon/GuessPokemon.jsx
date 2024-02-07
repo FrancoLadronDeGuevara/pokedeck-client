@@ -8,12 +8,13 @@ import questionImage from "../../../assets/images/who.png"
 import "./GuessPokemon.css"
 import { useDispatch } from "react-redux";
 import { getCoins } from "../../../redux/actions/userActions";
-import { autoCloseAlert, autoCloseAlertWithImage } from "../../../utils/alerts";
+import { autoCloseAlertWithImage } from "../../../utils/alerts";
 import SoundGuessPokemon from "./SoundGuessPokemon";
 import guesspokemonsound from "../../../assets/sounds/quienesesepokemonsonido.mp3";
 import successpokemonsound from "../../../assets/sounds/success.mp3";
 import errorpokemonsound from "../../../assets/sounds/error.mp3";
-import pikachu from "../../../assets/images/pikachuerror.gif";
+import pikachuError from "../../../assets/images/pikachuerror.gif";
+import odishSuccess from "../../../assets/images/odish.gif";
 
 const whosthatpokemonSound = new Audio(guesspokemonsound);
 const successSound = new Audio(successpokemonsound);
@@ -58,11 +59,11 @@ const GuessPokemon = () => {
                 .then((res) => {
                     if (res.error) {
                         if (soundEnabled) errorSound.play()
-                        autoCloseAlertWithImage('Intentalo de nuevo', pikachu, 'transparent')
+                        autoCloseAlertWithImage('', pikachuError, 150, 150)
                         setInputPokemon(true)
                     } else {
                         if (soundEnabled) successSound.play()
-                        autoCloseAlert('10 monedas', 'success', 'green')
+                        autoCloseAlertWithImage('', odishSuccess, 250, 150)
                         setFilter(false)
                         setInputPokemon(true)
                     }
@@ -85,13 +86,13 @@ const GuessPokemon = () => {
                     sm: 'url(https://res.cloudinary.com/dnlvoza12/image/upload/v1706687590/mpmlahkg9snt2pqevndl.gif)'
                 }
             }}>
-                <Paper elevation={3} sx={{width: 140}}>
+                <Box className='coins-background' sx={{ position: 'fixed', top: 94, left: '5%', zIndex: 999}}>
                     <SoundGuessPokemon onSoundToggle={setSoundEnabled} />
-                </Paper>
+                </Box>
                 <Box sx={{
                     position: 'absolute',
-                    left: { xs: '44%', sm: '70%', md: '80%' },
-                    top: '15%'
+                    left: { xs: '44%', sm: '70%', md: '77%' },
+                    top: '20%'
                 }}>
                     <img className="question-image-guess-pokemon" src={questionImage} alt="" />
                 </Box>
@@ -106,14 +107,14 @@ const GuessPokemon = () => {
                 <Box sx={{
                     position: "absolute",
                     left: { xs: '40%', sm: '15%', md: '19%' },
-                    top: {xs: '38%', sm: '30%'},
+                    top: {xs: '40%', sm: '30%'},
                 }}>
                     <img className={filter ? 'pokemon-filterON' : 'pokemon-filterOFF'} src={randomPokemon?.sprites.other.dream_world.front_default} alt="" />
                 </Box>
                 <Box component="form" sx={{
                     display: "flex",
                     position: 'absolute',
-                    bottom: '16%',
+                    bottom: '14%',
                     left: { xs: '1%', sm: '20%', md: '30%' },
                     right: { xs: '1%', sm: '20%', md: '30%' }
                 }}>
@@ -127,6 +128,7 @@ const GuessPokemon = () => {
                         sx={{ minWidth: 100, backgroundColor: 'white' }} />
                     <Button
                         type="submit"
+                        size="small"
                         variant="contained"
                         sx={{ backgroundColor: '#3C18DD' }}
                         disabled={!pokemonName}

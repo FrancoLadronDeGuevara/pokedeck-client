@@ -1,0 +1,15 @@
+.navbar-layout {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    background-image: url('../../assets/navbar.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.coins-background {
+    background-image: url('../../assets/coins.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 140px;
+    text-align: center;
+}

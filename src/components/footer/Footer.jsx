@@ -1,42 +1,46 @@
+import './Footer.css';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Box, Container, Link, Typography } from '@mui/material';
+import { Box, Container, Divider, Link, Typography } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import { brown } from '@mui/material/colors';
+import logo from '../../assets/images/logo.png'
+import githubIcon from '../../assets/github.png';
+import facebookIcon from '../../assets/facebook.png';
+import linkedinIcon from '../../assets/linkedin.png';
+import portfolioIcon from '../../assets/portfolio.png';
 
 const Footer = () => {
 
     return (
-        <Container sx={{backgroundColor: 'rgba(60, 24, 221, 0.2)', color: 'white'}} maxWidth='100vh'>
-            <Grid container spacing={2} p={0}>
+        <Container className='footer-background' maxWidth={false}>
+            <Grid container spacing={2}>
                 <Grid xs={12} sm={6}>
                     <Box sx={{ display: 'flex', justifyContent: { xs: 'center' } }}>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/800px-Pokebola-pokeball-png-0.png" alt="Pokedeck Logo" width={64} />
-                        <Typography variant="h3" noWrap sx={{ marginLeft: 1 }}>
-                            Pokedeck
-                        </Typography>
+                        <img src={logo} alt="" width={150} />
                     </Box>
                 </Grid>
                 <Grid xs={12} sm={6} p={0}>
-                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2}}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: {xs: 2, sm: 5} }}>
                         <Link href="https://github.com/FrancoLadronDeGuevara" underline="none" target="_blank" rel="noreferrer">
-                            <GitHubIcon color="action" fontSize="large" sx={{ mx: 1 }} />
+                            <img src={githubIcon} className='footer-icon' />
                         </Link>
                         <Link href="https://web.facebook.com/FrancoDeGuevara/" underline="none" target="_blank" rel="noreferrer">
-                            <FacebookIcon color="primary" fontSize="large" sx={{ mx: 1 }} />
+                            <img src={facebookIcon} className='footer-icon' />
                         </Link>
                         <Link href="https://franco-guevara-portfolio.vercel.app/" underline="none" target="_blank" rel="noreferrer">
-                            <BusinessCenterIcon sx={{ color: brown[500], mx: 1 }} fontSize="large" />
+                            <img src={portfolioIcon} className='footer-icon' />
                         </Link>
                         <Link href="https://www.linkedin.com/in/franco-guevara/" underline="none" target="_blank" rel="noreferrer">
-                            <LinkedInIcon  color="primary" sx={{ mx: 1 }} fontSize="large" />
+                            <img src={linkedinIcon} className='footer-icon' />
                         </Link>
                     </Box>
                 </Grid>
-                <Grid xs={12} sm={12} textAlign='center' p={0}>
-                    <Box>Franco Guevara - 2023. Todos los derechos reservados.</Box>
+                <Grid xs={12} sm={12} textAlign='center' >
+                    <Divider orientation="horizontal" flexItem sx={{ mb: 1 }} />
+                    <Typography variant='h7' sx={{ color: 'darkslategrey', fontWeight: 'bolder' }}>Creado por Franco Guevara - 2023</Typography>
                 </Grid>
             </Grid>
         </Container>

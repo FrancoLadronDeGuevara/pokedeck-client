@@ -38,18 +38,25 @@ export const autoCloseAlert = (title, icon, background) => {
     });
 }
 
-export const autoCloseAlertWithImage = (title, imagen, background) => {
+export const autoCloseAlertWithImage = (title, imagen, width, height) => {
     Swal.fire({
-        position: "bottom",
-        title,
-        iconHtml: `<img src=${imagen} style="width: 200px; height: 200px;" />`,
-        background,
-        color: "#fff",
+        html: `<img src=${imagen} style="display: block; margin: auto; width: ${width}px; height: ${height}px;" />`,
+        title: title,
         showConfirmButton: false,
-        toast: true,
-        timer: 3000,
+        timer: 1500,
+        position: 'bottom',
         customClass: {
             container: 'alert-container',
+            popup: 'alert-popup',
         },
+        background: 'transparent',
+        backdrop: false,
+        allowOutsideClick: false,
+        showClass: {
+            popup: 'animate__animated animate__slideInUp'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__zoomOut'
+        }
     });
 }

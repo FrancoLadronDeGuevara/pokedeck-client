@@ -1,47 +1,51 @@
+import './Navbar.css';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import { useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import LoginIcon from '@mui/icons-material/Login';
 import { useSelector } from 'react-redux';
 import { customAlert } from '../../utils/alerts';
 import axios from 'axios';
+import logoPokedeck from "../../assets/images/logo.png"
+import menuicon from "../../assets/menu.png"
+import login from "../../assets/login.png"
+import register from "../../assets/register.png"
+import pokecard from "../../assets/pokecard.png"
+import dropdown from "../../assets/dropdown.png"
+import chest from "../../assets/chest.png"
+import { Divider } from '@mui/material';
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import CurrencyRubleOutlinedIcon from '@mui/icons-material/CurrencyRubleOutlined';
 
 const apiUrl = import.meta.env.VITE_URL_BASE_API
-
-
-const pages = [{
-    name: 'Mi Pokedeck',
-    to: '/pokedeck',
-},
-{
-    name: 'Tienda',
-    to: '/store',
-}];
 
 const settings = [
     {
         name: 'Perfil',
         to: '/userProfile',
+        icon: <PersonOutlineOutlinedIcon sx={{color: 'gray'}}/>
     },
     {
         name: 'Configuración',
         to: '/userConfiguration',
+        icon: <ManageAccountsOutlinedIcon  sx={{color: 'gray'}}/>
     },
     {
         name: 'Salir',
         to: () => { },
+        icon: <LogoutOutlinedIcon sx={{color: 'gray'}}/>
     }];
 
 const Navbar = () => {
@@ -91,38 +95,19 @@ const Navbar = () => {
     };
     return (
         <>
-            <AppBar position="sticky" sx={{ backgroundColor: 'rgb(60, 24, 221)', zIndex: 9999 }}>
+            <AppBar className='navbar-layout' position="fixed" sx={{ zIndex: 9999 }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <CatchingPokemonIcon sx={{ display: { xs: 'none', sm: 'flex' }, mr: 1 }} color="error" />
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component={NavLink}
-                            to="/"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', sm: 'flex' },
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >
-                            Pokedeck
-                        </Typography>
+                        <Box component={NavLink}
+                            to="/" sx={{ display: { xs: 'none', sm: 'flex' }, mr: 2, my: 1 }}>
+                            <img src={logoPokedeck} alt="" width={150} />
+                        </Box>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
                             <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
                                 onClick={handleOpenNavMenu}
-                                color="inherit"
                             >
-                                <MenuIcon />
+                                <img src={menuicon} width={50} />
                             </IconButton>
                             <Menu
                                 id="menu-appbar"
@@ -139,57 +124,71 @@ const Navbar = () => {
                                 open={Boolean(anchorElNav)}
                                 onClose={handleCloseNavMenu}
                                 sx={{
+                                    top: 13,
                                     display: { xs: 'block', sm: 'none' },
+                                    '& .MuiPaper-root': {
+                                        backgroundImage: `url('${dropdown}')`,
+                                        backgroundSize: '100% 100%',
+                                        backgroundRepeat: 'no-repeat',
+                                        boxShadow: 'none',
+                                        borderBottomRightRadius: 7.5,
+                                        borderTopLeftRadius: 9,
+                                    },
                                 }}
                             >
-                                {pages.map((page, index) => (
-                                    <NavLink key={index} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
-                                        <MenuItem>
-                                            <Typography textAlign="center" sx={{ color: 'black' }}>{page.name}</Typography>
-                                        </MenuItem>
-                                    </NavLink>
-                                ))}
-                            </Menu>
-                        </Box>
-                        <CatchingPokemonIcon sx={{ display: { xs: 'flex', sm: 'none' }, mr: 1 }} color="error" />
-                        <Typography
-                            variant="h5"
-                            noWrap
-                            component={NavLink}
-                            to="/"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'flex', sm: 'none' },
-                                flexGrow: 1,
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >
-                            Pokedeck
-                        </Typography>
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
-                            {pages.map((page, index) => (
-                                <NavLink key={index} onClick={handleCloseNavMenu} to={page.to} style={{ textDecoration: 'none' }}>
+                                <NavLink onClick={handleCloseNavMenu} to='/pokedeck' style={{ textDecoration: 'none' }}>
                                     <MenuItem>
-                                        <Typography textAlign="center" sx={{ color: 'white' }}>{page.name}</Typography>
+                                        <img src={pokecard} width={24} />
+                                        <Typography className='text' textAlign="center" sx={{ marginLeft: 1}}>Mi Pokedeck</Typography>
                                     </MenuItem>
                                 </NavLink>
+                                <Divider orientation="horizontal" flexItem />
+                                <NavLink onClick={handleCloseNavMenu} to='/store' style={{ textDecoration: 'none' }}>
+                                    <MenuItem>
+                                        <img src={chest} width={24} />
+                                        <Typography className='text' textAlign="center" sx={{ marginLeft: 1}}>Tienda</Typography>
+                                    </MenuItem>
+                                </NavLink>
+                            </Menu>
+                        </Box>
 
-                            ))}
+                        <Box component={NavLink}
+                            to="/" sx={{ display: { xs: 'flex', sm: 'none' }, mr: 2, flexGrow: 1, my: 1 }}>
+                            <img src={logoPokedeck} alt="" width={150} />
+                        </Box>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
+                            <NavLink onClick={handleCloseNavMenu} to='/pokedeck' style={{ textDecoration: 'none' }}>
+                                <MenuItem>
+                                    <Typography className='title-text' textAlign="center" sx={{ fontSize: 30 }}>Mi Pokedeck</Typography>
+                                </MenuItem>
+                            </NavLink>
+                            <Divider orientation="vertical" flexItem/>
+                            <NavLink onClick={handleCloseNavMenu} to='/store' style={{ textDecoration: 'none' }}>
+                                <MenuItem>
+                                    <Typography className='title-text' textAlign="center" sx={{ fontSize: 30 }}>Tienda</Typography>
+                                </MenuItem>
+                            </NavLink>
                         </Box>
 
                         {isAuthenticated &&
                             <Box sx={{ flexGrow: 0 }}>
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar variant="rounded" alt="Image user avatar" src={user?.avatar?.url} />
+                                        <Avatar variant="rounded" alt="Image user avatar" src={user?.avatar?.url} sx={{width: 50, height: 50}}/>
                                     </IconButton>
                                 </Tooltip>
                                 <Menu
-                                    sx={{ mt: '45px' }}
+                                    sx={{
+                                        mt: '67px',
+                                        '& .MuiPaper-root': {
+                                            backgroundImage: `url('${dropdown}')`,
+                                            backgroundSize: '100% 100%',
+                                            backgroundRepeat: 'no-repeat',
+                                            boxShadow: 'none',
+                                            borderBottomRightRadius: 7.5,
+                                            borderTopLeftRadius: 9
+                                        },
+                                    }}
                                     id="menu-appbar"
                                     anchorEl={anchorElUser}
                                     anchorOrigin={{
@@ -207,14 +206,17 @@ const Navbar = () => {
                                     {user?.role == 'admin' &&
                                         <NavLink to='/admin' onClick={handleCloseUserMenu} style={{ textDecoration: 'none' }}>
                                             <MenuItem>
-                                                <Typography textAlign="center" sx={{ color: 'black' }}>Dashboard</Typography>
+                                                <DashboardOutlinedIcon sx={{ color: 'gray' }} />
+                                                <Typography className='text' textAlign="center" sx={{ marginLeft: 1, fontSize: 20 }}>Dashboard</Typography>
                                             </MenuItem>
                                         </NavLink>
                                     }
                                     {settings.map((setting, index) => (
                                         <NavLink key={index} onClick={setting.name == 'Salir' ? handleLogoutUser : handleCloseUserMenu} to={setting.to} style={{ textDecoration: 'none' }}>
+                                            <Divider orientation="horizontal" flexItem />
                                             <MenuItem>
-                                                <Typography textAlign="center" sx={{ color: 'black' }}>{setting.name}</Typography>
+                                                {setting.icon}
+                                                <Typography className='text' textAlign="center" sx={{ marginLeft: 1, fontSize: 20 }}>{setting.name}</Typography>
                                             </MenuItem>
                                         </NavLink>
                                     ))}
@@ -232,26 +234,40 @@ const Navbar = () => {
                                             </Button>
                                         </Link>
                                         <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <IconButton color="primary" variant="contained" size='small' sx={{ display: { xs: 'block', sm: 'none' } }}>
-                                                <LoginIcon />
+                                            <IconButton sx={{ display: { xs: 'block', sm: 'none' }, mt: 1 }}>
+                                                <img src={login} alt="" width={50} />
                                             </IconButton>
                                         </Link>
                                     </Box>
 
                                 )}
                                 {location.pathname == '/login' && (
-                                    <Link to="/register" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                        <Button variant="contained" color='success' size='small'>
-                                            Registrarse
-                                        </Button>
-                                    </Link>
+                                    <Box>
+                                        <Link to="/register" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Button variant="contained" size='small' sx={{ display: { xs: 'none', sm: 'block' } }}>
+                                                Registrarse
+                                            </Button>
+                                        </Link>
+                                        <Link to="/register" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <IconButton sx={{ display: { xs: 'block', sm: 'none' }, mt: 1 }}>
+                                                <img src={register} alt="" width={50} />
+                                            </IconButton>
+                                        </Link>
+                                    </Box>
                                 )}
                                 {location.pathname == '/register' && (
-                                    <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                        <Button variant="contained" size='small'>
-                                            Ingresar
-                                        </Button>
-                                    </Link>
+                                    <Box>
+                                        <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Button variant="contained" size='small' sx={{ display: { xs: 'none', sm: 'block' } }}>
+                                                Ingresar
+                                            </Button>
+                                        </Link>
+                                        <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <IconButton sx={{ display: { xs: 'block', sm: 'none' }, mt: 1 }}>
+                                                <img src={login} alt="" width={50} />
+                                            </IconButton>
+                                        </Link>
+                                    </Box>
                                 )}
                             </Box>
                         }
@@ -260,8 +276,9 @@ const Navbar = () => {
                     </Toolbar>
                 </Container>
             </AppBar>
-            <Box sx={{ position: 'fixed', top: 70, right: 30, zIndex: 999 }}>
-                <Typography variant='h3'>
+            <Box className='coins-background' sx={{ position: 'fixed', top: 91, right: '5%', zIndex: 999 }}>
+                <Typography variant='h4' className='text'>
+                <CurrencyRubleOutlinedIcon sx={{color: 'black'}}/>
                     {user?.coins}
                 </Typography>
             </Box>
