@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getUser } from "./redux/actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, getUserDeck } from "./redux/actions/userActions";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AllCards from "./components/dashboardAdmin/Cards/AllCards";
 import CreateCards from "./components/dashboardAdmin/Cards/CreateCards";
@@ -24,12 +24,16 @@ import { getAllChests } from "./redux/actions/chestActions";
 import GuessPokemonPage from "./pages/Minigames/GuessPokemonPage";
 
 const App = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const {loading, isAuthenticated} = useSelector((state) => state.user)
 
     useEffect(() => {
         dispatch(getUser())
         dispatch(getAllChests())
-    }, [])
+        if(isAuthenticated){
+            dispatch(getUserDeck())
+        }
+    }, [isAuthenticated])
 
     return (
         <BrowserRouter>

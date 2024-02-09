@@ -21,7 +21,7 @@ const Landing = () => {
 
     return (
         <>
-            <Container maxWidth={false} disableGutters sx={{ mt: 16, mx: 'auto' }}>
+            <Container maxWidth={false} disableGutters sx={{ mx: 'auto' }}>
                 <Box textAlign="center">
                     <Typography variant="h5" sx={{ my: 10 }}>
                         Pokedeck es un proyecto pensado para aquellos que les gusta coleccionar!

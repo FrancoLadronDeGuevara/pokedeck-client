@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import { Button, Typography } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import axios from "axios";
 import { autoCloseAlert } from "../../utils/alerts";
 
@@ -24,7 +24,7 @@ const ChestStore = () => {
     }
 
     return (
-        <>
+        <Container sx={{height: '100vh'}}>
             {chests.map((chest, index) => (
                 <Box
                     key={index}
@@ -54,7 +54,7 @@ const ChestStore = () => {
                 </Box>
             )
             )}
-        </>
+        </Container>
     )
 }
 

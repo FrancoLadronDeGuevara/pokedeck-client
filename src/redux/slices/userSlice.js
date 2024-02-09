@@ -6,6 +6,7 @@ const userSlice = createSlice({
     initialState: {
         isAuthenticated: false,
         loading: true,
+        userDeck: [],
     },
     reducers: {
     },

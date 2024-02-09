@@ -6,10 +6,11 @@ import Typography from '@mui/material/Typography';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import MonetizationOnTwoToneIcon from '@mui/icons-material/MonetizationOnTwoTone';
 import { useSelector } from 'react-redux';
 import formatDate from '../../../utils/formatDate';
 import Loader from '../../loader/Loader';
+import './UserProfile.css';
+import CurrencyRubleOutlinedIcon from '@mui/icons-material/CurrencyRubleOutlined';
 
 const listStyle = {
     py: 2,
@@ -18,15 +19,17 @@ const listStyle = {
 };
 
 const UserProfile = () => {
-    const { user, loading } = useSelector((state) => state.user);
+    const { user, loading, userDeck } = useSelector((state) => state.user);
+
+    const lastThreeCards = userDeck?.slice(Math.max(userDeck.length - 5, 0));
 
     return (
         <>
             {loading ?
                 <Loader />
                 :
-                <Container disableGutters sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, mb: 1 }}>
-                    <Box sx={{ width: { xs: '100%', md: 300 }, p: 2, border: '1px solid black', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Container disableGutters sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, mb: 1}}>
+                    <Box className='user-info' sx={{ width: { xs: '100%', md: 300 }, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Avatar variant="rounded" src={user?.avatar?.url} sx={{ width: 200, height: 200 }} />
                         <Typography align='center' variant='h5' sx={{ my: 1, fontWeight: 'bolder' }}>
                             {user?.username}
@@ -53,12 +56,12 @@ const UserProfile = () => {
                         </List>
 
                         <Typography variant='h4' sx={{ fontWeight: 'bolder' }}>
-                            <MonetizationOnTwoToneIcon fontSize='medium' />
+                            <CurrencyRubleOutlinedIcon fontSize='medium' />
                             {user?.coins}
                         </Typography>
                     </Box>
-                    <Box sx={{ width: '100%', p: 2, border: '1px solid black' }}>
-                        LLENAR DESPUES DE HACER LAS CARTAS
+                    <Box className='user-cards' sx={{ width: '100%'}}>
+                        {lastThreeCards?.map((card, index) => <img key={index} src={card.imageCard} width={100}/>)}
                     </Box>
                 </Container>
             }
