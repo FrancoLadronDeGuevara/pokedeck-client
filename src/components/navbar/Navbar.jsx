@@ -95,7 +95,7 @@ const Navbar = () => {
     };
     return (
         <>
-            <AppBar className='navbar-layout' position="fixed" sx={{ zIndex: 9999 }}>
+            <AppBar className='navbar-layout' position="sticky" sx={{ zIndex: 9999 }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Box component={NavLink}
@@ -229,12 +229,7 @@ const Navbar = () => {
                                 {location.pathname !== '/login' && location.pathname !== '/register' && (
                                     <Box>
                                         <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <Button variant="contained" size='small' sx={{ display: { xs: 'none', sm: 'block' } }}>
-                                                Ingresar
-                                            </Button>
-                                        </Link>
-                                        <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <IconButton sx={{ display: { xs: 'block', sm: 'none' }, mt: 1 }}>
+                                            <IconButton>
                                                 <img src={login} alt="" width={50} />
                                             </IconButton>
                                         </Link>
@@ -244,12 +239,7 @@ const Navbar = () => {
                                 {location.pathname == '/login' && (
                                     <Box>
                                         <Link to="/register" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <Button variant="contained" size='small' sx={{ display: { xs: 'none', sm: 'block' } }}>
-                                                Registrarse
-                                            </Button>
-                                        </Link>
-                                        <Link to="/register" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <IconButton sx={{ display: { xs: 'block', sm: 'none' }, mt: 1 }}>
+                                            <IconButton>
                                                 <img src={register} alt="" width={50} />
                                             </IconButton>
                                         </Link>
@@ -258,12 +248,7 @@ const Navbar = () => {
                                 {location.pathname == '/register' && (
                                     <Box>
                                         <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <Button variant="contained" size='small' sx={{ display: { xs: 'none', sm: 'block' } }}>
-                                                Ingresar
-                                            </Button>
-                                        </Link>
-                                        <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <IconButton sx={{ display: { xs: 'block', sm: 'none' }, mt: 1 }}>
+                                            <IconButton>
                                                 <img src={login} alt="" width={50} />
                                             </IconButton>
                                         </Link>
@@ -276,12 +261,12 @@ const Navbar = () => {
                     </Toolbar>
                 </Container>
             </AppBar>
-            <Box className='coins-background' sx={{ position: 'fixed', top: 91, right: '5%', zIndex: 999 }}>
+            {user && <Box className='coins-background' sx={{ position: 'fixed', top: 91, right: '5%', zIndex: 999 }}>
                 <Typography variant='h4' className='text'>
                 <CurrencyRubleOutlinedIcon sx={{color: 'black'}}/>
                     {user?.coins}
                 </Typography>
-            </Box>
+            </Box>}
 
         </>
     )
