@@ -8,12 +8,7 @@ export const getUser = createAsyncThunk("getUser", async () => {
 });
 
 export const getUserDeck = createAsyncThunk("getUserDeck", async () => {
-    const response = await clientAxios.get(`/users/userDeck`, {withCredentials: true});
-    return response.data;
-})
-
-export const getCoins = createAsyncThunk("getCoins", async (data) => {
-    const response = await clientAxios.patch(`/users/getCoins`, data, {withCredentials: true});
+    const response = await clientAxios.get(`/users/userDeck`, { withCredentials: true });
     return response.data;
 })
 
@@ -36,3 +31,13 @@ export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
     const response = await clientAxios.delete(`/users/delete/${id}`);
     return response.data;
 });
+
+export const getCoins = createAsyncThunk("getCoins", async (data) => {
+    const response = await clientAxios.patch(`/minigames/guessPokemonCoins`, data, { withCredentials: true });
+    return response.data;
+})
+
+export const resetScore = createAsyncThunk("resetScore", async () => {
+    const response = await clientAxios.get(`/minigames/resetScore` , { withCredentials : true});
+    return response.data;
+})

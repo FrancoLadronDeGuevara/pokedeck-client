@@ -11,6 +11,8 @@ import formatDate from '../../../utils/formatDate';
 import Loader from '../../loader/Loader';
 import './UserProfile.css';
 import CurrencyRubleOutlinedIcon from '@mui/icons-material/CurrencyRubleOutlined';
+import { Grid } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const listStyle = {
     py: 2,
@@ -18,20 +20,23 @@ const listStyle = {
     maxWidth: 360,
 };
 
+
 const UserProfile = () => {
     const { user, loading, userDeck } = useSelector((state) => state.user);
 
-    const lastThreeCards = userDeck?.slice(Math.max(userDeck.length - 5, 0));
+    const lastThreeCards = userDeck?.slice(Math.max(userDeck.length - 6, 0));
 
     return (
         <>
+
+
             {loading ?
                 <Loader />
                 :
-                <Container disableGutters sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, mb: 1}}>
+                <Container maxWidth={false} disableGutters sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, mb: 1, px: 2 }}>
                     <Box className='user-info' sx={{ width: { xs: '100%', md: 300 }, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Avatar variant="rounded" src={user?.avatar?.url} sx={{ width: 200, height: 200 }} />
-                        <Typography align='center' variant='h5' sx={{ my: 1, fontWeight: 'bolder' }}>
+                        <Typography className='text user-username-background' align='center' variant='h5' sx={{ my: 1, fontWeight: 'bolder' }}>
                             {user?.username}
                         </Typography>
                         <List sx={listStyle}>
@@ -55,13 +60,35 @@ const UserProfile = () => {
                             <Divider />
                         </List>
 
-                        <Typography variant='h4' sx={{ fontWeight: 'bolder' }}>
+                        <Typography className='text user-coins-background' variant='h4' sx={{ fontWeight: 'bolder' }}>
                             <CurrencyRubleOutlinedIcon fontSize='medium' />
                             {user?.coins}
                         </Typography>
                     </Box>
-                    <Box className='user-cards' sx={{ width: '100%'}}>
-                        {lastThreeCards?.map((card, index) => <img key={index} src={card.imageCard} width={100}/>)}
+                    <Box className='user-cards' sx={{ width: '100%', p:1, pb: 2, px: {md: 3}}}>
+                        <Typography variant='h4' className='text' textAlign='center'>
+                            Últimas cartas obtenidas
+                        </Typography>
+                        <Divider sx={{ my: 1 }} />
+                        <ThemeProvider
+                            theme={createTheme({
+                                breakpoints: {
+                                    values: {
+                                        laptop: 1024,
+                                        tablet: 530,
+                                        mobile: 0,
+                                    },
+                                },
+                            })}
+                        >
+                            <Grid container spacing={{ mobile: 1, tablet: 2, laptop: 3 }}>
+                                {lastThreeCards?.map((card, index) => (
+                                    <Grid item key={index} mobile={6} tablet={4} laptop={2} display="flex" justifyContent="center" alignItems="center">
+                                        <img className={`user-last-cards color-card-hover-${card.types[0]}`} src={card.imageCard} alt={`Carta ${index + 1}`} width={120} />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </ThemeProvider>
                     </Box>
                 </Container>
             }

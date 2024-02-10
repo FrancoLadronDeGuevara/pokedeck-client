@@ -5,7 +5,7 @@ const Pokedeck = () => {
     const { userDeck } = useSelector((state) => state.user)
 
     return (
-        <Container fullWidth={false} sx={{height: '100vh'}}>
+        <Container maxWidth={false} sx={{height: '100vh'}}>
             {
                 userDeck?.length == 0 ?
                     <Typography variant="h2">

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, editUser, deleteUser, getAllUsers, updateUser, getUserDeck, getCoins } from "../actions/userActions";
+import { getUser, editUser, deleteUser, getAllUsers, updateUser, getUserDeck, getCoins, resetScore } from "../actions/userActions";
 
 const userSlice = createSlice({
     name: 'users',
@@ -48,9 +48,23 @@ const userSlice = createSlice({
             .addCase(getCoins.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.user.coins = action.payload;
+                state.user.coins = action.payload.coins;
+                state.user.score.scoreGuessPokemon = action.payload.score.scoreGuessPokemon
             })
             .addCase(getCoins.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+
+            .addCase(resetScore.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(resetScore.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.user.score.scoreGuessPokemon = action.payload
+            })
+            .addCase(resetScore.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })

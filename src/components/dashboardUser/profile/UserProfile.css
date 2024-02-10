@@ -1,4 +1,17 @@
-.user-cards{
-    background-image: url('../../../assets/dropdown.png');
+.user-username-background{
+    background-image: url('../../../assets/button.png');
     background-size: 100% 100%;
+    padding: 1rem;
+}
+
+.user-coins-background{
+    background-image: url('../../../assets/boton.png');
+    background-size: 100% 100%;
+    padding: 1rem;
+}
+
+@media screen and (min-width: 600px) and (max-width: 850px){
+    .user-last-cards{
+        width: 80px;
+    }
 }
