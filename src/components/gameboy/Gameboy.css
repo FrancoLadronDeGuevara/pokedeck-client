@@ -1,0 +1,57 @@
+.gameboy {
+    background-color: #4A3C4D;
+    padding: 1rem;
+    height: 600px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.gameboy-display {
+    background-color: #262A35;
+    width: 90%;
+    height: 500px;
+    border-radius: 20px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.gameboy-text{
+    font-weight: bolder;
+    color: white;
+    font-size: 2rem !important;
+}
+
+.letter-1{ color: #B80131;}
+.letter-2{ color: #5E3BB9;}
+.letter-3{ color: #6DA619;}
+.letter-4{ color: #D9AE01;}
+.letter-5{ color: #007C6A;}
+
+.gameboy-text-color{
+    font-family: cursive;
+}
+
+.gameboy-score{
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    color: white;
+    /* text-shadow: 2px 2px 5px black; */
+}
+
+@media screen and (min-width: 0px) and (max-width: 600px) {
+    .gameboy {
+        height: 500px;
+    }
+
+    .gameboy-display {
+        height: 400px;
+    }
+
+    .gameboy-text{
+        font-size: 1.5rem !important;
+    }
+}

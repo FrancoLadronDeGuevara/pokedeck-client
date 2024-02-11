@@ -44,7 +44,7 @@ export const autoCloseAlertWithImage = (title, imagen, width, height) => {
         title: title,
         showConfirmButton: false,
         timer: 1500,
-        position: 'bottom',
+        position: 'center',
         customClass: {
             container: 'alert-container',
             popup: 'alert-popup',
@@ -53,7 +53,7 @@ export const autoCloseAlertWithImage = (title, imagen, width, height) => {
         backdrop: false,
         allowOutsideClick: false,
         showClass: {
-            popup: 'animate__animated animate__slideInUp'
+            popup: 'animate__animated animate__zoomIn'
         },
         hideClass: {
             popup: 'animate__animated animate__zoomOut'

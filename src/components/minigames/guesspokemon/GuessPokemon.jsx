@@ -1,4 +1,4 @@
-import { Box, Button, Container, Paper, TextField } from "@mui/material";
+import { Box, Divider, IconButton, InputBase, Paper, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import buttonAnimation from "../../../assets/ButtonAnimation/pokeballbutton.json"
@@ -15,6 +15,7 @@ import successpokemonsound from "../../../assets/sounds/success.mp3";
 import errorpokemonsound from "../../../assets/sounds/error.mp3";
 import pikachuError from "../../../assets/images/pikachuerror.gif";
 import odishSuccess from "../../../assets/images/odish.gif";
+import Gameboy from "../../gameboy/Gameboy";
 
 const whosthatpokemonSound = new Audio(guesspokemonsound);
 const successSound = new Audio(successpokemonsound);
@@ -22,10 +23,11 @@ const errorSound = new Audio(errorpokemonsound)
 
 const GuessPokemon = () => {
     const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.user)
     const [pokemonName, setPokemonName] = useState('')
     const [randomPokemon, setRandomPokemon] = useState(null);
     const [filter, setFilter] = useState(true);
-    const [soundEnabled, setSoundEnabled] = useState(true);
+    const [soundEnabled, setSoundEnabled] = useState(false);
     const [inputPokemon, setInputPokemon] = useState(false);
 
     useEffect(() => {
@@ -62,6 +64,7 @@ const GuessPokemon = () => {
                         if (soundEnabled) errorSound.play()
                         autoCloseAlertWithImage('', pikachuError, 150, 150)
                         setInputPokemon(true)
+                        dispatch(resetScore())
                     } else {
                         if (soundEnabled) successSound.play()
                         autoCloseAlertWithImage('', odishSuccess, 250, 150)
@@ -70,6 +73,7 @@ const GuessPokemon = () => {
                     }
                     setPokemonName('');
                     setTimeout(() => {
+                        setRandomPokemon(null)
                         startGame();
                     }, 2000)
                 })
@@ -83,65 +87,69 @@ const GuessPokemon = () => {
             <Box className='coins-background' sx={{ position: 'fixed', top: 94, left: '5%', zIndex: 999 }}>
                 <SoundGuessPokemon onSoundToggle={setSoundEnabled} />
             </Box>
-            <Container maxWidth='md' className="gameboy">
-                    <Box className="container-guess-pokemon" sx={{
-                        backgroundImage:
-                        {
-                            xs: 'url(https://res.cloudinary.com/dnlvoza12/image/upload/v1706688671/fxvlwd2mr4i293qfgvsj.gif)',
-                            sm: 'url(https://res.cloudinary.com/dnlvoza12/image/upload/v1706687590/mpmlahkg9snt2pqevndl.gif)'
-                        }
-                    }}>
-
-                        <Box sx={{
+            <Gameboy score={user?.score?.scoreGuessPokemon}>
+                <Box className="container-guess-pokemon" sx={{
+                    backgroundImage:
+                    {
+                        xs: 'url(https://res.cloudinary.com/dnlvoza12/image/upload/v1706688671/fxvlwd2mr4i293qfgvsj.gif)',
+                        sm: 'url(https://res.cloudinary.com/dnlvoza12/image/upload/v1706687590/mpmlahkg9snt2pqevndl.gif)'
+                    }
+                }}>
+                    <Box
+                        sx={{
+                            display:{xs: 'none', sm: 'block'},
                             position: 'absolute',
-                            left: { xs: '44%', sm: '70%', md: '77%' },
-                            top: '20%'
+                            left: { sm: '55%', md: '60%' },
+                            top: '40%',
                         }}>
-                            <img className="question-image-guess-pokemon" src={questionImage} alt="" />
-                        </Box>
-                        <Box
-                            sx={{
-                                position: 'absolute',
-                                left: { xs: '25%', sm: '60%', md: '70%' },
-                                bottom: '28%'
-                            }}>
-                            <img className="pokemon-image-guess-pokemon" src={pokemonTitleImage} alt="" />
-                        </Box>
-                        <Box sx={{
-                            position: "absolute",
-                            left: { xs: '40%', sm: '15%', md: '19%' },
-                            top: { xs: '40%', sm: '30%' },
-                        }}>
-                            <img className={filter ? 'pokemon-filterON' : 'pokemon-filterOFF'} src={randomPokemon?.sprites.other.dream_world.front_default} alt="" />
-                        </Box>
-                        <Box component="form" sx={{
-                            display: "flex",
-                            position: 'absolute',
-                            bottom: '14%',
-                            left: { xs: '1%', sm: '20%', md: '30%' },
-                            right: { xs: '1%', sm: '20%', md: '30%' }
-                        }}>
-                            <TextField
-                                fullWidth
-                                label="Pokémon:"
-                                variant="outlined"
-                                disabled={inputPokemon}
-                                value={pokemonName}
-                                onChange={(e) => setPokemonName(e.target.value)}
-                                sx={{ minWidth: 100, backgroundColor: 'white' }} />
-                            <Button
-                                type="submit"
-                                size="small"
-                                variant="contained"
-                                sx={{ backgroundColor: '#3C18DD' }}
-                                disabled={!pokemonName}
-                                onClick={handleGuess}
-                                endIcon={<Lottie animationData={buttonAnimation} style={{ width: 32 }} />}>
-                                Enviar
-                            </Button>
-                        </Box>
+                        <img className="question-image" src={questionImage} alt="" />
                     </Box>
-            </Container>
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            left: { xs: '20%', sm: '35%', md: '50%' },
+                            right: { xs: '20%', sm: '35%', md: '50%' },
+                            top: '1%',
+                        }}>
+                        <img className="pokemon-image-guess-pokemon" src={pokemonTitleImage} alt="" />
+                    </Box>
+                    <Box sx={{
+                        position: "absolute",
+                        left: { xs: '40%', sm: '15%', md: '19%' },
+                        top: { xs: '40%', sm: '30%' },
+                    }}>
+                        <img className={filter ? 'pokemon-filterON' : 'pokemon-filterOFF'} src={randomPokemon?.sprites.other.dream_world.front_default} alt="" />
+                    </Box>
+                    <Paper component="form" sx={{
+                        display: "flex",
+                        alignItems: 'center',
+                        position: 'absolute',
+                        bottom: '2%',
+                        height: 40,
+                        minWidth: { xs: 150, sm: 350 },
+                        left: { xs: '20%', sm: '20%', md: '30%' },
+                        right: { xs: '20%', sm: '40%' }
+                    }}>
+                        <InputBase
+                            sx={{ ml: 1, flex: 1 }}
+                            placeholder="Pokemón"
+                            disabled={inputPokemon}
+                            value={pokemonName}
+                            onChange={(e) => setPokemonName(e.target.value)}
+                            inputProps={{ 'aria-label': 'Ingresa el pokemón' }}
+                        />
+                        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+                        <IconButton
+                            color="primary"
+                            type="submit"
+                            disabled={!pokemonName}
+                            onClick={handleGuess}
+                            aria-label="Enviar">
+                            <Lottie animationData={buttonAnimation} style={{ width: 32 }} />
+                        </IconButton>
+                    </Paper>
+                </Box>
+            </Gameboy>
         </>
     )
 }

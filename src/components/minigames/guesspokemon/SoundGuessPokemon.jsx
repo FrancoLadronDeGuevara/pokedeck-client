@@ -37,7 +37,7 @@ const Android12Switch = styled(Switch)(({ theme }) => ({
 }));
 
 const SoundGuessPokemon = ({ onSoundToggle }) => {
-    const [soundEnabled, setSoundEnabled] = useState(true);
+    const [soundEnabled, setSoundEnabled] = useState(false);
 
     const handleSoundToggle = () => {
         const newState = !soundEnabled;
