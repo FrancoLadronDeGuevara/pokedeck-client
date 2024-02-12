@@ -28,25 +28,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import CurrencyRubleOutlinedIcon from '@mui/icons-material/CurrencyRubleOutlined';
-
-const apiUrl = import.meta.env.VITE_URL_BASE_API
-
-const settings = [
-    {
-        name: 'Perfil',
-        to: '/userProfile',
-        icon: <PersonOutlineOutlinedIcon sx={{color: 'gray'}}/>
-    },
-    {
-        name: 'Configuración',
-        to: '/userConfiguration',
-        icon: <ManageAccountsOutlinedIcon  sx={{color: 'gray'}}/>
-    },
-    {
-        name: 'Salir',
-        to: () => { },
-        icon: <LogoutOutlinedIcon sx={{color: 'gray'}}/>
-    }];
+import { server } from '../../server';
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -54,6 +36,23 @@ const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const { user, isAuthenticated, loading } = useSelector((state) => state.user);
+
+    const settings = [
+        {
+            name: 'Perfil',
+            to: `/profile/${user?.username}`,
+            icon: <PersonOutlineOutlinedIcon sx={{ color: 'gray' }} />
+        },
+        {
+            name: 'Configuración',
+            to: '/userConfiguration',
+            icon: <ManageAccountsOutlinedIcon sx={{ color: 'gray' }} />
+        },
+        {
+            name: 'Salir',
+            to: () => { },
+            icon: <LogoutOutlinedIcon sx={{ color: 'gray' }} />
+        }];
 
 
     const handleOpenNavMenu = (event) => {
@@ -75,7 +74,7 @@ const Navbar = () => {
     const handleLogoutUser = () => {
         customAlert('¿Cerrar sesión?', '', 'question', async () => {
             try {
-                await axios.get(`${apiUrl}/users/logout-user`, { withCredentials: true })
+                await axios.get(`${server}/users/logout-user`, { withCredentials: true })
                 setTimeout(() => {
                     navigate('/')
                     window.location.reload()
@@ -139,14 +138,14 @@ const Navbar = () => {
                                 <NavLink onClick={handleCloseNavMenu} to='/pokedeck' style={{ textDecoration: 'none' }}>
                                     <MenuItem>
                                         <img src={pokecard} width={24} />
-                                        <Typography className='text' textAlign="center" sx={{ marginLeft: 1}}>Mi Pokedeck</Typography>
+                                        <Typography className='text' textAlign="center" sx={{ marginLeft: 1 }}>Mi Pokedeck</Typography>
                                     </MenuItem>
                                 </NavLink>
                                 <Divider orientation="horizontal" flexItem />
                                 <NavLink onClick={handleCloseNavMenu} to='/store' style={{ textDecoration: 'none' }}>
                                     <MenuItem>
                                         <img src={chest} width={24} />
-                                        <Typography className='text' textAlign="center" sx={{ marginLeft: 1}}>Tienda</Typography>
+                                        <Typography className='text' textAlign="center" sx={{ marginLeft: 1 }}>Tienda</Typography>
                                     </MenuItem>
                                 </NavLink>
                             </Menu>
@@ -162,7 +161,7 @@ const Navbar = () => {
                                     <Typography className='title-text' textAlign="center" sx={{ fontSize: 30 }}>Mi Pokedeck</Typography>
                                 </MenuItem>
                             </NavLink>
-                            <Divider orientation="vertical" flexItem/>
+                            <Divider orientation="vertical" flexItem />
                             <NavLink onClick={handleCloseNavMenu} to='/store' style={{ textDecoration: 'none' }}>
                                 <MenuItem>
                                     <Typography className='title-text' textAlign="center" sx={{ fontSize: 30 }}>Tienda</Typography>
@@ -174,7 +173,7 @@ const Navbar = () => {
                             <Box sx={{ flexGrow: 0 }}>
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar variant="rounded" alt="Image user avatar" src={user?.avatar?.url} sx={{width: 50, height: 50}}/>
+                                        <Avatar variant="rounded" alt="Image user avatar" src={user?.avatar?.url} sx={{ width: 50, height: 50 }} />
                                     </IconButton>
                                 </Tooltip>
                                 <Menu
@@ -263,7 +262,7 @@ const Navbar = () => {
             </AppBar>
             {user && <Box className='coins-background' sx={{ position: 'fixed', top: 91, right: '5%', zIndex: 999 }}>
                 <Typography variant='h4' className='text'>
-                <CurrencyRubleOutlinedIcon sx={{color: 'black'}}/>
+                    <CurrencyRubleOutlinedIcon sx={{ color: 'black' }} />
                     {user?.coins}
                 </Typography>
             </Box>}

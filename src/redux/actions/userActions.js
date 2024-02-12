@@ -3,12 +3,12 @@ import clientAxios from "../../utils/clientAxios";
 
 
 export const getUser = createAsyncThunk("getUser", async () => {
-    const response = await clientAxios.get(`/users/getUser`, { withCredentials: true });
+    const response = await clientAxios.get(`/users/get-user`, { withCredentials: true });
     return response.data;
 });
 
 export const getUserDeck = createAsyncThunk("getUserDeck", async () => {
-    const response = await clientAxios.get(`/users/userDeck`, { withCredentials: true });
+    const response = await clientAxios.get(`/users/user-deck`, { withCredentials: true });
     return response.data;
 })
 
