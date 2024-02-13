@@ -8,10 +8,12 @@ import {
   InputBase,
   InputLabel,
   MenuItem,
+  Pagination,
   Paper,
   Radio,
   RadioGroup,
   Select,
+  Stack,
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -25,17 +27,21 @@ const Pokedeck = () => {
   const [filter, setFilter] = useState("obtained");
   const [rarity, setRarity] = useState("Todas las rarezas");
   const [type, setType] = useState("Todos los tipos");
-  const [ sortBy, setSortBy ] = useState('lastObtained');
+  const [sortBy, setSortBy] = useState("lastObtained");
   const [filteredCards, setFilteredCards] = useState(userDeck);
+  const [message, setMessage] = useState("");
+  const [page, setPage] = useState(1);
+
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
   useEffect(() => {
     filterCards();
-  }, [userDeck, pokemon, filter, rarity, type]);
+  }, [userDeck, pokemon, filter, rarity, type, sortBy, page]);
 
   const filterCards = () => {
-    let filtered = userDeck;
-
-    
+    let filtered = [...userDeck];
 
     if (filter === "obtained") {
       filtered = userDeck;
@@ -79,12 +85,22 @@ const Pokedeck = () => {
       });
     }
 
-    if(sortBy === 'lastObtained'){
-        filtered = filtered.sort((a, b) => {
-            const dateA = new Date(a.dateObtained);
-            const dateB = new Date(b.dateObtained);
-            return dateB - dateA;
-          });
+    if (sortBy === "lastObtained") {
+      filtered = filtered.reverse();
+    } else if (sortBy === "pokemonName") {
+      filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === "pokedexNumber") {
+      filtered = filtered.sort((a, b) => a.pokedexNumber - b.pokedexNumber);
+    }
+
+    if (userDeck.length === 0) {
+      setMessage("Todavía no tienes cartas...");
+    } else if (filtered.length === 0) {
+      setMessage("No se encontraron coincidencias...");
+    } else if (filter === "repeated" && filtered.length === userDeck.length) {
+      setMessage("No tienes cartas repetidas...");
+    } else {
+      setMessage("");
     }
 
     setFilteredCards(filtered);
@@ -132,7 +148,7 @@ const Pokedeck = () => {
             <SearchIcon />
           </IconButton>
         </Paper>
-        <Divider flexItem sx={{ my: 2}} />
+        <Divider flexItem sx={{ my: 2 }} />
         <Typography variant="h6" className="text">
           Filtrar por...
         </Typography>
@@ -191,14 +207,14 @@ const Pokedeck = () => {
             ))}
           </Select>
         </FormControl>
-        <Divider flexItem sx={{ my: 2}} />
+        <Divider flexItem sx={{ my: 2 }} />
         <Typography variant="h6" className="text">
           Ordenar por...
         </Typography>
         <FormControl>
           <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="controlled-radio-buttons-group"
+            aria-labelledby="sortedBy"
+            name="sortedBy"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
@@ -221,7 +237,7 @@ const Pokedeck = () => {
         </FormControl>
       </Box>
 
-      {filteredCards?.length == 0 ? (
+      {message && (
         <Box
           className="user-cards"
           sx={{
@@ -235,10 +251,11 @@ const Pokedeck = () => {
           }}
         >
           <Typography variant="h4" textAlign="center" className="text">
-            <i>No se encontraron coincidencias...</i>
+            <i>{message}</i>
           </Typography>
         </Box>
-      ) : (
+      )}
+      {filteredCards.length > 0 && (
         <Box
           className="user-cards"
           sx={{
@@ -246,15 +263,31 @@ const Pokedeck = () => {
             p: 1,
             pb: 2,
             px: { md: 3 },
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems:'center'
           }}
         >
-          {filteredCards?.map((card, index) => (
-            <img
-              key={index}
-              src={card.imageCard}
-              style={{ width: 150, height: 200 }}
+          <Box>
+            {filteredCards
+              .slice((page - 1) * 10, page * 10)
+              .map((card, index) => (
+                <img
+                  key={index}
+                  src={card.imageCard}
+                  style={{ width: 150, height: 200 }}
+                />
+              ))}
+          </Box>
+          <Stack spacing={2}>
+            <Typography>Página: {page}</Typography>
+            <Pagination
+              count={Math.ceil(filteredCards.length / 10)}
+              page={page}
+              onChange={handleChange}
             />
-          ))}
+          </Stack>
         </Box>
       )}
     </Container>
