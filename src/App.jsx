@@ -25,15 +25,12 @@ import GuessPokemonPage from "./pages/Minigames/GuessPokemonPage";
 
 const App = () => {
     const dispatch = useDispatch();
-    const {loading, isAuthenticated} = useSelector((state) => state.user)
+    const {loading} = useSelector((state) => state.user)
 
     useEffect(() => {
         dispatch(getUser())
         dispatch(getAllChests())
-        if(isAuthenticated){
-            dispatch(getUserDeck())
-        }
-    }, [isAuthenticated])
+    }, [])
 
     return (
         <BrowserRouter>

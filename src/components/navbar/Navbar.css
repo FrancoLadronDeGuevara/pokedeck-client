@@ -4,6 +4,7 @@
     background-image: url('../../assets/navbar.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    height: 105px;
 }
 
 .coins-background {

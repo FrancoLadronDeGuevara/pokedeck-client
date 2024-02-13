@@ -137,3 +137,32 @@ export const getTypeColor = (type) => {
             return '#000000'; 
     }
 }
+
+export const typeList = [
+    "Todos los tipos",
+    "Normal",
+    "Planta",
+    "Fuego",
+    "Agua",
+    "Volador",
+    "Lucha",
+    "Veneno",
+    "Tierra",
+    "Roca",
+    "Hada",
+    "Bicho",
+    "Fantasma",
+    "Eléctrico",
+    "Psíquico",
+    "Hielo",
+    "Dragón",
+    "Acero",
+]
+
+export const rarityList = [
+    'Todas las rarezas',
+    'Normal',
+    'Rara',
+    'Epica',
+    'Legendaria'
+]

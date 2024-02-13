@@ -13,11 +13,13 @@ import "./UserProfile.css";
 import CurrencyRubleOutlinedIcon from "@mui/icons-material/CurrencyRubleOutlined";
 import { Grid, Paper } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { server } from "../../../server";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import quienesesepokemon from "../../../assets/images/quienesepokemon.jpg";
+import { autoCloseAlertWithImage } from "../../../utils/alerts";
+import pikachu from "../../../assets/images/pikachuerror.gif";
 
 const listStyle = {
   py: 2,
@@ -26,16 +28,22 @@ const listStyle = {
 };
 
 const UserProfile = () => {
+  const navigate = useNavigate()
   const { loading } = useSelector((state) => state.user);
   const { username } = useParams();
   const [userProfile, setUserProfile] = useState({});
 
   useEffect(() => {
     const getUserData = async () => {
-      const response = await axios.get(`${server}/users/profile/${username}`, {
-        withCredentials: true,
-      });
-      setUserProfile(response.data);
+      await axios
+        .get(`${server}/users/profile/${username}`, {
+          withCredentials: true,
+        })
+        .then((res) => setUserProfile(res.data))
+        .catch((error) => {
+          autoCloseAlertWithImage(error.response.data.message, pikachu, 200, 200)
+          navigate('/')
+        });
     };
 
     getUserData();
@@ -172,10 +180,28 @@ const UserProfile = () => {
                 Mejores puntajes
               </Typography>
               <Divider sx={{ my: 1 }} />
-              <Box sx={{ p: 1, width: 200, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                <img className="game-image" src={quienesesepokemon} alt="" width={200}/>
-                <Typography textAlign='center' className="text background-score">
-                  Mejor puntaje: {userProfile?.score?.maxScore.maxScoreGuessPokemon} pts.
+              <Box
+                sx={{
+                  p: 1,
+                  width: 200,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  className="game-image"
+                  src={quienesesepokemon}
+                  alt=""
+                  width={200}
+                />
+                <Typography
+                  textAlign="center"
+                  className="text background-score"
+                >
+                  Mejor puntaje:{" "}
+                  {userProfile?.score?.maxScore.maxScoreGuessPokemon} pts.
                 </Typography>
               </Box>
             </Box>
