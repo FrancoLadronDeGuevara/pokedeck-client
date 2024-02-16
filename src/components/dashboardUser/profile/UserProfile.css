@@ -27,9 +27,24 @@
     width: 200px;
 }
 
-
-@media screen and (min-width: 600px) and (max-width: 850px){
-    .user-last-cards{
-        width: 80px;
-    }
+.last-user-cards, .container-last-user-cards{
+    width: 9vw !important;
 }
+
+@media screen and (max-width: 1280px) {
+    .last-user-cards, .container-last-user-cards {
+      width: 10vw !important;
+    }
+  }
+  
+  @media screen and (max-width: 960px) {
+    .last-user-cards, .container-last-user-cards {
+      width: 13vw !important;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .last-user-cards, .container-last-user-cards {
+      width: 25vw !important;
+    }
+  }

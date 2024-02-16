@@ -15,7 +15,7 @@ body{
 }
 
 .alert-container {
-  z-index: 9999;
+  z-index: 9999999999;
 }
 
 .alert-popup {

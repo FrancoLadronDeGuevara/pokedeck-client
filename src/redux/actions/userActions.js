@@ -38,6 +38,11 @@ export const getCoins = createAsyncThunk("getCoins", async (data) => {
 })
 
 export const resetScore = createAsyncThunk("resetScore", async () => {
-    const response = await clientAxios.get(`/minigames/resetScore` , { withCredentials : true});
+    const response = await clientAxios.get(`/minigames/resetScore`, { withCredentials: true });
+    return response.data;
+})
+
+export const sellCard = createAsyncThunk("sellCard", async (data) => {
+    const response = await clientAxios.post(`/cards/sell-card`, data, { withCredentials: true });
     return response.data;
 })

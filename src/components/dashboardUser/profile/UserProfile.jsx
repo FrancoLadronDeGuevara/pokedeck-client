@@ -11,7 +11,7 @@ import formatDate from "../../../utils/formatDate";
 import Loader from "../../loader/Loader";
 import "./UserProfile.css";
 import CurrencyRubleOutlinedIcon from "@mui/icons-material/CurrencyRubleOutlined";
-import { Grid, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate, useParams } from "react-router-dom";
 import { server } from "../../../server";
@@ -28,7 +28,7 @@ const listStyle = {
 };
 
 const UserProfile = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { loading } = useSelector((state) => state.user);
   const { username } = useParams();
   const [userProfile, setUserProfile] = useState({});
@@ -41,8 +41,13 @@ const UserProfile = () => {
         })
         .then((res) => setUserProfile(res.data))
         .catch((error) => {
-          autoCloseAlertWithImage(error.response.data.message, pikachu, 200, 200)
-          navigate('/')
+          autoCloseAlertWithImage(
+            error.response.data.message,
+            pikachu,
+            200,
+            200
+          );
+          navigate("/");
         });
     };
 
@@ -153,12 +158,21 @@ const UserProfile = () => {
                         justifyContent="center"
                         alignItems="center"
                       >
-                        <img
-                          className={`user-last-cards `}
-                          src={card.imageCard}
-                          alt={`Carta ${index + 1}`}
-                          width={120}
-                        />
+                        <Box
+                        sx={{cursor: "default"}}
+                          className={
+                            card.rarity === "Legendaria" ||
+                            card.rarity === "Epica"
+                              ? `container-pokemon-card container-last-user-cards card-${card.rarity} color-card-${card.types[0]}`
+                              : "container-pokemon-card container-last-user-cards"
+                          }
+                        >
+                          <img
+                            className="image-pokemon last-user-cards"
+                            src={card.imageCard}
+                            alt={`Carta ${index + 1}`}
+                          />
+                        </Box>
                       </Grid>
                     ))
                   ) : (

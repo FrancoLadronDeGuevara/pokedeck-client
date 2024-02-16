@@ -1,8 +1,10 @@
 import Box from "@mui/material/Box";
-import { useDispatch } from "react-redux";
-import {  Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import "./DetailPokemon.css";
 import GlobalModal from "../globalModal/GlobalModal";
+import { useDispatch } from "react-redux";
+import { autoCloseAlert, customAlert } from "../../utils/alerts";
+import { getUserDeck, sellCard } from "../../redux/actions/userActions";
 
 const DetailPokemon = ({
   pokedexNumber,
@@ -22,14 +24,25 @@ const DetailPokemon = ({
     return imageUrl;
   };
 
-  const handleSellCard =  () => {
-
-  }
+  const handleSellCard = () => {
+    const data = {pokedexNumber, price}
+    customAlert(
+      "Vender Carta",
+      `¿Seguro que deseas vender esta carta por ₽${price}?`,
+      "warning",
+      () => {
+        dispatch(sellCard(data)).then(res => {
+          autoCloseAlert('Carta Vendida', 'success', 'green');
+          dispatch(getUserDeck())
+        })
+      }
+    );
+  };
 
   return (
     <>
       <GlobalModal onClose={onClose}>
-        <Container maxWidth="sm" className="modal-card">
+        
           <Box
             sx={{
               display: "flex",
@@ -85,12 +98,14 @@ const DetailPokemon = ({
               mt: { xs: 0, sm: 3 },
             }}
           >
-            <button className="sell-button" onClick={handleSellCard}>Vender por ₽ {price}</button>
+            <button className="sell-button" onClick={handleSellCard}>
+              Vender por ₽ {price}
+            </button>
             <button className="close-button" onClick={onClose}>
               Cerrar
             </button>
           </Box>
-        </Container>
+
       </GlobalModal>
     </>
   );

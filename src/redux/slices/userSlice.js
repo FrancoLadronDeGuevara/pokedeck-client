@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, editUser, deleteUser, getAllUsers, updateUser, getUserDeck, getCoins, resetScore } from "../actions/userActions";
+import { getUser, editUser, deleteUser, getAllUsers, updateUser, getUserDeck, getCoins, resetScore, sellCard } from "../actions/userActions";
 
 const userSlice = createSlice({
     name: 'users',
@@ -69,6 +69,18 @@ const userSlice = createSlice({
                 state.error = action.payload;
             })
             
+            .addCase(sellCard.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(sellCard.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = false;
+                state.user = action.payload;
+            })
+            .addCase(sellCard.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
 
             .addCase(getAllUsers.pending, (state) => {
                 state.loading = true;
