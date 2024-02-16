@@ -1,25 +1,15 @@
 import {
   Box,
   Container,
-  Divider,
-  FormControl,
-  FormControlLabel,
-  IconButton,
-  InputBase,
-  InputLabel,
-  MenuItem,
   Pagination,
-  Paper,
-  Radio,
-  RadioGroup,
-  Select,
   Stack,
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import SearchIcon from "@mui/icons-material/Search";
-import { rarityList, typeList } from "../../utils/pokemonHelper";
+import PokemonCard from "../pokemonCard/PokemonCard";
+
+import PokemonFilter from "./PokemonFilter";
 
 const Pokedeck = () => {
   const { userDeck } = useSelector((state) => state.user);
@@ -117,125 +107,18 @@ const Pokedeck = () => {
         px: 2,
       }}
     >
-      <Box
-        sx={{
-          width: { xs: "100%", md: 300 },
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "start",
-          padding: 1,
-        }}
-      >
-        <Typography variant="h6" className="text">
-          Buscar por...
-        </Typography>
-        <Paper
-          component="form"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            height: 40,
-          }}
-        >
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            placeholder="Pokemón, n° de pokedex"
-            value={pokemon}
-            onChange={(e) => setPokemon(e.target.value)}
-          />
-          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton disabled>
-            <SearchIcon />
-          </IconButton>
-        </Paper>
-        <Divider flexItem sx={{ my: 2 }} />
-        <Typography variant="h6" className="text">
-          Filtrar por...
-        </Typography>
-        <FormControl>
-          <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="controlled-radio-buttons-group"
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-          >
-            <FormControlLabel
-              value="obtained"
-              control={<Radio />}
-              label="Obtenidas"
-            />
-            <FormControlLabel
-              value="repeated"
-              control={<Radio />}
-              label="Repetidas"
-            />
-          </RadioGroup>
-        </FormControl>
-        <FormControl fullWidth size="small" sx={{ my: 1 }}>
-          <InputLabel>Rareza</InputLabel>
-          <Select
-            value={rarity}
-            label="Rareza"
-            onChange={(e) => setRarity(e.target.value)}
-          >
-            {rarityList.map((rarity, index) => (
-              <MenuItem key={index} value={rarity}>
-                {rarity}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl fullWidth size="small" sx={{ my: 1 }}>
-          <InputLabel>Tipo</InputLabel>
-          <Select
-            MenuProps={{
-              PaperProps: {
-                sx: {
-                  width: 200,
-                  maxHeight: 300,
-                },
-              },
-            }}
-            value={type}
-            label="Tipo"
-            onChange={(e) => setType(e.target.value)}
-          >
-            {typeList.map((type, index) => (
-              <MenuItem key={index} value={type}>
-                {type}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <Divider flexItem sx={{ my: 2 }} />
-        <Typography variant="h6" className="text">
-          Ordenar por...
-        </Typography>
-        <FormControl>
-          <RadioGroup
-            aria-labelledby="sortedBy"
-            name="sortedBy"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-          >
-            <FormControlLabel
-              value="pokedexNumber"
-              control={<Radio />}
-              label="N° de pokedex"
-            />
-            <FormControlLabel
-              value="pokemonName"
-              control={<Radio />}
-              label="Nombre"
-            />
-            <FormControlLabel
-              value="lastObtained"
-              control={<Radio />}
-              label="Últimas obtenidas"
-            />
-          </RadioGroup>
-        </FormControl>
-      </Box>
+      <PokemonFilter
+        pokemon={pokemon}
+        setPokemon={setPokemon}
+        filter={filter}
+        setFilter={setFilter}
+        rarity={rarity}
+        setRarity={setRarity}
+        type={type}
+        setType={setType}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+      />
 
       {message && (
         <Box
@@ -245,9 +128,6 @@ const Pokedeck = () => {
             justifyContent: "center",
             alignItems: "center",
             width: "100%",
-            p: 1,
-            pb: 2,
-            px: { md: 3 },
           }}
         >
           <Typography variant="h4" textAlign="center" className="text">
@@ -261,26 +141,42 @@ const Pokedeck = () => {
           sx={{
             width: "100%",
             p: 1,
-            pb: 2,
-            px: { md: 3 },
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            alignItems:'center'
+            alignItems: "center",
           }}
         >
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              gap: 2,
+              m: 1,
+            }}
+          >
             {filteredCards
-              .slice((page - 1) * 10, page * 10)
-              .map((card, index) => (
-                <img
-                  key={index}
-                  src={card.imageCard}
-                  style={{ width: 150, height: 200 }}
-                />
+              .slice((page - 1) * 12, page * 12)
+              .map((card, cardIndex) => (
+                <Box
+                  key={cardIndex}
+                  sx={{
+                    mb: 1,
+                  }}
+                >
+                  <PokemonCard
+                    imageCard={card.imageCard}
+                    name={card.name}
+                    pokedexNumber={card.pokedexNumber}
+                    types={card.types}
+                    rarity={card.rarity}
+                    price={card.price}
+                  />
+                </Box>
               ))}
           </Box>
-          <Stack spacing={2}>
+          <Stack spacing={2} sx={{ my: 2 }}>
             <Typography>Página: {page}</Typography>
             <Pagination
               count={Math.ceil(filteredCards.length / 10)}

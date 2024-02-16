@@ -1,0 +1,174 @@
+.image-pokemon {
+  width: 12vw;
+  margin-bottom: -4px;
+}
+
+.container-pokemon-card {
+  width: 12vw;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 100ms ease;
+  transition-property: transform;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  transform: translate3d(0%, 0%, -400px);
+}
+
+.card-Legendaria:before,
+.card-Legendaria:after,
+.card-Epica:before,
+.card-Epica:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-image: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgb(0, 231, 255) 30%,
+    rgb(255, 0, 231) 70%,
+    transparent 100%
+  );
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-size: 300% 300%;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  z-index: 1;
+  transform: translate3d(0, 0, 0);
+  animation: holoGradient 15s ease infinite;
+}
+
+.card-Legendaria:after {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif");
+  background-position: center;
+  background-size: 180%;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  z-index: 2;
+  animation: holoSparkle 20s ease infinite;
+}
+
+.color-card-NORMAL {
+  box-shadow: 0px 1px 20px #a0a2a0;
+}
+.color-card-PLANTA {
+  box-shadow: 0px 1px 20px #3da224;
+}
+.color-card-FUEGO {
+  box-shadow: 0px 1px 20px #e72324;
+}
+.color-card-AGUA {
+  box-shadow: 0px 1px 20px #2481f0;
+}
+.color-card-VOLADOR {
+  box-shadow: 0px 1px 20px #82baf0;
+}
+.color-card-LUCHA {
+  box-shadow: 0px 1px 20px #ff8100;
+}
+.color-card-VENENO {
+  box-shadow: 0px 1px 20px #923fcc;
+}
+.color-card-TIERRA {
+  box-shadow: 0px 1px 20px #92501b;
+}
+.color-card-ROCA {
+  box-shadow: 0px 1px 20px #b0ab82;
+}
+.color-card-HADA {
+  box-shadow: 0px 1px 20px #ef71f0;
+}
+.color-card-BICHO {
+  box-shadow: 0px 1px 20px #92a212;
+}
+.color-card-FANTASMA {
+  box-shadow: 0px 1px 20px #713f71;
+}
+.color-card-ELÉCTRICO {
+  box-shadow: 0px 1px 20px #fac100;
+}
+.color-card-PSÍQUICO {
+  box-shadow: 0px 1px 20px #ef3f7a;
+}
+.color-card-HIELO {
+  box-shadow: 0px 1px 20px #3dd9ff;
+}
+.color-card-DRAGÓN {
+  box-shadow: 0px 1px 20px #4f60e2;
+}
+.color-card-ACERO {
+  box-shadow: 0px 1px 20px #60a2b9;
+}
+
+@keyframes holoSparkle {
+  0% {
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.5;
+  }
+
+  95% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes holoGradient {
+  3% {
+    opacity: 0;
+  }
+  5% {
+    background-position: 0% 0%;
+  }
+  7% {
+    opacity: 0.5;
+  }
+  9% {
+    background-position: 100% 100%;
+  }
+  11% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+    background-position: 100% 100%;
+  }
+  55% {
+    opacity: 0.3;
+  }
+  70% {
+    opacity: 0;
+    background-position: 0% 0%;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .image-pokemon, .container-pokemon-card {
+    width: 12vw;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .image-pokemon, .container-pokemon-card {
+    width: 15vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .image-pokemon, .container-pokemon-card {
+    width: 22vw;
+  }
+}
+
+
+
+
