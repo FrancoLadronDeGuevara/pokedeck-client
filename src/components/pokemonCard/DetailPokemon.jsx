@@ -14,6 +14,7 @@ const DetailPokemon = ({
   rarity,
   price,
   onClose,
+  hideButton
 }) => {
   const dispatch = useDispatch();
 
@@ -98,7 +99,7 @@ const DetailPokemon = ({
               mt: { xs: 0, sm: 3 },
             }}
           >
-            <button className="sell-button" onClick={handleSellCard}>
+            <button className={`sell-button ${hideButton ? 'hide-button' : 'show-button'}`} onClick={handleSellCard}>
               Vender por ₽ {price}
             </button>
             <button className="close-button" onClick={onClose}>

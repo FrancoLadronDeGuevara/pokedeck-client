@@ -55,7 +55,7 @@ const CreateChests = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // setLoading(true)
+        setLoading(true)
 
         if (!imageUpload || !name || !description || !chestType) {
             setLoading(false)
@@ -84,7 +84,6 @@ const CreateChests = () => {
             chestData = { ...chestData, selectedCards }
         }
 
-        console.log( selectedCards)
 
         try {
             await clientAxios.post(`${server}/chests/create`, chestData, { withCredentials: true })
@@ -105,7 +104,7 @@ const CreateChests = () => {
                 <Grid container spacing={2}>
                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Box sx={{ position: 'relative' }}>
-                            <Avatar variant="rounded" src={imageUpload} sx={{ minWidth: 100, width: { xs: 'auto', sm: 200, md: 300 }, height: { xs: 150, sm: 150, md: 200 } }} />
+                            <Avatar variant="rounded" src={imageUpload} sx={{ minWidth: 100, width: { xs: 'auto', sm: 'auto', md: 'auto' }, height: { xs: 150, sm: 170, md: 225 } }} />
                             <Button size="small" sx={{ position: 'absolute', bottom: 0, left: 0, fontSize: 8 }} component="label" variant="contained" startIcon={<UploadFileTwoToneIcon />}>
                                 Subir imagen*
                                 <VisuallyHiddenInput type="file" onChange={(e) => handleUploadImage(e, setImageUpload)} accept="image/*" />

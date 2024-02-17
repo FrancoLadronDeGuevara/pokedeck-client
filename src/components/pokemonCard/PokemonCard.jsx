@@ -11,6 +11,7 @@ const PokemonCard = ({
   imageCard,
   rarity,
   price,
+  hideButton = false
 }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -38,6 +39,7 @@ const PokemonCard = ({
           imageCard={imageCard}
           rarity={rarity}
           price={price}
+          hideButton={hideButton}
           onClose={() => setIsOpenModal(false)}
         />
       )}

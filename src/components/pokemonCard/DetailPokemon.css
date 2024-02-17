@@ -80,6 +80,13 @@
     
 }
 
+.hide-button{
+    display: none;
+}
+
+.show-button{
+    display: inline-block;
+}
 
 @media screen and (max-width: 600px) {
     .modal-card {

@@ -1,0 +1,35 @@
+.modal-open-chest {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  outline: none;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards-rewards {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modal-open-chest-button{
+  background-image: url('../../assets/boton.png');
+  background-size: 100% 100%;
+  width: 100px;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: none;
+  background-color: transparent;
+  text-shadow: -2px 2px 2px black;
+  color: white;
+  cursor: pointer;
+}
+
+.modal-open-chest-button:hover{
+  transform: scale(1.1);
+}
