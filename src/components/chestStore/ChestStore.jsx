@@ -38,15 +38,15 @@ const ChestStore = () => {
             setOpenModal(true);
           }, 2000);
         })
-        .catch((error) => {
-          autoCloseAlert(error.response.data.message, "error", "red");
-        });
+        .catch(error => {
+            autoCloseAlert(error.response.data.message, 'error', 'red');
+        })
     });
   };
 
   const handleCloseModal = () => {
     setOpenModal(false);
-    setDrawnCards([]);
+    setDrawnCards([]); 
   };
 
   return (
@@ -136,13 +136,7 @@ const ChestStore = () => {
           </Box>
         ))}
       </Box>
-      {openModal && (
-        <ModalOpenChest
-          openModal={openModal}
-          cards={drawnCards}
-          handleCloseModal={handleCloseModal}
-        />
-      )}
+     {openModal && <ModalOpenChest openModal={openModal} cards={drawnCards} handleCloseModal={handleCloseModal}/>}
     </Container>
   );
 };

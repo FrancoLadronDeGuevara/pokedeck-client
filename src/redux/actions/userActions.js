@@ -18,12 +18,12 @@ export const getAllUsers = createAsyncThunk("getAllUsers", async () => {
 })
 
 export const editUser = createAsyncThunk("editUser", async (data) => {
-    const response = await clientAxios.patch(`/users/edit/${data.id}`, data, { withCredentials: true });
+    const response = await clientAxios.patch(`/users/edit/${data.id}`, data);
     return response.data;
 });
 
 export const updateUser = createAsyncThunk("updateUser", async (data) => {
-    const response = await clientAxios.patch(`/users/update/${data.id}`, data, { withCredentials: true });
+    const response = await clientAxios.patch(`/users/update/${data.id}`, data);
     return response.data;
 });
 
@@ -33,16 +33,16 @@ export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
 });
 
 export const getCoins = createAsyncThunk("getCoins", async (data) => {
-    const response = await clientAxios.patch(`/minigames/guessPokemonCoins`, data, { withCredentials: true });
+    const response = await clientAxios.patch(`/minigames/guessPokemonCoins`, data);
     return response.data;
 })
 
 export const resetScore = createAsyncThunk("resetScore", async () => {
-    const response = await clientAxios.get(`/minigames/resetScore`, { withCredentials: true });
+    const response = await clientAxios.get(`/minigames/resetScore`);
     return response.data;
 })
 
 export const sellCard = createAsyncThunk("sellCard", async (data) => {
-    const response = await clientAxios.post(`/cards/sell-card`, data, { withCredentials: true });
+    const response = await clientAxios.post(`/cards/sell-card`, data);
     return response.data;
 })

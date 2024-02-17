@@ -1,19 +1,19 @@
 import axios from 'axios';
-
-import { getLocalStorage, removeLocalStorage } from './localStorageHelper';
+import Cookies from 'js-cookie';
 
 const clientAxios = axios.create({
     baseURL: import.meta.env.VITE_URL_BASE_API,
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true,
 });
 
 clientAxios.interceptors.request.use(
     (config) => {
-        const token = getLocalStorage("token");
+        const token = Cookies.get("token");
         if (token) {
-            config.headers['access-token'] = token;
+            config.headers['Authorization'] = `Bearer ${token}`;
         }
         return config;
     },
