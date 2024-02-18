@@ -7,7 +7,7 @@
 
 body{
   padding: 0 !important;
-  background-image: url('./assets/background.png');
+  background-image: url('./assets/images/backgrounds/background.png');
 }
 
 .MuiPaper-root{

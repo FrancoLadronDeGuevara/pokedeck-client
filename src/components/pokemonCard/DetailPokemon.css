@@ -12,7 +12,7 @@
   font-weight: bolder !important;
   font-size: 30px !important;
   color: #fff;
-  background-image: url("../../assets/button.png");
+  background-image: url("../../assets/images/backgrounds/button.png");
   background-size: 100% 100%;
   padding: 0 1rem;
   margin: 1rem 0 !important;
@@ -25,7 +25,7 @@
   flex-shrink: 1;
   overflow-y: auto;
   width: 50%;
-  background-image: url(../../assets//dropdown.png);
+  background-image: url("../../assets/images/backgrounds/dropdown.png");
   background-size: 100% 100%;
   padding: 5px;
 }
@@ -72,11 +72,11 @@
 }
 
 .sell-button{
-    background-image: url("../../assets/yellowbutton.png");
+    background-image: url("../../assets/images/backgrounds/yellowbutton.png");
 }
 
 .close-button{
-    background-image: url("../../assets/redbutton.png");
+    background-image: url("../../assets/images/backgrounds/redbutton.png");
     
 }
 

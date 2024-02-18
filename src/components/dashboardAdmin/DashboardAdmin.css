@@ -1,0 +1,16 @@
+.container-tabs{
+    background-image: url('../../assets/images/backgrounds/coins.png');
+    background-size: 95% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: sticky;
+    margin-top: -10px;
+    z-index: 999;
+    padding: 1rem;
+    position: sticky;
+    top: 95px;
+}
+
+.MuiTabs-indicator {
+    display: none;
+  }

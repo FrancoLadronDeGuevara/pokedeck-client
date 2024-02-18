@@ -83,7 +83,7 @@ const AllChests = () => {
             {loading ?
                 <Loader />
                 :
-                <Container sx={{ width: '100%', overflow: 'hidden' }}>
+                <Container sx={{  overflow: 'hidden' }}>
                     <TableContainer sx={{ maxHeight: 450 }}>
                         <Table stickyHeader aria-label="sticky table" size='small'>
                             <TableHead>

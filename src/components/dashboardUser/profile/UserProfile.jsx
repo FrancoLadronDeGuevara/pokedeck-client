@@ -17,9 +17,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { server } from "../../../server";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import quienesesepokemon from "../../../assets/images/quienesepokemon.jpg";
 import { autoCloseAlertWithImage } from "../../../utils/alerts";
-import pikachu from "../../../assets/images/pikachuerror.gif";
+import quienesesepokemon from "../../../assets/images/minigames/quienesepokemon.jpg";
+import errorPikachu from "../../../assets/images/alerts/errorPikachu.gif";
 
 const listStyle = {
   py: 2,
@@ -43,7 +43,7 @@ const UserProfile = () => {
         .catch((error) => {
           autoCloseAlertWithImage(
             error.response.data.message,
-            pikachu,
+            errorPikachu,
             200,
             200
           );

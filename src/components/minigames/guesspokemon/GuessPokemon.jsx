@@ -1,10 +1,10 @@
 import { Box, Divider, IconButton, InputBase, Paper, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
-import buttonAnimation from "../../../assets/ButtonAnimation/pokeballbutton.json"
+import buttonAnimation from "../../../assets/animations/ButtonAnimation/pokeballbutton.json"
 import { getRandomPokemon } from "./game";
-import pokemonTitleImage from "../../../assets/images/pokemon.png"
-import questionImage from "../../../assets/images/who.png"
+import pokemonTitleImage from "../../../assets/images/minigames/pokemon.png"
+import questionImage from "../../../assets/images/minigames/who.png"
 import "./GuessPokemon.css"
 import { useDispatch, useSelector } from "react-redux";
 import { getCoins, resetScore } from "../../../redux/actions/userActions";
@@ -13,8 +13,8 @@ import SoundGuessPokemon from "./SoundGuessPokemon";
 import guesspokemonsound from "../../../assets/sounds/quienesesepokemonsonido.mp3";
 import successpokemonsound from "../../../assets/sounds/success.mp3";
 import errorpokemonsound from "../../../assets/sounds/error.mp3";
-import pikachuError from "../../../assets/images/pikachuerror.gif";
-import odishSuccess from "../../../assets/images/odish.gif";
+import pikachuError from "../../../assets/images/alerts/errorPikachu.gif";
+import odishSuccess from "../../../assets/images/alerts/successOdish.gif";
 import Gameboy from "../../gameboy/Gameboy";
 
 const whosthatpokemonSound = new Audio(guesspokemonsound);

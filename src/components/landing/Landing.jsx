@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import FeaturedCards from './FeaturedCards';
 import { Link } from "react-router-dom";
+import "./Landing.css";
 
 const Landing = () => {
 
@@ -22,6 +23,11 @@ const Landing = () => {
     return (
         <>
             <Container maxWidth={false} disableGutters sx={{ mx: 'auto' }}>
+                <Box className="container-top-image">
+                    <Box className="left-top-image"></Box>
+                    <Box className="right-top-image"></Box>
+                    <Box className="logo-top-image"></Box>
+                </Box>
                 <Box textAlign="center">
                     <Typography variant="h5" sx={{ my: 10 }}>
                         Pokedeck es un proyecto pensado para aquellos que les gusta coleccionar!

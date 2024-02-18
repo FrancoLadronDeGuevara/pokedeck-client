@@ -11,17 +11,16 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
 import { useSelector } from 'react-redux';
 import { customAlert } from '../../utils/alerts';
 import axios from 'axios';
 import logoPokedeck from "../../assets/images/logo.png"
-import menuicon from "../../assets/menu.png"
-import login from "../../assets/login.png"
-import register from "../../assets/register.png"
-import pokecard from "../../assets/pokecard.png"
-import dropdown from "../../assets/dropdown.png"
-import chest from "../../assets/chest.png"
+import menuicon from "../../assets/images/icons/menu.png"
+import login from "../../assets/images/icons/login.png"
+import register from "../../assets/images/icons/register.png"
+import pokecard from "../../assets/images/icons/pokecard.png"
+import dropdown from "../../assets/images/backgrounds/dropdown.png"
+import chest from "../../assets/images/icons/chest.png"
 import { Divider } from '@mui/material';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';

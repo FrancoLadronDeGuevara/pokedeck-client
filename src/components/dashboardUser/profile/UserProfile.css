@@ -1,16 +1,16 @@
 .user-cards{
-    background-image: url('../../../assets/dropdown.png');
+    background-image: url('../../../assets/images/backgrounds/dropdown.png');
     background-size: 100% 100%;
 }
 
 .user-username-background{
-    background-image: url('../../../assets/button.png');
+    background-image: url('../../../assets/images/backgrounds/button.png');
     background-size: 100% 100%;
     padding: 1rem;
 }
 
 .user-coins-background{
-    background-image: url('../../../assets/boton.png');
+    background-image: url('../../../assets/images/backgrounds/boton.png');
     background-size: 100% 100%;
     padding: 1rem;
 }
@@ -22,7 +22,7 @@
 }
 
 .background-score{
-    background-image: url('../../../assets/dropdown.png');
+    background-image: url('../../../assets/images/backgrounds/dropdown.png');
     background-size: 100% 100%;
     width: 200px;
 }

@@ -1,10 +1,10 @@
 import './Footer.css';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Container, Divider, Link, Typography } from '@mui/material';
-import githubIcon from '../../assets/github.png';
-import facebookIcon from '../../assets/facebook.png';
-import linkedinIcon from '../../assets/linkedin.png';
-import portfolioIcon from '../../assets/portfolio.png';
+import githubIcon from '../../assets/images/icons/github.png';
+import facebookIcon from '../../assets/images/icons/facebook.png';
+import linkedinIcon from '../../assets/images/icons/linkedin.png';
+import portfolioIcon from '../../assets/images/icons/portfolio.png';
 
 const Footer = () => {
 
