@@ -20,7 +20,7 @@ const ModalOpenChest = ({ openModal, cards, handleCloseModal }) => {
     >
       <Fade in={true}>
         <Container maxWidth="sm" className="modal-open-chest">
-          <Box className="cards-rewards">
+          <Box className="chest-rewards animation-chest-rewards">
             {cards.map((card, cardIndex) => (
               <PokemonCard
                 key={cardIndex}

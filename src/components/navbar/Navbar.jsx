@@ -93,7 +93,7 @@ const Navbar = () => {
     };
     return (
         <>
-            <AppBar className='navbar-layout' position="sticky" sx={{ zIndex: 9999 }}>
+            <AppBar className='navbar-layout' position="sticky">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Box component={NavLink}

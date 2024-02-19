@@ -1,30 +1,53 @@
 .container-top-image {
   position: relative;
-  width: 100vw;
-  height: 50vh;
-  
+  height: 800px;
 }
 
 .left-top-image {
   position: absolute !important;
   background-image: url("../../assets/images/left-top-image.png") !important;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-position: left top;
+  background-size: contain;
   width: 100%;
-  height: 100%;
+  height: 800px;
   -webkit-animation: slide-in-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-in-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .right-top-image {
   position: absolute !important;
-  background-image: url("../../assets/images/right-top-image.png") !important;
+  display: block;
+  background: url("../../assets/images/right-top-image.png");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-position: right top;
+  background-size: contain;
   width: 100%;
-  height: 100%;
+  height: 800px;
   -webkit-animation: slide-in-right 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-in-right 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.logo-top-image {
+  position: absolute !important;
+  display: block;
+  background: url("../../assets/images/logo-presentation.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 100%;
+  height: 500px;
+  -webkit-animation: slide-in-fwd-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: slide-in-fwd-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.info-proyect{
+  min-width: 200px;
+  margin: 0 auto;
+  color: white;
+  text-shadow: rgb(30, 95, 110) 3px 0px 0px, rgb(30, 95, 110) 2.83487px 0.981584px 0px, rgb(30, 95, 110) 2.35766px 1.85511px 0px, rgb(30, 95, 110) 1.62091px 2.52441px 0px, rgb(30, 95, 110) 0.705713px 2.91581px 0px, rgb(30, 95, 110) -0.287171px 2.98622px 0px, rgb(30, 95, 110) -1.24844px 2.72789px 0px, rgb(30, 95, 110) -2.07227px 2.16926px 0px, rgb(30, 95, 110) -2.66798px 1.37182px 0px, rgb(30, 95, 110) -2.96998px 0.42336px 0px, rgb(30, 95, 110) -2.94502px -0.571704px 0px, rgb(30, 95, 110) -2.59586px -1.50383px 0px, rgb(30, 95, 110) -1.96093px -2.27041px 0px, rgb(30, 95, 110) -1.11013px -2.78704px 0px, rgb(30, 95, 110) -0.137119px -2.99686px 0px, rgb(30, 95, 110) 0.850987px -2.87677px 0px, rgb(30, 95, 110) 1.74541px -2.43999px 0px, rgb(30, 95, 110) 2.44769px -1.73459px 0px, rgb(30, 95, 110) 2.88051px -0.838247px 0px;
+  transform: translateY(-100%);
 }
 
 @-webkit-keyframes slide-in-left {
@@ -74,5 +97,36 @@
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide-in-fwd-top {
+  0% {
+    -webkit-transform: translateZ(-1400px) translateY(-800px);
+    transform: translateZ(-1400px) translateY(-800px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0) translateY(0);
+    transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-fwd-top {
+  0% {
+    -webkit-transform: translateZ(-1400px) translateY(-800px);
+    transform: translateZ(-1400px) translateY(-800px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0) translateY(0);
+    transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 400px) {
+  .info-proyect {
+    transform: translateY(0%) !important;
   }
 }

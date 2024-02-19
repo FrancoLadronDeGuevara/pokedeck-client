@@ -1,63 +1,46 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-import FeaturedCards from './FeaturedCards';
+import { Box, Container, Typography } from "@mui/material";
+import FeaturedCards from "./FeaturedCards";
 import { Link } from "react-router-dom";
 import "./Landing.css";
+import GameSection from "./GameSection/GameSection";
 
 const Landing = () => {
-
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 280,
-        height: 200,
-        margin: 50,
-        color: theme.palette.text.secondary,
-    }));
-
-    return (
-        <>
-            <Container maxWidth={false} disableGutters sx={{ mx: 'auto' }}>
-                <Box className="container-top-image">
-                    <Box className="left-top-image"></Box>
-                    <Box className="right-top-image"></Box>
-                    <Box className="logo-top-image"></Box>
-                </Box>
-                <Box textAlign="center">
-                    <Typography variant="h5" sx={{ my: 10 }}>
-                        Pokedeck es un proyecto pensado para aquellos que les gusta coleccionar!
-                        Es muy simple: juega, ganá puntos, abre cofres y colecciona!
-                    </Typography>
-                </Box>
-                <Grid container >
-                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item>
-                        <Item>Cup Game</Item>
-                    </Grid>
-                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item>
-                        <Item >Memoria</Item>
-                    </Grid>
-                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item>
-                        <Item>FlappyBird</Item>
-                    </Grid>
-                    <Grid xs={12} sm={6} lg={3} display='flex' justifyContent='center' item minWidth={200}>
-                        <Item>
-                            <Link to='/guesspokemon'>
-                                Quien es ese pokemon
-                            </Link>
-                        </Item>
-                    </Grid>
-                </Grid>
-                <Box>
-                    <FeaturedCards />
-                </Box>
-            </Container>
-        </>
-    )
-}
+ 
+  return (
+    <>
+      <Container maxWidth={false} disableGutters>
+        <Box className="container-top-image">
+          <Box className="left-top-image"></Box>
+          <Box className="right-top-image"></Box>
+          <Box className="logo-top-image"></Box>
+        </Box>
+        <Box className="info-proyect" textAlign="center">
+          <Typography variant="h3" sx={{fontSize: {xs: 30, sm: 35, md: 40}}}>
+            <i>
+              Pokedeck es un proyecto pensado para aquellos que les gusta
+              coleccionar!<br/> Es muy simple :
+              <Link
+                to="/register"
+                style={{
+                  textDecoration: "none",
+                  color: "rgb(255, 255, 0)",
+                  fontWeight: "bolder",
+                }}
+              >
+                {" "}
+                crea tu cuenta
+              </Link>
+              , juega, gana puntos, abre cofres y colecciona!
+            </i>
+          </Typography>
+        </Box>
+        <GameSection/>
+        <Box>
+          <FeaturedCards />
+        </Box>
+      </Container>
+    </>
+  );
+};
 
 export default Landing;

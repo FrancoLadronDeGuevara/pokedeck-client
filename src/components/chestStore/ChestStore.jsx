@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import { Button, Container, Divider, Typography } from "@mui/material";
 import axios from "axios";
@@ -8,11 +8,12 @@ import { server } from "../../server";
 import "./ChestStore.css";
 import { useState } from "react";
 import ModalOpenChest from "./ModalOpenChest";
+import { getUser } from "../../redux/actions/userActions";
 
 const ChestStore = () => {
   const { chests } = useSelector((state) => state.chest);
   const { user } = useSelector((state) => state.user);
-
+  const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [drawnCards, setDrawnCards] = useState([]);
   const [animation, setAnimation] = useState([]);
@@ -28,7 +29,6 @@ const ChestStore = () => {
           { withCredentials: true }
         )
         .then((res) => {
-          console.log(res.data.cards);
           setAnimation((prevState) => [...prevState, chestId]);
           setTimeout(() => {
             setAnimation((prevState) =>
@@ -37,16 +37,17 @@ const ChestStore = () => {
             setDrawnCards(res.data.cards);
             setOpenModal(true);
           }, 2000);
+          dispatch(getUser())
         })
-        .catch(error => {
-            autoCloseAlert(error.response.data.message, 'error', 'red');
-        })
+        .catch((error) => {
+          autoCloseAlert(error.response.data.message, "error", "red");
+        });
     });
   };
 
   const handleCloseModal = () => {
     setOpenModal(false);
-    setDrawnCards([]); 
+    setDrawnCards([]);
   };
 
   return (
@@ -136,7 +137,13 @@ const ChestStore = () => {
           </Box>
         ))}
       </Box>
-     {openModal && <ModalOpenChest openModal={openModal} cards={drawnCards} handleCloseModal={handleCloseModal}/>}
+      {openModal && (
+        <ModalOpenChest
+          openModal={openModal}
+          cards={drawnCards}
+          handleCloseModal={handleCloseModal}
+        />
+      )}
     </Container>
   );
 };

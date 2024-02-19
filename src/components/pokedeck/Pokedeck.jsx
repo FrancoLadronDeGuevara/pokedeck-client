@@ -179,7 +179,7 @@ const Pokedeck = () => {
           <Stack spacing={2} sx={{ my: 2 }}>
             <Typography>Página: {page}</Typography>
             <Pagination
-              count={Math.ceil(filteredCards.length / 10)}
+              count={Math.ceil(filteredCards.length / 12)}
               page={page}
               onChange={handleChange}
             />
