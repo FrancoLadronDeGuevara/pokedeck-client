@@ -65,7 +65,7 @@ const App = () => {
                         </ProtectedRoutes>
                     } />
 
-                    <Route path="/guesspokemon" element={
+                    <Route path="/minigames/guess-pokemon" element={
                         <ProtectedRoutes>
                             <GuessPokemonPage />
                         </ProtectedRoutes>

@@ -1,7 +1,8 @@
 import { styled } from "@mui/material/styles";
-import { Box, Container, Grid, Paper } from "@mui/material";
+import { Box, Grid, Paper } from "@mui/material";
 import { Link } from "react-router-dom";
 import baseImage from "../../../assets/images/gameSection/base.png";
+import guessMinigameImage from "../../../assets/images/minigames/guessminigame.webp";
 import "./GameSection.css";
 
 const GameSection = () => {
@@ -20,9 +21,13 @@ const GameSection = () => {
 
   return (
     <Grid container maxWidth='lg' className="container-game-section">
+      <Grid className="roulette-minigame" xs={12} item>
+      </Grid>
       <Grid xs={12} sm={6} className="container-left-minigame" item sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <Box className="left-minigame">
-          <Link to="/guesspokemon">Quien es ese pokemon</Link>
+          <Box component={Link} to="/minigames/guess-pokemon">
+            <img src={guessMinigameImage} alt="" width='100%' height='100%'/>
+          </Box>
         </Box>
         <img className="base-image-left" src={baseImage} />
       </Grid>

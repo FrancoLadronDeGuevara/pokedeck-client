@@ -14,7 +14,7 @@ const Landing = () => {
           <Box className="right-top-image"></Box>
           <Box className="logo-top-image"></Box>
         </Box>
-        <Box className="info-proyect" textAlign="center">
+        <Box className="info-proyect">
           <Typography variant="h3" sx={{fontSize: {xs: 30, sm: 35, md: 40}}}>
             <i>
               Pokedeck es un proyecto pensado para aquellos que les gusta

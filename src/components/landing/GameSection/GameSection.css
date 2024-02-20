@@ -1,12 +1,25 @@
 .container-game-section {
-  height: 600px;
   width: 100vw;
+  height: 800px;
   padding: 1rem;
   margin: 3rem auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-.container-left-minigame {
+.roulette-minigame {
+  height: 150px;
+  background-image: url("../../../assets/images/minigames/ruleta.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-animation: pulsate-fwd 1.5s ease-in-out infinite both;
+  animation: pulsate-fwd 1.5s ease-in-out infinite both;
+}
+
+.container-left-minigame, .container-right-minigame {
   position: relative;
+  margin-top: -15rem !important;
 }
 
 .left-minigame {
@@ -14,7 +27,6 @@
   background-image: url("../../../assets/images/backgrounds/dropdown.png");
   background-size: 100% 100%;
   left: 10%;
-  top: 10%;
   width: 250px;
   height: 300px;
   z-index: 1;
@@ -32,16 +44,11 @@
   bottom: 20%;
 }
 
-.container-right-minigame {
-  position: relative;
-}
-
 .right-minigame {
   position: absolute;
   background-image: url("../../../assets/images/backgrounds/dropdown.png");
   background-size: 100% 100%;
   right: 10%;
-  top: 10%;
   width: 250px;
   height: 300px;
   z-index: 1;
@@ -55,32 +62,10 @@
   position: absolute;
   height: 100px;
   width: 250px;
-  bottom: 20%;
   right: 10%;
+  bottom: 0;
+  bottom: 20%;
 }
-
-@media screen and (max-width: 399px) {
-  .container-game-section {
-    margin-top: -10rem;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .container-game-section {
-    height: 600px;
-    margin-bottom: 18rem;
-  }
-  .container-right-minigame {
-    margin-top: 3rem !important;
-  }
-  .left-minigame,
-  .right-minigame,
-  .base-image-left,
-  .base-image-right {
-    position: initial;
-  }
-}
-
 
 @-webkit-keyframes shake-vertical {
   0%,
@@ -136,5 +121,58 @@
   90% {
     -webkit-transform: translateY(-6.4px);
     transform: translateY(-6.4px);
+  }
+}
+
+@-webkit-keyframes pulsate-fwd {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes pulsate-fwd {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .container-game-section {
+    margin-top: -10rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container-game-section {
+    height: fit-content;
+  }
+  .roulette-minigame{
+    height: 80px;
+  }
+  .container-right-minigame, .container-left-minigame {
+    margin-top: 3rem !important;
+  }
+  .left-minigame,
+  .right-minigame,
+  .base-image-left,
+  .base-image-right {
+    position: initial;
   }
 }
