@@ -1,8 +1,8 @@
 import { Box, Container, Typography } from "@mui/material";
-import FeaturedCards from "./FeaturedCards";
 import { Link } from "react-router-dom";
 import "./Landing.css";
 import GameSection from "./GameSection/GameSection";
+import RankingSection from "./RankingSection/RankingSection";
 
 const Landing = () => {
  
@@ -35,9 +35,7 @@ const Landing = () => {
           </Typography>
         </Box>
         <GameSection/>
-        <Box>
-          <FeaturedCards />
-        </Box>
+        <RankingSection/>
       </Container>
     </>
   );

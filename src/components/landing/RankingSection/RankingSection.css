@@ -1,0 +1,27 @@
+.container-ranking-section{
+    background-image: url("../../../assets/images/backgrounds/ranking.webp");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 95% !important;
+    height: 550px;
+    margin: 0 auto 1rem;
+    padding: 6rem 1rem 1rem 1rem;
+}
+
+.container-left-ranking{
+    /* border: thin solid #1e5f6e; */
+}
+
+.minigame-image{
+   width: clamp(250px, 30vw, 400px);
+}
+
+.container-right-ranking{
+    /* border: thin solid #1e5f6e; */
+}
+
+@media screen and (max-width: 899px) {
+    .container-ranking-section{
+        height: max-content;
+    }
+}
