@@ -49,7 +49,7 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.error = null;
                 state.user.coins = action.payload.coins;
-                state.user.score.scoreGuessPokemon = action.payload.score.scoreGuessPokemon
+                state.user.scoreGuessPokemon = action.payload.scoreGuessPokemon
             })
             .addCase(getCoins.rejected, (state, action) => {
                 state.loading = false;
@@ -62,7 +62,7 @@ const userSlice = createSlice({
             .addCase(resetScore.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.user.score.scoreGuessPokemon = action.payload
+                state.user.scoreGuessPokemon = action.payload
             })
             .addCase(resetScore.rejected, (state, action) => {
                 state.loading = false;

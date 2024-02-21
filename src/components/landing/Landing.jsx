@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Landing.css";
 import GameSection from "./GameSection/GameSection";
 import RankingSection from "./RankingSection/RankingSection";
+import WeeklyOffers from "./WeeklyOffers/WeeklyOffers";
 
 const Landing = () => {
  
@@ -36,6 +37,7 @@ const Landing = () => {
         </Box>
         <GameSection/>
         <RankingSection/>
+        <WeeklyOffers/>
       </Container>
     </>
   );

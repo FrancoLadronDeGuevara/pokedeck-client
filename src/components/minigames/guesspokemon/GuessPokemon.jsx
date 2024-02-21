@@ -84,10 +84,10 @@ const GuessPokemon = () => {
 
     return (
         <>
-            <Box className='coins-background' sx={{ position: 'fixed', top: 94, left: '5%', zIndex: 999 }}>
+            <Box className='coins-background' sx={{ position: 'fixed', top: 77, left: '5%', zIndex: 999 }}>
                 <SoundGuessPokemon onSoundToggle={setSoundEnabled} />
             </Box>
-            <Gameboy score={user?.score?.scoreGuessPokemon}>
+            <Gameboy score={user?.scoreGuessPokemon}>
                 <Box className="container-guess-pokemon" sx={{
                     backgroundImage:
                     {

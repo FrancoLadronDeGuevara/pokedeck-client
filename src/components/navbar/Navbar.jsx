@@ -97,8 +97,8 @@ const Navbar = () => {
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Box component={NavLink}
-                            to="/" sx={{ display: { xs: 'none', sm: 'flex' }, mr: 2, my: 1 }}>
-                            <img src={logoPokedeck} alt="" width={150} />
+                            to="/" sx={{ display: { xs: 'none', sm: 'flex' }, mr: 2 }}>
+                            <img src={logoPokedeck} alt="" width={130} />
                         </Box>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
@@ -122,7 +122,7 @@ const Navbar = () => {
                                 open={Boolean(anchorElNav)}
                                 onClose={handleCloseNavMenu}
                                 sx={{
-                                    top: 13,
+                                    top: 10,
                                     display: { xs: 'block', sm: 'none' },
                                     '& .MuiPaper-root': {
                                         backgroundImage: `url('${dropdown}')`,
@@ -152,7 +152,7 @@ const Navbar = () => {
 
                         <Box component={NavLink}
                             to="/" sx={{ display: { xs: 'flex', sm: 'none' }, mr: 2, flexGrow: 1, my: 1 }}>
-                            <img src={logoPokedeck} alt="" width={150} />
+                            <img src={logoPokedeck} alt="" width={100} />
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
                             <NavLink onClick={handleCloseNavMenu} to='/pokedeck' style={{ textDecoration: 'none' }}>
@@ -172,12 +172,12 @@ const Navbar = () => {
                             <Box sx={{ flexGrow: 0 }}>
                                 <Tooltip title="Abrir opciones">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar variant="rounded" alt="Image user avatar" src={user?.avatar?.url} sx={{ width: 50, height: 50 }} />
+                                        <Avatar variant="rounded" alt="Image user avatar" src={user?.avatar?.url} sx={{ width: 50, height: 50, marginRight: 1 }} />
                                     </IconButton>
                                 </Tooltip>
                                 <Menu
                                     sx={{
-                                        mt: '67px',
+                                        mt: '60px',
                                         '& .MuiPaper-root': {
                                             backgroundImage: `url('${dropdown}')`,
                                             backgroundSize: '100% 100%',
@@ -259,7 +259,7 @@ const Navbar = () => {
                     </Toolbar>
                 </Container>
             </AppBar>
-            {user && <Box className='coins-background' sx={{ position: 'fixed', top: 91, right: '5%', zIndex: 999 }}>
+            {user && <Box className='coins-background' sx={{ position: 'fixed', top: 73, right: '5%', zIndex: 999 }}>
                 <Typography variant='h4' className='text'>
                     <CurrencyRubleOutlinedIcon sx={{ color: 'black' }} />
                     {user?.coins}

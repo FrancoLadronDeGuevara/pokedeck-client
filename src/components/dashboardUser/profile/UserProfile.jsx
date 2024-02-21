@@ -215,7 +215,7 @@ const UserProfile = () => {
                   className="text background-score"
                 >
                   Mejor puntaje:{" "}
-                  {userProfile?.score?.maxScore.maxScoreGuessPokemon} pts.
+                  {userProfile?.maxScoreGuessPokemon} pts.
                 </Typography>
               </Box>
             </Box>
