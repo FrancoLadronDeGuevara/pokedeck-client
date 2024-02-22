@@ -36,7 +36,7 @@ const PlayerList = ({ rankingTopUsers, gameRanking }) => {
   const showRanking =
     gameRanking === "GuessPokemon"
       ? "maxScoreGuessPokemon"
-      : "maxScoreFlapHunter";
+      : "maxScoreFlapHaunter";
 
   const placeImages = [
     firstplace,

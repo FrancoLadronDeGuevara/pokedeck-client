@@ -9,7 +9,7 @@ export const getRandomIntInclusive = (min, max) => {
 }
 
 export const getRandomPokemon = async () => {
-    const randomIndex = getRandomIntInclusive(1, 25);
+    const randomIndex = getRandomIntInclusive(1, 151);
     try {
         const response = await axios.get(`${apiUrl}${randomIndex}`);
         return response.data;

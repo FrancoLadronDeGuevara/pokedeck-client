@@ -1,94 +1,57 @@
 .container-store {
   background-image: url("../../assets/images/backgrounds/dropdown.png");
   background-size: 100% 100%;
-  padding: 2rem!important;
+  padding: 2rem !important;
 }
 
 .container-chest {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 170px;
-  height: fit-content;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  box-shadow: -5px 5px 10px black;
 }
 
 .chest-image {
-  height: 120px !important;
+  height: 250px !important;
   width: auto;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   animation: pulseChest 3s infinite alternate;
 }
 
-.chest-title {
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-weight: bolder;
-  text-shadow: -2px 2px 2px darkslategray;
-  padding: 5px;
-  background-color: black;
-}
-
-.chest-description {
-  text-align: center;
-  font-weight: bolder;
-  height: 50px;
-}
-
 .chest-button {
+  background-image: url("../../assets/images/backgrounds/yellowbutton.png");
+  background-size: 100% 100%;
   width: 100%;
-  border-radius: 5px;
-  background-color: black;
-  text-shadow: -2px 2px 2px darkslategray;
-  color: white;
+  color: black;
+  text-shadow: 1px 1px 1px white;
   border: none;
-  padding: 0.5rem;
-  font-weight: bolder;
+  padding: 0.8rem;
   cursor: pointer;
+}
+
+.price {
+  color: white;
+  text-shadow: rgb(30, 95, 110) 3px 0px 0px,
+    rgb(30, 95, 110) 2.83487px 0.981584px 0px,
+    rgb(30, 95, 110) 2.35766px 1.85511px 0px,
+    rgb(30, 95, 110) 1.62091px 2.52441px 0px,
+    rgb(30, 95, 110) 0.705713px 2.91581px 0px,
+    rgb(30, 95, 110) -0.287171px 2.98622px 0px,
+    rgb(30, 95, 110) -1.24844px 2.72789px 0px,
+    rgb(30, 95, 110) -2.07227px 2.16926px 0px,
+    rgb(30, 95, 110) -2.66798px 1.37182px 0px,
+    rgb(30, 95, 110) -2.96998px 0.42336px 0px,
+    rgb(30, 95, 110) -2.94502px -0.571704px 0px,
+    rgb(30, 95, 110) -2.59586px -1.50383px 0px,
+    rgb(30, 95, 110) -1.96093px -2.27041px 0px,
+    rgb(30, 95, 110) -1.11013px -2.78704px 0px,
+    rgb(30, 95, 110) -0.137119px -2.99686px 0px,
+    rgb(30, 95, 110) 0.850987px -2.87677px 0px,
+    rgb(30, 95, 110) 1.74541px -2.43999px 0px,
+    rgb(30, 95, 110) 2.44769px -1.73459px 0px,
+    rgb(30, 95, 110) 2.88051px -0.838247px 0px;
 }
 
 .buy-animation {
   animation: zoomAndFadeOut 2s forwards;
-}
-
-.border-Normal {
-  border: #737373 solid 3px;
-}
-.border-Raro {
-  border: #676adb solid 3px;
-}
-.border-Épico {
-  border: #bb4991 solid 3px;
-}
-.border-Legendario {
-  border: #986f25 solid 3px;
-}
-
-.border-card {
-  border: #1a2754 solid 3px;
-}
-
-.background-Normal {
-  background-color: #737373;
-}
-
-.background-Raro {
-  background-color: #676adb;
-}
-
-.background-Épico {
-  background-color: #bb4991;
-}
-
-.background-Legendario {
-  background-color: #986f25;
-}
-
-.background-card {
-  background-color: #1a2754;
 }
 
 @keyframes zoomAndFadeOut {

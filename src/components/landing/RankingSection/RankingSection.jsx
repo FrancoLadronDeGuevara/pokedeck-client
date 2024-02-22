@@ -7,13 +7,13 @@ import { useEffect, useState } from "react";
 
 const RankingSection = () => {
   const [rankingGuessPokemon, setRankingGuessPokemon] = useState([])
-  const [rankingFlapHunter, setRankingFlapHunter] = useState([])
+  const [rankingFlapHaunter, setRankingFlapHaunter] = useState([])
 
   const getRanking = async () => {
     await clientAxios('/minigames/get-ranking')
     .then(res => {
       setRankingGuessPokemon(res.data.topGuessPokemonScores);
-      setRankingFlapHunter(res.data.topFlapHunterScores);
+      setRankingFlapHaunter(res.data.topFlapHaunterScores);
     })
   }
 
@@ -29,7 +29,7 @@ const RankingSection = () => {
       </Grid>
       <Grid xs={12} md={5} item display='flex' flexDirection='column' alignItems='center' sx={{mt: {xs: 4, sm: 3, md: 0}, mb: {xs: 2, sm: 2, md: 0}}}>
         <img className="minigame-image" src={guessPokemonRanking} alt="" />
-        <PlayerList gameRanking="FlapHunter" rankingTopUsers={rankingFlapHunter}/>
+        <PlayerList gameRanking="FlapHaunter" rankingTopUsers={rankingFlapHaunter}/>
       </Grid>
     </Grid>
   );

@@ -37,7 +37,7 @@ const ChestStore = () => {
             setDrawnCards(res.data.cards);
             setOpenModal(true);
           }, 2000);
-          dispatch(getUser())
+          dispatch(getUser());
         })
         .catch((error) => {
           autoCloseAlert(error.response.data.message, "error", "red");
@@ -64,33 +64,22 @@ const ChestStore = () => {
           justifyContent: { xs: "center", md: "space-between" },
         }}
       >
-        {listChests.map((chest, index) => (
-          <Box
-            className={`container-chest border-${chest.typeName}`}
-            key={index}
-          >
-            <Typography
-              className={`chest-title background-${chest.typeName}`}
-              variant="h5"
-            >
-              Cofre {chest.typeName}
-            </Typography>
+        {listChests.map((chest, chestIndex) => (
+          <Box className="container-chest" key={chestIndex}>
             <img
               className={`chest-image ${
                 animation.includes(chest._id) ? "buy-animation" : ""
               }`}
               src={chest.chestImage}
               alt=""
-              style={{ height: 150 }}
             />
-            <Typography className="chest-description">
-              {chest.description}
-            </Typography>
             <button
-              className={`chest-button background-${chest.typeName}`}
+              className={`chest-button`}
               onClick={() => handleOpenChest(chest._id, chest.price)}
             >
-              <Typography>Comprar por ₽{chest.price}</Typography>
+              <Typography variant="h6">
+                Comprar por <span className="price">₽ {chest.price}</span>
+              </Typography>
             </button>
           </Box>
         ))}
@@ -100,7 +89,7 @@ const ChestStore = () => {
         variant="h3"
         sx={{ textAlign: "center", mt: 2 }}
       >
-        Cartas
+        Cartas Especiales
       </Typography>
       <Divider sx={{ my: 2 }} />
       <Box
@@ -114,25 +103,20 @@ const ChestStore = () => {
       >
         {cardChests.map((card, cardIndex) => (
           <Box className={`container-chest border-card`} key={cardIndex}>
-            <Typography className={`chest-title background-card`} variant="h5">
-              {card.name}
-            </Typography>
             <img
               className={`chest-image ${
                 animation.includes(card._id) ? "buy-animation" : ""
               }`}
               src={card.chestImage}
               alt=""
-              style={{ height: 150 }}
             />
-            <Typography className="chest-description">
-              {card.description}
-            </Typography>
             <button
               className={`chest-button background-card`}
               onClick={() => handleOpenChest(card._id, card.price)}
             >
-              <Typography>Comprar por ₽{card.price}</Typography>
+              <Typography variant="h6">
+                Comprar por <span className="price">₽ {card.price}</span>
+              </Typography>
             </button>
           </Box>
         ))}
