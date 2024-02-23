@@ -105,7 +105,12 @@ const ChestStore = () => {
       >
         {cardChests.map((card, cardIndex) => (
           <Box className={`container-chest border-card`} key={cardIndex}>
-            <img src={offertImage} className="offert" />
+            <img
+              src={offertImage}
+              className={`offert  ${
+                animation.includes(card._id) ? "buy-animation" : ""
+              }`}
+            />
             <img
               className={`chest-image ${
                 animation.includes(card._id) ? "buy-animation" : ""
@@ -113,7 +118,12 @@ const ChestStore = () => {
               src={card.chestImage}
               alt=""
             />
-            <img src={beforeImage} className="before-price"/>
+            <img
+              src={beforeImage}
+              className={`before-price  ${
+                animation.includes(card._id) ? "buy-animation" : ""
+              }`}
+            />
             <button
               className="chest-button"
               onClick={() => handleOpenChest(card._id, card.price)}
