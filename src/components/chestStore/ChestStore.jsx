@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import Box from "@mui/material/Box";
-import { Button, Container, Divider, Typography } from "@mui/material";
+import { Container, Divider, Typography } from "@mui/material";
 import axios from "axios";
 import { autoCloseAlert, customAlert } from "../../utils/alerts";
 import { server } from "../../server";
+import offertImage from "../../assets/images/offert.webp";
+import beforeImage from "../../assets/images/before.webp";
 
 import "./ChestStore.css";
 import { useState } from "react";
@@ -103,6 +105,7 @@ const ChestStore = () => {
       >
         {cardChests.map((card, cardIndex) => (
           <Box className={`container-chest border-card`} key={cardIndex}>
+            <img src={offertImage} className="offert" />
             <img
               className={`chest-image ${
                 animation.includes(card._id) ? "buy-animation" : ""
@@ -110,12 +113,13 @@ const ChestStore = () => {
               src={card.chestImage}
               alt=""
             />
+            <img src={beforeImage} className="before-price"/>
             <button
-              className={`chest-button background-card`}
+              className="chest-button"
               onClick={() => handleOpenChest(card._id, card.price)}
             >
               <Typography variant="h6">
-                Comprar por <span className="price">₽ {card.price}</span>
+                Comprar por <span className="price"> ₽ {card.price}</span>
               </Typography>
             </button>
           </Box>

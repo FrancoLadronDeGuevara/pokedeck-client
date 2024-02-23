@@ -85,10 +85,10 @@ const Pokedeck = () => {
 
     if (userDeck.length === 0) {
       setMessage("Todavía no tienes cartas...");
+    } else if (filter === "repeated" && filtered.length === 0) {
+      setMessage("No tienes cartas repetidas...");
     } else if (filtered.length === 0) {
       setMessage("No se encontraron coincidencias...");
-    } else if (filter === "repeated" && filtered.length === userDeck.length) {
-      setMessage("No tienes cartas repetidas...");
     } else {
       setMessage("");
     }

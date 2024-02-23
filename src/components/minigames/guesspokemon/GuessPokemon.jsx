@@ -118,7 +118,7 @@ const GuessPokemon = () => {
                         left: { xs: '40%', sm: '15%', md: '19%' },
                         top: { xs: '40%', sm: '30%' },
                     }}>
-                        <img className={filter ? 'pokemon-filterON' : 'pokemon-filterOFF'} src={randomPokemon?.sprites.other.dream_world.front_default} alt="" />
+                        <img draggable="false" className={filter ? 'pokemon-filterON' : 'pokemon-filterOFF'} src={randomPokemon?.sprites.other.dream_world.front_default} alt="" />
                     </Box>
                     <Paper component="form" sx={{
                         display: "flex",

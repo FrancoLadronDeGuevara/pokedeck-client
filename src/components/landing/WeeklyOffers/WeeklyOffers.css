@@ -1,44 +1,69 @@
-.container-weekly-offers{
-    margin: 5rem auto;
-    overflow-x: hidden;
-    overflow-y: hidden;
+.container-weekly-offers {
+  margin: 5rem auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-.weekly-offers{
-    height: 150px;
-    background-image: url("../../../assets/images/weeklyOffers.webp");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    -webkit-animation: pulsate-fwd 1.5s ease-in-out infinite both;
-    animation: pulsate-fwd 1.5s ease-in-out infinite both;
+.title-weekly-offers {
+  min-width: 200px;
+  text-align: center;
+  margin: 2rem auto !important;
+  padding: 0 7px;
+  color: white;
+  text-shadow: rgb(30, 95, 110) 3px 0px 0px,
+    rgb(30, 95, 110) 2.83487px 0.981584px 0px,
+    rgb(30, 95, 110) 2.35766px 1.85511px 0px,
+    rgb(30, 95, 110) 1.62091px 2.52441px 0px,
+    rgb(30, 95, 110) 0.705713px 2.91581px 0px,
+    rgb(30, 95, 110) -0.287171px 2.98622px 0px,
+    rgb(30, 95, 110) -1.24844px 2.72789px 0px,
+    rgb(30, 95, 110) -2.07227px 2.16926px 0px,
+    rgb(30, 95, 110) -2.66798px 1.37182px 0px,
+    rgb(30, 95, 110) -2.96998px 0.42336px 0px,
+    rgb(30, 95, 110) -2.94502px -0.571704px 0px,
+    rgb(30, 95, 110) -2.59586px -1.50383px 0px,
+    rgb(30, 95, 110) -1.96093px -2.27041px 0px,
+    rgb(30, 95, 110) -1.11013px -2.78704px 0px,
+    rgb(30, 95, 110) -0.137119px -2.99686px 0px,
+    rgb(30, 95, 110) 0.850987px -2.87677px 0px,
+    rgb(30, 95, 110) 1.74541px -2.43999px 0px,
+    rgb(30, 95, 110) 2.44769px -1.73459px 0px,
+    rgb(30, 95, 110) 2.88051px -0.838247px 0px;
 }
 
-.container-go-store{
-    position: relative;
+.weekly-offers {
+  height: 150px;
+  background-image: url("../../../assets/images/weeklyOffers.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-animation: pulsate-fwd 1.5s ease-in-out infinite both;
+  animation: pulsate-fwd 1.5s ease-in-out infinite both;
 }
 
-.card-weekly-offers{
-    transition: all ease-in-out .2s;
+.container-go-store {
+  position: relative;
 }
 
-.container-go-store:hover .button-go-store{
-    opacity: 1;
+.card-weekly-offers {
+  transition: all ease-in-out 0.2s;
 }
 
-.container-go-store:hover .card-weekly-offers{
-    opacity: 30%;
+.offert-image {
+  position: absolute;
+  width: 200px;
+  top: 2%;
 }
 
-.button-go-store{
-    opacity: 0;
-    position: absolute !important;
-    font-weight: bolder;
-    background-color: transparent;
-    border: none;
-    background-image: url("../../../assets/images/backgrounds/button.png");
-    background-size: 100% 100%;
-    padding: 1rem;
-    transition: opacity ease-in-out .2s;
-    cursor: pointer;
+@media screen and (max-width: 899px) {
+  .offert-image {
+    width: 120px;
+    top: 8%;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .offert-image {
+    top: 0;
+  }
 }

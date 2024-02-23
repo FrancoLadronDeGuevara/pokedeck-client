@@ -22,6 +22,8 @@ import AdminRoutes from "./routes/AdminRoutes";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 import { getAllChests } from "./redux/actions/chestActions";
 import GuessPokemonPage from "./pages/Minigames/GuessPokemonPage";
+import FlapHaunterPage from "./pages/Minigames/FlapHaunterPage";
+import RoulettePage from "./pages/Minigames/RoulettePage";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -68,6 +70,18 @@ const App = () => {
                     <Route path="/minigames/guess-pokemon" element={
                         <ProtectedRoutes>
                             <GuessPokemonPage />
+                        </ProtectedRoutes>
+                    } />
+
+                    <Route path="/minigames/flap-haunter" element={
+                        <ProtectedRoutes>
+                            <FlapHaunterPage />
+                        </ProtectedRoutes>
+                    } />
+
+                    <Route path="/minigames/roulette" element={
+                        <ProtectedRoutes>
+                            <RoulettePage />
                         </ProtectedRoutes>
                     } />
 

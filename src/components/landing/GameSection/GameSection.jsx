@@ -21,7 +21,8 @@ const GameSection = () => {
 
   return (
     <Grid container maxWidth="lg" className="container-game-section">
-      <Grid className="roulette-minigame" xs={12} item></Grid>
+      <Grid className="roulette-minigame" component={Link} to="/minigames/roulette" xs={12} item>
+      </Grid>
       <Grid
         xs={12}
         sm={6}
@@ -44,7 +45,7 @@ const GameSection = () => {
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
         <Box className="right-minigame">
-          <Box component={Link} to="/minigames/guess-pokemon">
+          <Box component={Link} to="/minigames/flap-haunter">
             <img src={guessMinigameImage} alt="" width="100%" height="100%" />
           </Box>
         </Box>

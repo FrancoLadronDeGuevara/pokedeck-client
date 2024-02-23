@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import './Gameboy.css';
 
-const Gameboy = ({ children, score }) => {
+const Gameboy = ({ children, score = 0 }) => {
     return (
         <>
             <Container className="gameboy">
