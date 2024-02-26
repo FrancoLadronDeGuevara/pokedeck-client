@@ -8,12 +8,11 @@ import TableHead from '@mui/material/TableHead';
 import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Avatar from '@mui/material/Avatar';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
-import formatDate from '../../../utils/formatDate';
+import {formatDate} from '../../../utils/formatTime';
 import { useState } from 'react';
 import ModalEditUser from './ModalEditUser';
 

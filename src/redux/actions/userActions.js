@@ -37,6 +37,11 @@ export const getCoins = createAsyncThunk("getCoins", async (data) => {
     return response.data;
 })
 
+export const spinWheel = createAsyncThunk("spinWheel", async () => {
+    const response = await clientAxios.patch(`/minigames/spin-wheel`);
+    return response.data;
+})
+
 export const resetScore = createAsyncThunk("resetScore", async () => {
     const response = await clientAxios.get(`/minigames/resetScore`);
     return response.data;

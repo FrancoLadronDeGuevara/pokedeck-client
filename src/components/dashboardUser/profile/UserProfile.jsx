@@ -7,7 +7,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { useSelector } from "react-redux";
-import formatDate from "../../../utils/formatDate";
 import Loader from "../../loader/Loader";
 import "./UserProfile.css";
 import CurrencyRubleOutlinedIcon from "@mui/icons-material/CurrencyRubleOutlined";
@@ -20,6 +19,7 @@ import { useEffect, useState } from "react";
 import { autoCloseAlertWithImage } from "../../../utils/alerts";
 import quienesesepokemon from "../../../assets/images/minigames/quienesepokemon.jpg";
 import errorPikachu from "../../../assets/images/alerts/errorPikachu.gif";
+import { formatDate } from "../../../utils/formatTime";
 
 const listStyle = {
   py: 2,

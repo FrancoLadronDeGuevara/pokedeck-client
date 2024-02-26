@@ -12,20 +12,63 @@
 
 .lucky-wheel {
   position: absolute !important;
-  height: 200px;
-  width: 200px;
-  left: 313px;
-  top: 87px;
+  height: 202px;
+  width: 202px;
+  left: calc(50% - 125px);
+  top: 85px;
+}
+
+.pointer-wheel {
+  position: absolute;
+  z-index: 1;
+  width: 30px;
+  top: 157px;
+  left: calc(50% - 40px);
+}
+
+.dancing-pokemon{
+  width: 120px;
+  position: absolute;
+  bottom: 8%;
+  left: calc(50% - 150px);
 }
 
 .spin-wheel-button {
+  cursor: pointer;
   position: absolute;
-  top: 80%;
-  left: 50%;
+  top: 2%;
+  left: calc(50% - 60px);
+  background-image: url("../../../assets/images/backgrounds/yellowbutton.png");
+  background-size: 100% 100%;
+  border: none;
+  background-color: transparent;
+  padding: 1rem;
+  color: whitesmoke;
+  text-shadow: rgb(30, 95, 110) 3px 0px 0px,
+    rgb(30, 95, 110) 2.83487px 0.981584px 0px,
+    rgb(30, 95, 110) 2.35766px 1.85511px 0px,
+    rgb(30, 95, 110) 1.62091px 2.52441px 0px,
+    rgb(30, 95, 110) 0.705713px 2.91581px 0px,
+    rgb(30, 95, 110) -0.287171px 2.98622px 0px,
+    rgb(30, 95, 110) -1.24844px 2.72789px 0px,
+    rgb(30, 95, 110) -2.07227px 2.16926px 0px,
+    rgb(30, 95, 110) -2.66798px 1.37182px 0px,
+    rgb(30, 95, 110) -2.96998px 0.42336px 0px,
+    rgb(30, 95, 110) -2.94502px -0.571704px 0px,
+    rgb(30, 95, 110) -2.59586px -1.50383px 0px,
+    rgb(30, 95, 110) -1.96093px -2.27041px 0px,
+    rgb(30, 95, 110) -1.11013px -2.78704px 0px,
+    rgb(30, 95, 110) -0.137119px -2.99686px 0px,
+    rgb(30, 95, 110) 0.850987px -2.87677px 0px,
+    rgb(30, 95, 110) 1.74541px -2.43999px 0px,
+    rgb(30, 95, 110) 2.44769px -1.73459px 0px,
+    rgb(30, 95, 110) 2.88051px -0.838247px 0px;
+  -webkit-animation: pulsate-fwd 1.5s ease-in-out infinite both;
+  animation: pulsate-fwd 1.5s ease-in-out infinite both;
 }
 
 .spin-animation {
-  transition: transform 9s ease;
+  transition: transform 9s ease !important;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -36,7 +79,7 @@
   }
 
   .lucky-wheel {
-    left: 213px;
+    left: calc(50% - 125px);
   }
 }
 
@@ -44,23 +87,44 @@
   .container-lucky-wheel {
     width: 575px;
   }
-
-  .lucky-wheel {
-    left: 163px;
-  }
 }
 
 @media screen and (max-width: 685px) {
   .container-lucky-wheel {
     background-size: cover;
-    width: 80%;
+    width: 100%;
   }
 
   .lucky-wheel {
-    width: 166px;
-    height: 165px;
-    top: 108px;
-    left: 172px;
+    width: 167px;
+    height: 167px;
+    top: 106px;
+    left: calc(50% - 104px);
+  }
+
+  .pointer-wheel {
+    width: 25px;
+    top: 166px;
+    left: calc(50% - 33px);
   }
 }
 
+@media screen and (max-width: 599px) {
+  .lucky-wheel {
+    width: 130px;
+    height: 130px;
+    top: 85px;
+    left: calc(50% - 81px);
+  }
+
+  .pointer-wheel {
+    width: 20px;
+    top: 132px;
+    left: calc(50% - 26px);
+  }
+
+  .dancing-pokemon{
+    width: 100px;
+    left: calc(50% - 100px);
+  }
+}

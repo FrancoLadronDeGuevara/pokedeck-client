@@ -87,7 +87,7 @@ const GuessPokemon = () => {
             <Box className='coins-background' sx={{ position: 'fixed', top: 77, left: '5%', zIndex: 999 }}>
                 <SoundToggle onSoundToggle={setSoundEnabled} />
             </Box>
-            <Gameboy score={user?.scoreGuessPokemon}>
+            <Gameboy score={`Puntuación: ${user?.scoreGuessPokemon}`}>
                 <Box className="container-guess-pokemon" sx={{
                     backgroundImage:
                     {
