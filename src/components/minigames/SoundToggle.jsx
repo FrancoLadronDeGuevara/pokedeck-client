@@ -36,7 +36,7 @@ const Android12Switch = styled(Switch)(({ theme }) => ({
     },
 }));
 
-const SoundGuessPokemon = ({ onSoundToggle }) => {
+const SoundToggle = ({ onSoundToggle }) => {
     const [soundEnabled, setSoundEnabled] = useState(false);
 
     const handleSoundToggle = () => {
@@ -54,4 +54,4 @@ const SoundGuessPokemon = ({ onSoundToggle }) => {
     )
 }
 
-export default SoundGuessPokemon;
+export default SoundToggle;

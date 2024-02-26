@@ -108,7 +108,7 @@ const ChestStore = () => {
             <img
               src={offertImage}
               className={`offert  ${
-                animation.includes(card._id) ? "buy-animation" : ""
+                animation.includes(card._id) ? "offert-animation" : ""
               }`}
             />
             <img
@@ -121,7 +121,7 @@ const ChestStore = () => {
             <img
               src={beforeImage}
               className={`before-price  ${
-                animation.includes(card._id) ? "buy-animation" : ""
+                animation.includes(card._id) ? "offert-animation" : ""
               }`}
             />
             <button

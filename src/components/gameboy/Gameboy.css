@@ -1,7 +1,7 @@
 .gameboy {
     background-color: #4A3C4D;
     padding: 1rem;
-    height: 600px;
+    margin-top: -10px;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -39,7 +39,6 @@
     font-size: 1.5rem !important;
     font-weight: bold !important;
     color: white;
-    /* text-shadow: 2px 2px 5px black; */
 }
 
 @media screen and (min-width: 0px) and (max-width: 600px) {

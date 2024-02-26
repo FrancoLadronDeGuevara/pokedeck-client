@@ -23,7 +23,7 @@ import ProtectedRoutes from "./routes/ProtectedRoutes";
 import { getAllChests } from "./redux/actions/chestActions";
 import GuessPokemonPage from "./pages/Minigames/GuessPokemonPage";
 import FlapHaunterPage from "./pages/Minigames/FlapHaunterPage";
-import RoulettePage from "./pages/Minigames/RoulettePage";
+import LuckyWheelPage from "./pages/Minigames/LuckyWheelPage";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -79,9 +79,9 @@ const App = () => {
                         </ProtectedRoutes>
                     } />
 
-                    <Route path="/minigames/roulette" element={
+                    <Route path="/minigames/lucky-wheel" element={
                         <ProtectedRoutes>
-                            <RoulettePage />
+                            <LuckyWheelPage />
                         </ProtectedRoutes>
                     } />
 

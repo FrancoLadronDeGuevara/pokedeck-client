@@ -21,7 +21,7 @@ const GameSection = () => {
 
   return (
     <Grid container maxWidth="lg" className="container-game-section">
-      <Grid className="roulette-minigame" component={Link} to="/minigames/roulette" xs={12} item>
+      <Grid className="roulette-minigame" component={Link} to="/minigames/lucky-wheel" xs={12} item>
       </Grid>
       <Grid
         xs={12}
