@@ -1,0 +1,10 @@
+.container-flap-haunter {
+  width: 90%;
+  height: 80%;
+}
+
+@media screen and (max-width: 768px) {
+  .container-flap-haunter {
+    width: 100%;
+  }
+}

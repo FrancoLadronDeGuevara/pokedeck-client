@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, editUser, deleteUser, getAllUsers, updateUser, getUserDeck, getCoins, resetScore, sellCard, spinWheel } from "../actions/userActions";
+import { getUser, editUser, deleteUser, getAllUsers, updateUser, getUserDeck, getCoins, resetScore, sellCard, spinWheel, getFlapHaunterCoins } from "../actions/userActions";
 
 const userSlice = createSlice({
     name: 'users',
@@ -52,6 +52,20 @@ const userSlice = createSlice({
                 state.user.scoreGuessPokemon = action.payload.scoreGuessPokemon
             })
             .addCase(getCoins.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            
+            .addCase(getFlapHaunterCoins.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getFlapHaunterCoins.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.user.coins = action.payload.coins;
+                state.user.maxScoreFlapHaunter = action.payload.maxScoreFlapHaunter
+            })
+            .addCase(getFlapHaunterCoins.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })

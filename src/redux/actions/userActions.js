@@ -37,6 +37,11 @@ export const getCoins = createAsyncThunk("getCoins", async (data) => {
     return response.data;
 })
 
+export const getFlapHaunterCoins = createAsyncThunk("getFlapHaunterCoins", async (data) => {
+    const response = await clientAxios.patch(`/minigames/flap-haunter-coins`, data);
+    return response.data;
+})
+
 export const spinWheel = createAsyncThunk("spinWheel", async () => {
     const response = await clientAxios.patch(`/minigames/spin-wheel`);
     return response.data;
