@@ -1,9 +1,9 @@
 import Phaser from "phaser";
 import backgroundDayImg from "../../../assets/images/minigames/flapHaunter/background-day.png";
 import backgroundNightImg from "../../../assets/images/minigames/flapHaunter/background-night.png";
-import birdBlueImg from "../../../assets/images/minigames/flapHaunter/bird-blue-sprite.png";
-import birdRedImg from "../../../assets/images/minigames/flapHaunter/bird-red-sprite.png";
-import birdYellowImg from "../../../assets/images/minigames/flapHaunter/bird-yellow-sprite.png";
+import gastlySpriteImg from "../../../assets/images/minigames/flapHaunter/gastly-sprite.png";
+import haunterSpriteImg from "../../../assets/images/minigames/flapHaunter/haunter-sprite.png";
+import gengarSpriteImg from "../../../assets/images/minigames/flapHaunter/gengar-sprite.png";
 import gameoverImg from "../../../assets/images/minigames/flapHaunter/gameover.png";
 import groundImg from "../../../assets/images/minigames/flapHaunter/ground-sprite.png";
 import messageImg from "../../../assets/images/minigames/flapHaunter/message-initial.png";
@@ -17,10 +17,10 @@ import number6Img from "../../../assets/images/minigames/flapHaunter/number6.png
 import number7Img from "../../../assets/images/minigames/flapHaunter/number7.png";
 import number8Img from "../../../assets/images/minigames/flapHaunter/number8.png";
 import number9Img from "../../../assets/images/minigames/flapHaunter/number9.png";
-import pipeGreenBottomImg from "../../../assets/images/minigames/flapHaunter/pipe-green-bottom.png";
-import pipeGreenTopImg from "../../../assets/images/minigames/flapHaunter/pipe-green-top.png";
-import pipeRedBottomImg from "../../../assets/images/minigames/flapHaunter/pipe-red-bottom.png";
-import pipeRedTopImg from "../../../assets/images/minigames/flapHaunter/pipe-red-top.png";
+import treeDayBottomImg from "../../../assets/images/minigames/flapHaunter/tree-day-bottom.png";
+import treeDayTopImg from "../../../assets/images/minigames/flapHaunter/tree-day-top.png";
+import treeNightBottomImg from "../../../assets/images/minigames/flapHaunter/tree-night-bottom.png";
+import treeNightTopImg from "../../../assets/images/minigames/flapHaunter/tree-night-top.png";
 import restartImg from "../../../assets/images/minigames/flapHaunter/restart-button.png";
 import { game, handleScore } from "./FlapHaunter";
 
@@ -53,20 +53,20 @@ export const configurations = {
 }
 
 const assets = {
-    bird: {
-        red: 'bird-red',
-        yellow: 'bird-yellow',
-        blue: 'bird-blue'
+    ghost: {
+        haunter: 'haunter',
+        gastly: 'gastly',
+        gengar: 'gengar'
     },
     obstacle: {
-        pipe: {
-            green: {
-                top: 'pipe-green-top',
-                bottom: 'pipe-green-bottom'
+        tree: {
+            day: {
+                top: 'tree-day-top',
+                bottom: 'tree-day-bottom'
             },
-            red: {
-                top: 'pipe-red-top',
-                bottom: 'pipe-red-bo'
+            night: {
+                top: 'tree-night-top',
+                bottom: 'tree-night-bottom'
             }
         }
     },
@@ -82,7 +82,7 @@ const assets = {
         messageInitial: 'message-initial'
     },
     scoreboard: {
-        width: 25,
+        width: 30,
         base: 'number',
         number0: 'number0',
         number1: 'number1',
@@ -96,24 +96,20 @@ const assets = {
         number9: 'number9'
     },
     animation: {
-        bird: {
-            red: {
-                clapWings: 'red-clap-wings',
-                stop: 'red-stop'
+        ghost: {
+            haunter: {
+                idle: 'haunter-idle',
+                stop: 'haunter-stop'
             },
-            blue: {
-                clapWings: 'blue-clap-wings',
-                stop: 'blue-stop'
+            gastly: {
+                idle: 'gastly-idle',
+                stop: 'gastly-stop'
             },
-            yellow: {
-                clapWings: 'yellow-clap-wings',
-                stop: 'yellow-stop'
+            gengar: {
+                idle: 'gengar-idle',
+                stop: 'gengar-stop'
             }
         },
-        ground: {
-            moving: 'moving-ground',
-            stop: 'stop-ground'
-        }
     }
 }
 
@@ -125,15 +121,15 @@ let restartButton
 let gameOverBanner
 let messageInitial
 let player
-let birdName
+let ghostName
 let framesMoveUp
 let backgroundDay
 let backgroundNight
 let ground
-let pipesGroup
+let treesGroup
 let gapsGroup
-let nextPipes
-let currentPipe
+let nextTrees
+let currentTree
 let scoreboardGroup
 let score
 
@@ -143,25 +139,25 @@ export function preload() {
     this.load.image(assets.scene.background.night, backgroundNightImg)
     this.load.image(assets.scene.ground, groundImg)
 
-    this.load.image(assets.obstacle.pipe.green.top, pipeGreenTopImg)
-    this.load.image(assets.obstacle.pipe.green.bottom, pipeGreenBottomImg)
-    this.load.image(assets.obstacle.pipe.red.top, pipeRedTopImg)
-    this.load.image(assets.obstacle.pipe.red.bottom, pipeRedBottomImg)
+    this.load.image(assets.obstacle.tree.day.top, treeDayTopImg)
+    this.load.image(assets.obstacle.tree.day.bottom, treeDayBottomImg)
+    this.load.image(assets.obstacle.tree.night.top, treeNightTopImg)
+    this.load.image(assets.obstacle.tree.night.bottom, treeNightBottomImg)
 
     this.load.image(assets.scene.messageInitial, messageImg)
 
     this.load.image(assets.scene.gameOver, gameoverImg)
     this.load.image(assets.scene.restart, restartImg)
 
-    this.load.spritesheet(assets.bird.red, birdRedImg, {
+    this.load.spritesheet(assets.ghost.haunter, haunterSpriteImg, {
         frameWidth: 50,
         frameHeight: 50
     })
-    this.load.spritesheet(assets.bird.blue, birdBlueImg, {
+    this.load.spritesheet(assets.ghost.gastly, gastlySpriteImg, {
         frameWidth: 50,
         frameHeight: 50
     })
-    this.load.spritesheet(assets.bird.yellow, birdYellowImg, {
+    this.load.spritesheet(assets.ghost.gengar, gengarSpriteImg, {
         frameWidth: 50,
         frameHeight: 50
     })
@@ -181,13 +177,13 @@ export function preload() {
 
 export function create() {
     backgroundDay = this.add.image(gameWidth / 2, gameHeight / 2, assets.scene.background.day).setInteractive()
-    backgroundDay.on('pointerdown', moveBird)
+    backgroundDay.on('pointerdown', moveGhost)
     backgroundNight = this.add.image(gameWidth / 2, gameHeight / 2, assets.scene.background.night).setInteractive()
     backgroundNight.visible = false
-    backgroundNight.on('pointerdown', moveBird)
+    backgroundNight.on('pointerdown', moveGhost)
 
     gapsGroup = this.physics.add.group()
-    pipesGroup = this.physics.add.group()
+    treesGroup = this.physics.add.group()
     scoreboardGroup = this.physics.add.staticGroup()
 
     ground = this.add.tileSprite(gameWidth / 2, gameHeight, gameWidth, 60, assets.scene.ground).setScrollFactor(0)
@@ -204,8 +200,8 @@ export function create() {
     upButton = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP)
 
     this.anims.create({
-        key: assets.animation.bird.red.clapWings,
-        frames: this.anims.generateFrameNumbers(assets.bird.red, {
+        key: assets.animation.ghost.haunter.idle,
+        frames: this.anims.generateFrameNumbers(assets.ghost.haunter, {
             start: 0,
             end: 2
         }),
@@ -213,17 +209,17 @@ export function create() {
         repeat: -1
     })
     this.anims.create({
-        key: assets.animation.bird.red.stop,
+        key: assets.animation.ghost.haunter.stop,
         frames: [{
-            key: assets.bird.red,
+            key: assets.ghost.haunter,
             frame: 3
         }],
         frameRate: 20
     })
 
     this.anims.create({
-        key: assets.animation.bird.blue.clapWings,
-        frames: this.anims.generateFrameNumbers(assets.bird.blue, {
+        key: assets.animation.ghost.gastly.idle,
+        frames: this.anims.generateFrameNumbers(assets.ghost.gastly, {
             start: 0,
             end: 2
         }),
@@ -231,17 +227,17 @@ export function create() {
         repeat: -1
     })
     this.anims.create({
-        key: assets.animation.bird.blue.stop,
+        key: assets.animation.ghost.gastly.stop,
         frames: [{
-            key: assets.bird.blue,
+            key: assets.ghost.gastly,
             frame: 3
         }],
         frameRate: 20
     })
 
     this.anims.create({
-        key: assets.animation.bird.yellow.clapWings,
-        frames: this.anims.generateFrameNumbers(assets.bird.yellow, {
+        key: assets.animation.ghost.gengar.idle,
+        frames: this.anims.generateFrameNumbers(assets.ghost.gengar, {
             start: 0,
             end: 1
         }),
@@ -249,9 +245,9 @@ export function create() {
         repeat: -1
     })
     this.anims.create({
-        key: assets.animation.bird.yellow.stop,
+        key: assets.animation.ghost.gengar.stop,
         frames: [{
-            key: assets.bird.yellow,
+            key: assets.ghost.gengar,
             frame: 2
         }],
         frameRate: 20
@@ -276,12 +272,12 @@ export function update(time) {
     if (framesMoveUp > 0)
         framesMoveUp--
     else if (Phaser.Input.Keyboard.JustDown(upButton))
-        moveBird()
+        moveGhost()
     else {
         player.setVelocityY(120)
     }
 
-    pipesGroup.children.iterate(function (child) {
+    treesGroup.children.iterate(function (child) {
         if (child == undefined)
             return
 
@@ -295,23 +291,23 @@ export function update(time) {
         child.body.setVelocityX(-100)
     })
 
-    nextPipes++
-    if (nextPipes === 140) {
-        makePipes(game.scene.scenes[0])
-        nextPipes = 0
+    nextTrees++
+    if (nextTrees === 140) {
+        makeTrees(game.scene.scenes[0])
+        nextTrees = 0
     }
 
     ground.tilePositionX = time * 0.1
 }
 
 
-function hitBird(player) {
+function hitGhost(player) {
     this.physics.pause()
 
     gameOver = true
     gameStarted = false
 
-    player.anims.play(getAnimationBird(birdName).stop)
+    player.anims.play(getAnimationGhost(ghostName).stop)
 
     gameOverBanner.visible = true
     restartButton.visible = true
@@ -324,41 +320,41 @@ function updateScore(_, gap) {
     score++
     gap.destroy()
 
-    if (score % 10 == 0) {
+    if (score % 20 == 0) {
         backgroundDay.visible = !backgroundDay.visible
         backgroundNight.visible = !backgroundNight.visible
 
-        if (currentPipe === assets.obstacle.pipe.green)
-            currentPipe = assets.obstacle.pipe.red
+        if (currentTree === assets.obstacle.tree.day)
+            currentTree = assets.obstacle.tree.night
         else
-            currentPipe = assets.obstacle.pipe.green
+            currentTree = assets.obstacle.tree.day
     }
 
     updateScoreboard()
 }
 
 
-function makePipes(scene) {
+function makeTrees(scene) {
     if (!gameStarted || gameOver) return
 
-    const pipeTopY = Phaser.Math.Between(-120, 120)
+    const treeTopY = Phaser.Math.Between(-120, 120)
 
-    const gap = scene.add.line(800, pipeTopY + 210, 0, 0, 0, 98)
+    const gap = scene.add.line(800, treeTopY + 210, 0, 0, 0, 98)
     gapsGroup.add(gap)
     gap.body.allowGravity = false
     gap.visible = false
 
-    const pipeTop = pipesGroup.create(gameWidth, pipeTopY, currentPipe.top)
-    pipeTop.body.setSize(25, 320)
-    pipeTop.body.allowGravity = false
+    const treeTop = treesGroup.create(gameWidth, treeTopY, currentTree.top)
+    treeTop.body.setSize(25, 320)
+    treeTop.body.allowGravity = false
 
-    const pipeBottom = pipesGroup.create(gameWidth, pipeTopY + 480, currentPipe.bottom)
-    pipeBottom.body.setSize(25, 320)
-    pipeBottom.body.allowGravity = false
+    const treeBottom = treesGroup.create(gameWidth, treeTopY + 480, currentTree.bottom)
+    treeBottom.body.setSize(25, 320)
+    treeBottom.body.allowGravity = false
 }
 
 
-function moveBird() {
+function moveGhost() {
     if (gameOver)
         return
 
@@ -370,28 +366,28 @@ function moveBird() {
 }
 
 
-function getRandomBird() {
+function getRandomGhost() {
     switch (Phaser.Math.Between(0, 2)) {
         case 0:
-            return assets.bird.red
+            return assets.ghost.haunter
         case 1:
-            return assets.bird.blue
+            return assets.ghost.gastly
         case 2:
         default:
-            return assets.bird.yellow
+            return assets.ghost.gengar
     }
 }
 
 
-function getAnimationBird(birdColor) {
-    switch (birdColor) {
-        case assets.bird.red:
-            return assets.animation.bird.red
-        case assets.bird.blue:
-            return assets.animation.bird.blue
-        case assets.bird.yellow:
+function getAnimationGhost(ghost) {
+    switch (ghost) {
+        case assets.ghost.haunter:
+            return assets.animation.ghost.haunter
+        case assets.ghost.gastly:
+            return assets.animation.ghost.gastly
+        case assets.ghost.gengar:
         default:
-            return assets.animation.bird.yellow
+            return assets.animation.ghost.gengar
     }
 }
 
@@ -413,8 +409,8 @@ function updateScoreboard() {
 }
 
 function restartGame() {
-    pipesGroup.clear(true, true)
-    pipesGroup.clear(true, true)
+    treesGroup.clear(true, true)
+    treesGroup.clear(true, true)
     gapsGroup.clear(true, true)
     scoreboardGroup.clear(true, true)
     player.destroy()
@@ -430,22 +426,22 @@ function restartGame() {
 
 function prepareGame(scene) {
     framesMoveUp = 0
-    nextPipes = 0
-    currentPipe = assets.obstacle.pipe.green
+    nextTrees = 0
+    currentTree = assets.obstacle.tree.day
     score = 0
     gameOver = false
     backgroundDay.visible = true
     backgroundNight.visible = false
     messageInitial.visible = true
 
-    birdName = getRandomBird()
-    player = scene.physics.add.sprite(60, 265, birdName)
+    ghostName = getRandomGhost()
+    player = scene.physics.add.sprite(60, 265, ghostName)
     player.setCollideWorldBounds(true)
-    player.anims.play(getAnimationBird(birdName).clapWings, true)
+    player.anims.play(getAnimationGhost(ghostName).idle, true)
     player.body.allowGravity = false
 
-    scene.physics.add.collider(player, ground, hitBird, null, scene)
-    scene.physics.add.collider(player, pipesGroup, hitBird, null, scene)
+    scene.physics.add.collider(player, ground, hitGhost, null, scene)
+    scene.physics.add.collider(player, treesGroup, hitGhost, null, scene)
 
     scene.physics.add.overlap(player, gapsGroup, updateScore, null, scene)
 }
@@ -457,5 +453,5 @@ function startGame(scene) {
     const score0 = scoreboardGroup.create(gameWidth / 2, 30, assets.scoreboard.number0)
     score0.setDepth(20)
 
-    makePipes(scene)
+    makeTrees(scene)
 }
