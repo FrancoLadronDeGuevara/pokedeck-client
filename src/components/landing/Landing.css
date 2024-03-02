@@ -42,6 +42,11 @@
   animation: slide-in-fwd-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
+.divider-image{
+  min-width: 200px;
+  margin: 0 10px;
+}
+
 .info-proyect{
   min-width: 200px;
   text-align: center;

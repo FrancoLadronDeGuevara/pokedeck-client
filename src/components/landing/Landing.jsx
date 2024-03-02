@@ -1,9 +1,11 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./Landing.css";
 import GameSection from "./GameSection/GameSection";
 import RankingSection from "./RankingSection/RankingSection";
 import WeeklyOffers from "./WeeklyOffers/WeeklyOffers";
+import dividerImg from "../../assets/images/backgrounds/divider.png";
+import SupportSection from "./SupportSection/SupportSection";
 
 const Landing = () => {
  
@@ -15,29 +17,20 @@ const Landing = () => {
           <Box className="right-top-image"></Box>
           <Box className="logo-top-image"></Box>
         </Box>
-        <Box className="info-proyect">
-          <Typography variant="h3" sx={{fontSize: {xs: 30, sm: 35, md: 40}}}>
-            <i>
-              Pokedeck es un proyecto pensado para aquellos que les gusta
-              coleccionar!<br/> Es muy simple :
-              <Link
-                to="/register"
-                style={{
-                  textDecoration: "none",
-                  color: "rgb(255, 255, 0)",
-                  fontWeight: "bolder",
-                }}
-              >
-                {" "}
-                crea tu cuenta
-              </Link>
-              , juega, gana puntos, abre cofres y colecciona!
-            </i>
-          </Typography>
-        </Box>
+        
         <GameSection/>
+        <Box sx={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+          <img src={dividerImg} alt="" className="divider-image"/>
+        </Box>
         <RankingSection/>
+        <Box sx={{width: '100%', display: 'flex', justifyContent: 'center', mt: 10}}>
+          <img src={dividerImg} alt="" className="divider-image"/>
+        </Box>
         <WeeklyOffers/>
+        <Box sx={{width: '100%', display: 'flex', justifyContent: 'center', mt: 10}}>
+          <img src={dividerImg} alt="" className="divider-image"/>
+        </Box>
+        <SupportSection/>
       </Container>
     </>
   );

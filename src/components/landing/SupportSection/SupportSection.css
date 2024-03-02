@@ -1,0 +1,102 @@
+.container-support {
+  background-image: url("../../../assets/images/backgrounds/support.webp");
+  background-size: 100% 100%;
+  height: auto;
+  width: 95% !important;
+  margin: 2rem auto;
+}
+
+.title-support {
+  font-size: 60px !important;
+}
+
+.title-support,
+.subtitle-support {
+  color: white;
+  text-shadow: rgb(30, 95, 110) 3px 0px 0px,
+    rgb(30, 95, 110) 2.83487px 0.981584px 0px,
+    rgb(30, 95, 110) 2.35766px 1.85511px 0px,
+    rgb(30, 95, 110) 1.62091px 2.52441px 0px,
+    rgb(30, 95, 110) 0.705713px 2.91581px 0px,
+    rgb(30, 95, 110) -0.287171px 2.98622px 0px,
+    rgb(30, 95, 110) -1.24844px 2.72789px 0px,
+    rgb(30, 95, 110) -2.07227px 2.16926px 0px,
+    rgb(30, 95, 110) -2.66798px 1.37182px 0px,
+    rgb(30, 95, 110) -2.96998px 0.42336px 0px,
+    rgb(30, 95, 110) -2.94502px -0.571704px 0px,
+    rgb(30, 95, 110) -2.59586px -1.50383px 0px,
+    rgb(30, 95, 110) -1.96093px -2.27041px 0px,
+    rgb(30, 95, 110) -1.11013px -2.78704px 0px,
+    rgb(30, 95, 110) -0.137119px -2.99686px 0px,
+    rgb(30, 95, 110) 0.850987px -2.87677px 0px,
+    rgb(30, 95, 110) 1.74541px -2.43999px 0px,
+    rgb(30, 95, 110) 2.44769px -1.73459px 0px,
+    rgb(30, 95, 110) 2.88051px -0.838247px 0px;
+}
+
+.support {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.subtitle-support {
+  margin: 2rem 0 !important;
+}
+
+#subject {
+  background-color: white;
+}
+
+.textarea-support {
+  resize: none;
+  height: 200px !important;
+  width: 100% !important;
+  margin: 1rem auto;
+  overflow-y: auto !important;
+  box-sizing: border-box;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: grey;
+  background: #fff;
+  border: 1px solid grey;
+  box-shadow: 0px 2px 2px grey;
+}
+
+.textarea-support:focus {
+  border-color: #3399ff;
+  box-shadow: 0 0 0 3px #b6daff;
+  outline: none;
+}
+
+.support-button {
+  background-image: url("../../../assets/images/backgrounds/boton.png");
+  background-size: 100% 100%;
+  padding: 1rem 2rem;
+  margin: 1rem auto;
+  border: none;
+  background-color: transparent;
+  color: green;
+  font-weight: bolder;
+  text-shadow: -2px 2px 3px gray;
+  transition: transform ease .2s;
+  cursor: pointer;
+}
+
+.support-button:hover{
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 400px) {
+  .container-support {
+    padding: 1rem;
+  }
+  .title-support {
+    font-size: 50px !important;
+  }
+}

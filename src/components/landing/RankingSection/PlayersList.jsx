@@ -10,7 +10,6 @@ import secondplace from "../../../assets/images/minigames/secondplace.webp";
 import thirdplace from "../../../assets/images/minigames/thirdplace.webp";
 import fourthplace from "../../../assets/images/minigames/fourthplace.webp";
 import fifthplace from "../../../assets/images/minigames/fifthplace.webp";
-import "./PlayerList.css";
 import { useNavigate } from "react-router-dom";
 
 const thStyle = {
@@ -55,7 +54,7 @@ const PlayerList = ({ rankingTopUsers, gameRanking }) => {
   };
 
   return (
-    <TableContainer component={Box} className="table-ranking">
+    <TableContainer component={Box} className="table-ranking" sx={{p: '1rem 0'}}>
       <Table>
         <TableHead>
           <TableRow>
@@ -78,6 +77,7 @@ const PlayerList = ({ rankingTopUsers, gameRanking }) => {
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
                 cursor: "pointer",
+                "&:hover": {backgroundColor: '#4fc4d636'}
               }}
             >
               <TableCell
