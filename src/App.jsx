@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser, getUserDeck } from "./redux/actions/userActions";
+import { useDispatch } from "react-redux";
+import { getUser } from "./redux/actions/userActions";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AllCards from "./components/dashboardAdmin/Cards/AllCards";
 import CreateCards from "./components/dashboardAdmin/Cards/CreateCards";
@@ -24,10 +24,10 @@ import { getAllChests } from "./redux/actions/chestActions";
 import GuessPokemonPage from "./pages/Minigames/GuessPokemonPage";
 import FlapHaunterPage from "./pages/Minigames/FlapHaunterPage";
 import LuckyWheelPage from "./pages/Minigames/LuckyWheelPage";
+import ActiveUserPage from "./pages/ActiveUserPage";
 
 const App = () => {
     const dispatch = useDispatch();
-    const {loading} = useSelector((state) => state.user)
 
     useEffect(() => {
         dispatch(getUser())
@@ -41,6 +41,7 @@ const App = () => {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/verify-user/:id" element={<ActiveUserPage />} />
                     <Route path="*" element={<Error404Page />} />
 
                     <Route path="/pokedeck" element={

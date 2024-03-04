@@ -1,11 +1,14 @@
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
+import { Container } from "@mui/material";
 
 const RootLayout = ({ children }) => {
   return (
     <>
       <Navbar />
-      {children}
+      <Container disableGutters sx={{ minHeight: "calc(100vh - 85px - 65px)" }}>
+        {children}
+      </Container>
       <Footer />
     </>
   );

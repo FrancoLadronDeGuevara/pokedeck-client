@@ -68,13 +68,13 @@ const RegisterForm = () => {
 
         try {
             await clientAxios.post(`${server}/users/create`, {email, password})
-            autoCloseAlert('Cuenta creada con éxito', 'success', 'green')
+            .then(res => autoCloseAlert(res.data.message, 'warning', 'orange'))
             setEmail('')
             setPassword('')
             setConfirmPassword('')
-            setTimeout(()=> navigate('/login'), 2000)
+            setTimeout(()=> navigate("/"), 2000)
         } catch (error) {
-            const errorMsg = error.response?.data?.errors?.[0]?.msg;
+            const errorMsg = error.errors?.[0]?.msg;
             autoCloseAlert( errorMsg || "Ups, ocurrió un error", 'error', 'red');
         } finally{
             setLoading(false)
