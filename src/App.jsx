@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUser } from "./redux/actions/userActions";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import AllCards from "./components/dashboardAdmin/Cards/AllCards";
 import CreateCards from "./components/dashboardAdmin/Cards/CreateCards";
 import AllChests from "./components/dashboardAdmin/Chests/AllChests";
@@ -35,7 +35,7 @@ const App = () => {
     }, [])
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <RootLayout>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
@@ -100,7 +100,7 @@ const App = () => {
                     </Route>
                 </Routes>
             </RootLayout>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
