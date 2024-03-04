@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const clientAxios = axios.create({
-    baseURL: "https://pockedeck-api.onrender.com",
+    baseURL: "https://pockedeck-api.onrender.com/api",
     headers: {
         'Content-Type': 'application/json',
     },
