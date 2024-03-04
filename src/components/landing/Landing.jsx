@@ -1,5 +1,4 @@
-import { Box, Container, Divider, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Container } from "@mui/material";
 import "./Landing.css";
 import GameSection from "./GameSection/GameSection";
 import RankingSection from "./RankingSection/RankingSection";

@@ -1,5 +1,6 @@
 .gameboy {
     background-color: #4A3C4D;
+    min-height: calc(100dvh - 85px - 65px) !important;
     padding: 1rem;
     margin-top: -10px;
     display: flex !important;
@@ -42,10 +43,6 @@
 }
 
 @media screen and (min-width: 0px) and (max-width: 600px) {
-    .gameboy {
-        height: 500px;
-    }
-
     .gameboy-display {
         height: 400px;
     }

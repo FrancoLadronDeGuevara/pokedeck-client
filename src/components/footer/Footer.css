@@ -23,6 +23,7 @@
 
 @media screen and (max-width: 600px) {
     .footer-icon {
+        margin-top: -5px;
         width: 25px
     }
 
