@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFlapHaunterCoins } from "../../../redux/actions/userActions";
 import SoundToggle from "../SoundToggle";
 import flapHaunterSong from "../../../assets/sounds/flap-haunter-song.mp3";
+import Phaser from "phaser";
 
 let game;
 let handleScore;
@@ -37,7 +38,7 @@ const FlapHaunter = () => {
 
   useEffect(() => {
     game = new Phaser.Game(configurations);
-  }, []);
+  }, [Phaser]);
 
   return (
     <>
@@ -47,7 +48,7 @@ const FlapHaunter = () => {
       >
         <SoundToggle onSoundToggle={setSoundEnabled} />
       </Box>
-      <Gameboy score={`Mejor puntuación: ${user?.maxScoreFlapHaunter}`}>
+      <Gameboy score={`Mejor puntuación: ${user?.maxScoreFlapHaunter || "..."}`}>
         <Box className="container-flap-haunter">
           <div id="phaser-game" />
         </Box>

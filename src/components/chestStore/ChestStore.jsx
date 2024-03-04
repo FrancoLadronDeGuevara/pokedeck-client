@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import { Container, Divider, Typography } from "@mui/material";
-import axios from "axios";
 import { autoCloseAlert, customAlert } from "../../utils/alerts";
-import { server } from "../../server";
 import offertImage from "../../assets/images/offert.webp";
 import beforeImage from "../../assets/images/before.webp";
 

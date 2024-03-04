@@ -13,7 +13,6 @@ import { useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { customAlert } from '../../utils/alerts';
-import axios from 'axios';
 import logoPokedeck from "../../assets/images/logo.png"
 import menuicon from "../../assets/images/icons/menu.png"
 import login from "../../assets/images/icons/login.png"
@@ -27,7 +26,6 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import CurrencyRubleOutlinedIcon from '@mui/icons-material/CurrencyRubleOutlined';
-import { server } from '../../server';
 import clientAxios from '../../utils/clientAxios';
 
 const Navbar = () => {

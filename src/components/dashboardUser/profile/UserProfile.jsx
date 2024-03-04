@@ -13,8 +13,6 @@ import CurrencyRubleOutlinedIcon from "@mui/icons-material/CurrencyRubleOutlined
 import { Grid } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate, useParams } from "react-router-dom";
-import { server } from "../../../server";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { autoCloseAlertWithImage } from "../../../utils/alerts";
 import quienesesepokemon from "../../../assets/images/minigames/quienesepokemon.jpg";

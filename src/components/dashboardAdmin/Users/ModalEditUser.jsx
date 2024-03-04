@@ -58,7 +58,7 @@ const ModalEditUser = ({ userId, userBanned, userRole, userCoins, onClose }) => 
             }))
             setTimeout(()=>{
                 window.location.reload()
-            }, 0)
+            }, 1500)
         })
         
     }
