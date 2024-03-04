@@ -6,7 +6,7 @@ const RootLayout = ({ children }) => {
   return (
     <>
       <Navbar />
-      <Container maxWidth={false} disableGutters sx={{ minHeight: "calc(100vh - 85px - 65px)" }}>
+      <Container maxWidth={false} disableGutters sx={{ minHeight: "calc(100dvh - 85px - 65px)" }}>
         {children}
       </Container>
       <Footer />

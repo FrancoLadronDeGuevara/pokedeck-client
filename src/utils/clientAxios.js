@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const clientAxios = axios.create({
-    baseURL: import.meta.env.VITE_URL_BASE_API,
+    baseURL: "https://pockedeck-api.onrender.com",
     headers: {
         'Content-Type': 'application/json',
     },
@@ -26,9 +26,6 @@ clientAxios.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response) {
-            if (error.response.status === 401) {
-                removeLocalStorage('token');
-            }
             return Promise.reject(error.response.data);
         } else if (error.request) {
             return Promise.reject(error.request);
