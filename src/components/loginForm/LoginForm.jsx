@@ -13,7 +13,6 @@ import FormControl from "@mui/material/FormControl";
 import { Link, useNavigate } from "react-router-dom";
 import { autoCloseAlert } from "../../utils/alerts";
 import { useState } from "react";
-import { server } from "../../server";
 import { handleError } from "../../utils/handleInputError";
 import clientAxios from "../../utils/clientAxios";
 
@@ -42,7 +41,7 @@ const LoginForm = () => {
     if(!email || !password || emailError) return autoCloseAlert('Por favor, rellena el formulario correctamente', 'error', 'red')
 
     await clientAxios
-      .post(`${server}/users/login-user`, { email, password })
+      .post(`/users/login-user`, { email, password })
       .then(() => {
         autoCloseAlert("Bienvenido", "success", "green");
         setTimeout(() => {

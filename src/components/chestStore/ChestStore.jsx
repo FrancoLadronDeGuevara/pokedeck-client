@@ -11,6 +11,7 @@ import "./ChestStore.css";
 import { useState } from "react";
 import ModalOpenChest from "./ModalOpenChest";
 import { getUser } from "../../redux/actions/userActions";
+import clientAxios from "../../utils/clientAxios";
 
 const ChestStore = () => {
   const { chests } = useSelector((state) => state.chest);
@@ -24,11 +25,10 @@ const ChestStore = () => {
 
   const handleOpenChest = async (chestId, price) => {
     customAlert("", `¿Comprar por ₽${price}?`, "warning", async () => {
-      await axios
+      await clientAxios
         .post(
-          `${server}/chests/openChest`,
-          { userId: user._id, chestId },
-          { withCredentials: true }
+          `/chests/openChest`,
+          { userId: user._id, chestId }
         )
         .then((res) => {
           setAnimation((prevState) => [...prevState, chestId]);

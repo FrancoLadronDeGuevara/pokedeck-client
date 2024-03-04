@@ -28,6 +28,7 @@ import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlin
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import CurrencyRubleOutlinedIcon from '@mui/icons-material/CurrencyRubleOutlined';
 import { server } from '../../server';
+import clientAxios from '../../utils/clientAxios';
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -73,7 +74,7 @@ const Navbar = () => {
     const handleLogoutUser = () => {
         customAlert('¿Cerrar sesión?', '', 'question', async () => {
             try {
-                await axios.get(`${server}/users/logout-user`, { withCredentials: true })
+                await clientAxios.get(`/users/logout-user`, { withCredentials: true })
                 setTimeout(() => {
                     navigate('/')
                     window.location.reload()

@@ -18,7 +18,6 @@ import FormControl from '@mui/material/FormControl';
 import clientAxios from '../../utils/clientAxios';
 import Loader from '../loader/Loader';
 import { handleError } from '../../utils/handleInputError';
-import { server } from '../../server';
 
 const strongPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 const strongEmailRegex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
@@ -67,7 +66,7 @@ const RegisterForm = () => {
         } 
 
         try {
-            await clientAxios.post(`${server}/users/create`, {email, password})
+            await clientAxios.post(`/users/create`, {email, password})
             .then(res => autoCloseAlert(res.data.message, 'warning', 'orange'))
             setEmail('')
             setPassword('')

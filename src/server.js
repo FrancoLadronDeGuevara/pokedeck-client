@@ -1,1 +1,1 @@
-export const server = import.meta.env.VITE_URL_BASE_API
+export const server = "https://pockedeck-api.onrender.com/api"

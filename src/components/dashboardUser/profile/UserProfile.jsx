@@ -20,6 +20,7 @@ import { autoCloseAlertWithImage } from "../../../utils/alerts";
 import quienesesepokemon from "../../../assets/images/minigames/quienesepokemon.jpg";
 import errorPikachu from "../../../assets/images/alerts/errorPikachu.gif";
 import { formatDate } from "../../../utils/formatTime";
+import clientAxios from "../../../utils/clientAxios";
 
 const listStyle = {
   py: 2,
@@ -35,8 +36,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     const getUserData = async () => {
-      await axios
-        .get(`${server}/users/profile/${username}`, {
+      await clientAxios
+        .get(`/users/profile/${username}`, {
           withCredentials: true,
         })
         .then((res) => setUserProfile(res.data))

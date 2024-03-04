@@ -1,7 +1,6 @@
 import { Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { server } from "../server";
 import clientAxios from "../utils/clientAxios";
 import { autoCloseAlert } from "../utils/alerts";
 import Loader from "../components/loader/Loader";
@@ -14,7 +13,7 @@ const ActiveUserPage = () => {
 
   useEffect(() => {
     clientAxios
-      .get(`${server}/users/get-user-to-verify/${id}`)
+      .get(`/users/get-user-to-verify/${id}`)
       .then((res) => setUserFound(res.data))
   }, []);
 
