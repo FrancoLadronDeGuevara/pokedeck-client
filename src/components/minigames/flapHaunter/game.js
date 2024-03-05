@@ -28,7 +28,7 @@ const gameWidth = 800;
 const gameHeight = 500;
 
 export const configurations = {
-  type: Phaser.AUTO,
+  type: Phaser.CANVAS,
   width: gameWidth,
   height: gameHeight,
   parent: "phaser-game",
@@ -131,6 +131,8 @@ let nextTrees;
 let currentTree;
 let scoreboardGroup;
 let score;
+
+
 
 export function preload() {
   this.load.image(assets.scene.background.day, backgroundDayImg);

@@ -38,7 +38,11 @@ const FlapHaunter = () => {
 
   useEffect(() => {
     game = new Phaser.Game(configurations);
-  }, [Phaser]);
+
+    return () => {
+      game.destroy(true)
+    }
+  }, []);
 
   return (
     <>
@@ -50,7 +54,7 @@ const FlapHaunter = () => {
       </Box>
       <Gameboy score={`Mejor puntuación: ${user?.maxScoreFlapHaunter || "..."}`}>
         <Box className="container-flap-haunter">
-          <div id="phaser-game" />
+          <div id="phaser-game"/>
         </Box>
       </Gameboy>
     </>
