@@ -19,7 +19,7 @@ const DetailPokemon = ({
   const dispatch = useDispatch();
 
   const imageType = (type) => {
-    const imagePath = "src/assets/images/types/";
+    const imagePath = "/assets/images/types/";
     const imageFileName = type + ".png";
     const imageUrl = imagePath + imageFileName;
     return imageUrl;
