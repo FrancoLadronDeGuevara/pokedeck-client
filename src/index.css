@@ -1,15 +1,16 @@
-@import 'animate.css';
+@import "animate.css";
 
-html, body{
+html,
+body {
   margin: 0 !important;
   padding: 0 !important;
 }
 
-body{
-  background-image: url('./assets/images/backgrounds/background.png');
+body {
+  background-image: url("./assets/images/backgrounds/background.png");
 }
 
-.MuiPaper-root{
+.MuiPaper-root {
   padding: 0 !important;
 }
 
@@ -17,17 +18,106 @@ body{
   z-index: 9999999999;
 }
 
+.success {
+  background-image: url("./assets/images/backgrounds/success.webp") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  box-shadow: none !important;
+}
+
+.error {
+  background-image: url("./assets/images/backgrounds/error.webp") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  box-shadow: none !important;
+}
+
+.warning {
+  background-image: url("./assets/images/backgrounds/warning.webp") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  box-shadow: none !important;
+}
+
+.text-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto auto;
+}
+
+.text-success-modal {
+  text-shadow: rgb(30, 95, 110) 2px 0px 0px,
+    rgb(30, 95, 110) 1.75517px 0.958851px 0px,
+    rgb(30, 95, 110) 1.0806px 1.68294px 0px,
+    rgb(30, 95, 110) 0.141474px 1.99499px 0px,
+    rgb(30, 95, 110) -0.832294px 1.81859px 0px,
+    rgb(30, 95, 110) -1.60229px 1.19694px 0px,
+    rgb(30, 95, 110) -1.97998px 0.28224px 0px,
+    rgb(30, 95, 110) -1.87291px -0.701566px 0px,
+    rgb(30, 95, 110) -1.30729px -1.5136px 0px,
+    rgb(30, 95, 110) -0.421592px -1.95506px 0px,
+    rgb(30, 95, 110) 0.567324px -1.91785px 0px,
+    rgb(30, 95, 110) 1.41734px -1.41108px 0px,
+    rgb(30, 95, 110) 1.92034px -0.558831px 0px;
+  color: white;
+  text-align: center !important;
+  margin-left: 3rem;
+}
+
+.text-error-modal {
+  text-shadow: rgb(227, 6, 6) 2px 0px 0px,
+    rgb(227, 6, 6) 1.75517px 0.958851px 0px,
+    rgb(227, 6, 6) 1.0806px 1.68294px 0px,
+    rgb(227, 6, 6) 0.141474px 1.99499px 0px,
+    rgb(227, 6, 6) -0.832294px 1.81859px 0px,
+    rgb(227, 6, 6) -1.60229px 1.19694px 0px,
+    rgb(227, 6, 6) -1.97998px 0.28224px 0px,
+    rgb(227, 6, 6) -1.87291px -0.701566px 0px,
+    rgb(227, 6, 6) -1.30729px -1.5136px 0px,
+    rgb(227, 6, 6) -0.421592px -1.95506px 0px,
+    rgb(227, 6, 6) 0.567324px -1.91785px 0px,
+    rgb(227, 6, 6) 1.41734px -1.41108px 0px,
+    rgb(227, 6, 6) 1.92034px -0.558831px 0px;
+  color: white;
+  text-align: center !important;
+  margin-left: 3rem;
+}
+
+.text-warning-modal {
+  text-shadow: rgb(189, 84, 22) 2px 0px 0px,
+    rgb(189, 84, 22) 1.75517px 0.958851px 0px,
+    rgb(189, 84, 22) 1.0806px 1.68294px 0px,
+    rgb(189, 84, 22) 0.141474px 1.99499px 0px,
+    rgb(189, 84, 22) -0.832294px 1.81859px 0px,
+    rgb(189, 84, 22) -1.60229px 1.19694px 0px,
+    rgb(189, 84, 22) -1.97998px 0.28224px 0px,
+    rgb(189, 84, 22) -1.87291px -0.701566px 0px,
+    rgb(189, 84, 22) -1.30729px -1.5136px 0px,
+    rgb(189, 84, 22) -0.421592px -1.95506px 0px,
+    rgb(189, 84, 22) 0.567324px -1.91785px 0px,
+    rgb(189, 84, 22) 1.41734px -1.41108px 0px,
+    rgb(189, 84, 22) 1.92034px -0.558831px 0px;
+  color: white;
+  text-align: center !important;
+  margin-left: 3rem;
+}
+
 .alert-popup {
   box-shadow: none !important;
 }
 
-.text, .MuiFormControlLabel-label {
+.text,
+.MuiFormControlLabel-label {
   font-weight: bolder !important;
   color: darkslategray !important;
 }
 
-.title-text{
+.title-text {
   font-weight: bolder !important;
   color: white !important;
 }
-
