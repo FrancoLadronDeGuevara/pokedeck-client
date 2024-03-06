@@ -18,13 +18,6 @@ const DetailPokemon = ({
 }) => {
   const dispatch = useDispatch();
 
-  const imageType = (type) => {
-    const imagePath = "/assets/images/types/";
-    const imageFileName = type + ".png";
-    const imageUrl = imagePath + imageFileName;
-    return imageUrl;
-  };
-
   const handleSellCard = () => {
     const data = {pokedexNumber, price}
     customAlert(
@@ -32,7 +25,7 @@ const DetailPokemon = ({
       `¿Seguro que deseas vender esta carta por ₽${price}?`,
       "warning",
       () => {
-        dispatch(sellCard(data)).then(res => {
+        dispatch(sellCard(data)).then(() => {
           autoCloseAlert('Carta Vendida', 'success', 'green');
           dispatch(getUserDeck())
         })
@@ -74,11 +67,7 @@ const DetailPokemon = ({
               </Typography>
               <Box className="pokemon-types">
                 {types.map((type, typeIndex) => (
-                  <img
-                    key={typeIndex}
-                    src={imageType(type)}
-                    alt={`Pokemon tipo ${type}`}
-                  />
+                  <Box key={typeIndex} component="img" src={`src/assets/images/types/${type}.png`}/>
                 ))}
               </Box>
               <Typography
