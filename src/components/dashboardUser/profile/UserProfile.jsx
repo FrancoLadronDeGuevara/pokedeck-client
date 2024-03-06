@@ -15,7 +15,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { autoCloseAlertWithImage } from "../../../utils/alerts";
-import quienesesepokemon from "../../../assets/images/minigames/quienesepokemon.jpg";
+import scoreGuessPokemon from "../../../assets/images/backgrounds/scoreGuessPokemon.webp";
+import scoreFlapHaunter from "../../../assets/images/backgrounds/scoreFlapHaunter.webp";
 import errorPikachu from "../../../assets/images/alerts/errorPikachu.gif";
 import { formatDate } from "../../../utils/formatTime";
 import clientAxios from "../../../utils/clientAxios";
@@ -35,9 +36,7 @@ const UserProfile = () => {
   useEffect(() => {
     const getUserData = async () => {
       await clientAxios
-        .get(`/users/profile/${username}`, {
-          withCredentials: true,
-        })
+        .get(`/users/profile/${username}`)
         .then((res) => setUserProfile(res.data))
         .catch((error) => {
           autoCloseAlertWithImage(
@@ -68,6 +67,7 @@ const UserProfile = () => {
           sx={{
             display: "flex",
             flexDirection: { xs: "column", sm: "row" },
+            height: "fit-content",
             mb: 1,
             px: 2,
           }}
@@ -78,6 +78,7 @@ const UserProfile = () => {
               width: { xs: "100%", md: 300 },
               display: "flex",
               flexDirection: "column",
+              justifyContent: "space-evenly",
               alignItems: "center",
             }}
           >
@@ -118,7 +119,7 @@ const UserProfile = () => {
             <Typography
               className="text user-coins-background"
               variant="h4"
-              sx={{ fontWeight: "bolder" }}
+              sx={{ fontWeight: "bolder", mb: { xs: 2, sm: 0 } }}
             >
               <CurrencyRubleOutlinedIcon fontSize="medium" />
               {userProfile?.coins}
@@ -158,7 +159,7 @@ const UserProfile = () => {
                         alignItems="center"
                       >
                         <Box
-                        sx={{cursor: "default"}}
+                          sx={{ cursor: "default" }}
                           className={
                             card.rarity === "Legendaria" ||
                             card.rarity === "Epica"
@@ -193,30 +194,49 @@ const UserProfile = () => {
                 Mejores puntajes
               </Typography>
               <Divider sx={{ my: 1 }} />
-              <Box
+              <Grid
+                container
                 sx={{
                   p: 1,
-                  width: 200,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
                 }}
               >
-                <img
-                  className="game-image"
-                  src={quienesesepokemon}
-                  alt=""
-                  width={200}
-                />
-                <Typography
-                  textAlign="center"
-                  className="text background-score"
+                <Grid
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  item
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    mb: { xs: 2, md: 0 },
+                    position: "relative",
+                  }}
                 >
-                  Mejor puntaje:{" "}
-                  {userProfile?.maxScoreGuessPokemon} pts.
-                </Typography>
-              </Box>
+                  <img className="game-image" src={scoreGuessPokemon} alt="" />
+                  <Typography textAlign="center" className="score-text">
+                    Score: {userProfile?.maxScoreGuessPokemon} pts.
+                  </Typography>
+                </Grid>
+                <Grid
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  item
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    mb: { xs: 2, md: 0 },
+                    position: "relative",
+                  }}
+                >
+                  <img className="game-image" src={scoreFlapHaunter} alt="" />
+                  <Typography textAlign="center" className="score-text">
+                    Score: {userProfile?.maxScoreFlapHaunter} pts.
+                  </Typography>
+                </Grid>
+              </Grid>
             </Box>
           </Box>
         </Container>

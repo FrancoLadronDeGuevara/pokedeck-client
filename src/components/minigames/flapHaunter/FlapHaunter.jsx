@@ -43,7 +43,6 @@ const FlapHaunter = () => {
     }
   }, []);
 
-  console.log(game)
   return (
     <>
       <Box

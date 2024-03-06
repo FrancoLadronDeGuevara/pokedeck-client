@@ -1,24 +1,13 @@
-import { styled } from "@mui/material/styles";
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import "./GameSection.css";
+
+import { Box, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+
 import baseImage from "../../../assets/images/gameSection/base.png";
 import guessMinigameImage from "../../../assets/images/minigames/guessminigame.webp";
 import flapHaunterMinigameImage from "../../../assets/images/minigames/haunterminigame.webp";
-import "./GameSection.css";
 
 const GameSection = () => {
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: 280,
-    height: 200,
-    margin: 50,
-    color: theme.palette.text.secondary,
-  }));
 
   return (
     <>

@@ -121,7 +121,7 @@ const Navbar = () => {
                                 open={Boolean(anchorElNav)}
                                 onClose={handleCloseNavMenu}
                                 sx={{
-                                    // top: 10,
+                                    top: 10,
                                     display: { xs: 'block', sm: 'none' },
                                     '& .MuiPaper-root': {
                                         backgroundImage: `url('${dropdown}')`,
