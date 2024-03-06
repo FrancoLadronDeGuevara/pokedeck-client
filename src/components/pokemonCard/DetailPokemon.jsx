@@ -67,7 +67,7 @@ const DetailPokemon = ({
               </Typography>
               <Box className="pokemon-types">
                 {types.map((type, typeIndex) => (
-                  <Box key={typeIndex} component="img" src={`src/assets/images/types/${type}.png`}/>
+                  <Box key={typeIndex} className={`type-card-${type}`} sx={{width: 100, height: 20, my: 1}}/>
                 ))}
               </Box>
               <Typography

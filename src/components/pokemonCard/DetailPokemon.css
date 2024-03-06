@@ -1,11 +1,11 @@
-.pokemon-number{
-    color: white;
-    background-color: rgb(0, 0, 0);
-    padding: 0 1rem;
-    border-top-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    border: thin solid gray;
-    box-shadow: -2px 3px 1px gray;
+.pokemon-number {
+  color: white;
+  background-color: rgb(0, 0, 0);
+  padding: 0 1rem;
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border: thin solid gray;
+  box-shadow: -2px 3px 1px gray;
 }
 
 .pokemon-name {
@@ -30,83 +30,152 @@
   padding: 5px;
 }
 
-
-.pokemon-types{
-    margin: 1rem auto;
+.pokemon-types {
+  margin: 1rem auto;
 }
 
-.pokemon-types img{
-    margin: 0 2px;
+.pokemon-types img {
+  margin: 0 2px;
 }
 
-.pokemon-rarity-Normal{
-    color: gray;
+.pokemon-rarity-Normal {
+  color: gray;
 }
 
-.pokemon-rarity-Rara{
-    color: blue;
+.pokemon-rarity-Rara {
+  color: blue;
 }
 
-.pokemon-rarity-Epica{
-    color: violet;
+.pokemon-rarity-Epica {
+  color: violet;
 }
 
-.pokemon-rarity-Legendaria{
-    color: orangered;
+.pokemon-rarity-Legendaria {
+  color: orangered;
 }
 
-.sell-button, .close-button{
-    background-size: 100% 100%;
-    background-color: transparent;
-    border: none;
-    font-weight: bolder;
-    padding: 10px 1rem;
-    color: whitesmoke;
-    width: 135px;
-    text-shadow: 1px 1px 1px black;
+.sell-button,
+.close-button {
+  background-size: 100% 100%;
+  background-color: transparent;
+  border: none;
+  font-weight: bolder;
+  padding: 10px 1rem;
+  color: whitesmoke;
+  width: 135px;
+  text-shadow: 1px 1px 1px black;
 }
 
-.sell-button:hover, .close-button:hover{
-    cursor: pointer;
-    transform: scale(1.1);
+.sell-button:hover,
+.close-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
-.sell-button{
-    background-image: url("../../assets/images/backgrounds/yellowbutton.png");
+.sell-button {
+  background-image: url("../../assets/images/backgrounds/yellowbutton.png");
 }
 
-.close-button{
-    background-image: url("../../assets/images/backgrounds/redbutton.png");
-    
+.close-button {
+  background-image: url("../../assets/images/backgrounds/redbutton.png");
 }
 
-.hide-button{
-    display: none;
+.hide-button {
+  display: none;
 }
 
-.show-button{
-    display: inline-block;
+.show-button {
+  display: inline-block;
+}
+
+.type-card-NORMAL {
+  background-image: url(".././../assets/images/types/NORMAL.png");
+  background-size: 100% 100%;
+}
+.type-card-PLANTA {
+  background-image: url(".././../assets/images/types/PLANTA.png");
+  background-size: 100% 100%;
+}
+.type-card-FUEGO {
+  background-image: url(".././../assets/images/types/FUEGO.png");
+  background-size: 100% 100%;
+}
+.type-card-AGUA {
+  background-image: url(".././../assets/images/types/AGUA.png");
+  background-size: 100% 100%;
+}
+.type-card-VOLADOR {
+  background-image: url(".././../assets/images/types/VOLADOR.png");
+  background-size: 100% 100%;
+}
+.type-card-LUCHA {
+  background-image: url(".././../assets/images/types/LUCHA.png");
+  background-size: 100% 100%;
+}
+.type-card-VENENO {
+  background-image: url(".././../assets/images/types/VENENO.png");
+  background-size: 100% 100%;
+}
+.type-card-TIERRA {
+  background-image: url(".././../assets/images/types/TIERRA.png");
+  background-size: 100% 100%;
+}
+.type-card-ROCA {
+  background-image: url(".././../assets/images/types/ROCA.png");
+  background-size: 100% 100%;
+}
+.type-card-HADA {
+  background-image: url(".././../assets/images/types/HADA.png");
+  background-size: 100% 100%;
+}
+.type-card-BICHO {
+  background-image: url(".././../assets/images/types/BICHO.png");
+  background-size: 100% 100%;
+}
+.type-card-FANTASMA {
+  background-image: url(".././../assets/images/types/FANTASMA.png");
+  background-size: 100% 100%;
+}
+.type-card-ELÉCTRICO {
+  background-image: url(".././../assets/images/types/ELÉCTRICO.png");
+  background-size: 100% 100%;
+}
+.type-card-PSÍQUICO {
+  background-image: url(".././../assets/images/types/PSÍQUICO.png");
+  background-size: 100% 100%;
+}
+.type-card-HIELO {
+  background-image: url(".././../assets/images/types/HIELO.png");
+  background-size: 100% 100%;
+}
+.type-card-DRAGÓN {
+  background-image: url(".././../assets/images/types/DRAGÓN.png");
+  background-size: 100% 100%;
+}
+.type-card-ACERO {
+  background-image: url(".././../assets/images/types/ACERO.png");
+  background-size: 100% 100%;
 }
 
 @media screen and (max-width: 600px) {
-    .modal-card {
-        height: 400px;
-    }
+  .modal-card {
+    height: 400px;
+  }
 
-    .pokemon-number{
-        font-size: 10px !important;
-    }
+  .pokemon-number {
+    font-size: 10px !important;
+  }
 
-    .pokemon-name{
-        margin: 5px 0 !important;
-        font-size: 16px !important;
-    }
+  .pokemon-name {
+    margin: 5px 0 !important;
+    font-size: 16px !important;
+  }
 
-    .pokemon-types img{
-        width: 60px !important;
-    }
+  .pokemon-types img {
+    width: 60px !important;
+  }
 
-    .pokemon-rarity{
-        font-size: 10px !important;
-    }
+  .pokemon-rarity {
+    font-size: 10px !important;
+  }
 }
