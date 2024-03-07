@@ -6,7 +6,7 @@ import { Box, Container, TextField, Typography } from "@mui/material";
 
 import { autoCloseAlert } from "../../../utils/alerts";
 import Loader from "../../loader/Loader";
-import clientAxios from "../../../utils/clientAxios";
+import axios from "axios";
 
 const subjectRegex = /^(?=.*\S)[\s\S]{4,60}$/;
 const messageRegex = /^(?=.*\S)[\s\S]{4,255}$/;
@@ -41,21 +41,17 @@ const SupportSection = () => {
     }
 
     if (user) {
-      await clientAxios
-        .post(`/users/send-support-email`, {
-          subject,
-          message,
-          email: user.email,
-        })
-        .then((res) => {
+      await axios
+        .post(`https://formsubmit.co/ajax/francoguevara93@gmail.com`, {email: user.email, subject, message})
+        .then(() => {
           setLoading(false);
-          autoCloseAlert(res.data.message, "success");
+          autoCloseAlert("Gracias por tu mensaje", "success");
           setMessage("");
           setSubject("");
         })
-        .catch((error) => {
+        .catch(() => {
           setLoading(false);
-          autoCloseAlert(error, "error");
+          autoCloseAlert("Hubo un error al enviar el mail", "error");
         });
     } else {
       setLoading(false);
