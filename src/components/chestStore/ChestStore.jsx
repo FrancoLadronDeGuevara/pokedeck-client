@@ -9,11 +9,12 @@ import { useState } from "react";
 import ModalOpenChest from "./ModalOpenChest";
 import { getUser } from "../../redux/actions/userActions";
 import clientAxios from "../../utils/clientAxios";
+import Loader from "../loader/Loader";
 
 const ChestStore = () => {
   const dispatch = useDispatch();
   const { chests } = useSelector((state) => state.chest);
-  const { user } = useSelector((state) => state.user);
+  const { user, loading } = useSelector((state) => state.user);
 
   const [openModal, setOpenModal] = useState(false);
   const [drawnCards, setDrawnCards] = useState([]);
@@ -49,96 +50,102 @@ const ChestStore = () => {
   };
 
   return (
-    <Container className="container-store">
-      <Typography className="text" variant="h3" textAlign="center">
-        Cofres
-      </Typography>
-      <Divider sx={{ my: 2 }} />
-      <Box
-        sx={{
-          display: "flex",
-          gap: 2,
-          flexWrap: "wrap",
-          justifyContent: { xs: "center", md: "space-between" },
-        }}
-      >
-        {listChests.map((chest, chestIndex) => (
-          <Box className="container-chest" key={chestIndex}>
-            <img
-              className={`chest-image ${
-                animation.includes(chest._id) ? "buy-animation" : ""
-              }`}
-              src={chest.chestImage}
-              alt=""
-            />
-            <button
-              className={`chest-button`}
-              onClick={() => handleOpenChest(chest._id, chest.price)}
-            >
-              <Typography variant="h6">
-                Comprar por <span className="price">₽ {chest.price}</span>
-              </Typography>
-            </button>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Container className="container-store">
+          <Typography className="text" variant="h3" textAlign="center">
+            Cofres
+          </Typography>
+          <Divider sx={{ my: 2 }} />
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+              flexWrap: "wrap",
+              justifyContent: { xs: "center", md: "space-between" },
+            }}
+          >
+            {listChests.map((chest, chestIndex) => (
+              <Box className="container-chest" key={chestIndex}>
+                <img
+                  className={`chest-image ${
+                    animation.includes(chest._id) ? "buy-animation" : ""
+                  }`}
+                  src={chest.chestImage}
+                  alt=""
+                />
+                <button
+                  className={`chest-button`}
+                  onClick={() => handleOpenChest(chest._id, chest.price)}
+                >
+                  <Typography variant="h6">
+                    Comprar por <span className="price">₽ {chest.price}</span>
+                  </Typography>
+                </button>
+              </Box>
+            ))}
           </Box>
-        ))}
-      </Box>
-      <Typography
-        className="text"
-        variant="h3"
-        sx={{ textAlign: "center", mt: 2 }}
-      >
-        Cartas Especiales
-      </Typography>
-      <Divider sx={{ my: 2 }} />
-      <Box
-        sx={{
-          display: "flex",
-          gap: 2,
-          flexWrap: "wrap",
-          justifyContent: { xs: "center", md: "space-between" },
-          mb: { xs: 4, md: 2 },
-        }}
-      >
-        {cardChests.map((card, cardIndex) => (
-          <Box className={`container-chest border-card`} key={cardIndex}>
-            <img
-              src={offertImage}
-              className={`offert  ${
-                animation.includes(card._id) ? "offert-animation" : ""
-              }`}
-            />
-            <img
-              className={`chest-image ${
-                animation.includes(card._id) ? "buy-animation" : ""
-              }`}
-              src={card.chestImage}
-              alt=""
-            />
-            <img
-              src={beforeImage}
-              className={`before-price  ${
-                animation.includes(card._id) ? "offert-animation" : ""
-              }`}
-            />
-            <button
-              className="chest-button"
-              onClick={() => handleOpenChest(card._id, card.price)}
-            >
-              <Typography variant="h6">
-                Comprar por <span className="price"> ₽ {card.price}</span>
-              </Typography>
-            </button>
+          <Typography
+            className="text"
+            variant="h3"
+            sx={{ textAlign: "center", mt: 2 }}
+          >
+            Cartas Especiales
+          </Typography>
+          <Divider sx={{ my: 2 }} />
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+              flexWrap: "wrap",
+              justifyContent: { xs: "center", md: "space-between" },
+              mb: { xs: 4, md: 2 },
+            }}
+          >
+            {cardChests.map((card, cardIndex) => (
+              <Box className={`container-chest border-card`} key={cardIndex}>
+                <img
+                  src={offertImage}
+                  className={`offert  ${
+                    animation.includes(card._id) ? "offert-animation" : ""
+                  }`}
+                />
+                <img
+                  className={`chest-image ${
+                    animation.includes(card._id) ? "buy-animation" : ""
+                  }`}
+                  src={card.chestImage}
+                  alt=""
+                />
+                <img
+                  src={beforeImage}
+                  className={`before-price  ${
+                    animation.includes(card._id) ? "offert-animation" : ""
+                  }`}
+                />
+                <button
+                  className="chest-button"
+                  onClick={() => handleOpenChest(card._id, card.price)}
+                >
+                  <Typography variant="h6">
+                    Comprar por <span className="price"> ₽ {card.price}</span>
+                  </Typography>
+                </button>
+              </Box>
+            ))}
           </Box>
-        ))}
-      </Box>
-      {openModal && (
-        <ModalOpenChest
-          openModal={openModal}
-          cards={drawnCards}
-          handleCloseModal={handleCloseModal}
-        />
+          {openModal && (
+            <ModalOpenChest
+              openModal={openModal}
+              cards={drawnCards}
+              handleCloseModal={handleCloseModal}
+            />
+          )}
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 

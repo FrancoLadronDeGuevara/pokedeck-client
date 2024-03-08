@@ -101,8 +101,9 @@ const userSlice = createSlice({
             })
             .addCase(sellCard.fulfilled, (state, action) => {
                 state.loading = false;
-                state.error = false;
-                state.user = action.payload;
+                state.error = null;
+                state.user.coins = action.payload.coins;
+                state.user.userDeck = action.payload.userDeck;
             })
             .addCase(sellCard.rejected, (state, action) => {
                 state.loading = false;

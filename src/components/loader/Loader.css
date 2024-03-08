@@ -1,6 +1,6 @@
 .wrapper {
     position: fixed;
-    z-index: 999;
+    z-index: 99999999;
     top: 0;
     left: 0;
     width: 100vw;
@@ -11,5 +11,6 @@
     justify-content: center;
     pointer-events: none;
     overflow: hidden;
+    pointer-events: none !important;
 }
 
