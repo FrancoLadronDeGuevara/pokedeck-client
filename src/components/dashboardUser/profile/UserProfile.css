@@ -4,13 +4,13 @@
 }
 
 .user-username-background {
-  background-image: url("../../../assets/images/backgrounds/button.png");
+  background-image: url("../../../assets/images/backgrounds/bluebutton.png");
   background-size: 100% 100%;
   padding: 1rem;
 }
 
 .user-coins-background {
-  background-image: url("../../../assets/images/backgrounds/boton.png");
+  background-image: url("../../../assets/images/backgrounds/yellowbutton.png");
   background-size: 100% 100%;
   padding: 1rem;
 }
