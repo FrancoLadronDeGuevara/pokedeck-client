@@ -40,7 +40,7 @@ const ChestStore = () => {
           dispatch(getUser());
         })
         .catch((error) => {
-          autoCloseAlert(error.response.data.message, "error", "red");
+          autoCloseAlert(error.message, "error");
         });
     });
   };
