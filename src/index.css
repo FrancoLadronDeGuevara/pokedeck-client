@@ -14,7 +14,8 @@ body {
   padding: 0 !important;
 }
 
-.alert-container {
+.alert-container,
+.custom-container {
   z-index: 9999999999;
 }
 
@@ -40,6 +41,23 @@ body {
   background-repeat: no-repeat !important;
   background-position: center !important;
   box-shadow: none !important;
+}
+
+.alert-custom {
+  background-image: url("./assets/images/backgrounds/custom.webp") !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  box-shadow: none !important;
+  height: 250px;
+  width: 300px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: end;
+  background-color: transparent;
+}
+
+.swal2-title {
+  padding: 0 !important;
 }
 
 .text-modal-container {
@@ -105,6 +123,76 @@ body {
   color: white;
   text-align: center !important;
   margin-left: 3rem;
+}
+
+.text-custom-modal {
+  text-shadow: rgb(30, 95, 110) 2px 0px 0px,
+    rgb(30, 95, 110) 1.75517px 0.958851px 0px,
+    rgb(30, 95, 110) 1.0806px 1.68294px 0px,
+    rgb(30, 95, 110) 0.141474px 1.99499px 0px,
+    rgb(30, 95, 110) -0.832294px 1.81859px 0px,
+    rgb(30, 95, 110) -1.60229px 1.19694px 0px,
+    rgb(30, 95, 110) -1.97998px 0.28224px 0px,
+    rgb(30, 95, 110) -1.87291px -0.701566px 0px,
+    rgb(30, 95, 110) -1.30729px -1.5136px 0px,
+    rgb(30, 95, 110) -0.421592px -1.95506px 0px,
+    rgb(30, 95, 110) 0.567324px -1.91785px 0px,
+    rgb(30, 95, 110) 1.41734px -1.41108px 0px,
+    rgb(30, 95, 110) 1.92034px -0.558831px 0px;
+  color: white;
+  text-align: center !important;
+}
+
+.custom-confirm-button{
+  background-image: url("./assets/images/backgrounds/greenbutton.png");
+  background-size: 100% 100%;
+  padding: .5rem 1rem;
+  margin: 0 5px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-shadow: rgb(30, 95, 110) 2px 0px 0px,
+    rgb(30, 95, 110) 1.75517px 0.958851px 0px,
+    rgb(30, 95, 110) 1.0806px 1.68294px 0px,
+    rgb(30, 95, 110) 0.141474px 1.99499px 0px,
+    rgb(30, 95, 110) -0.832294px 1.81859px 0px,
+    rgb(30, 95, 110) -1.60229px 1.19694px 0px,
+    rgb(30, 95, 110) -1.97998px 0.28224px 0px,
+    rgb(30, 95, 110) -1.87291px -0.701566px 0px,
+    rgb(30, 95, 110) -1.30729px -1.5136px 0px,
+    rgb(30, 95, 110) -0.421592px -1.95506px 0px,
+    rgb(30, 95, 110) 0.567324px -1.91785px 0px,
+    rgb(30, 95, 110) 1.41734px -1.41108px 0px,
+    rgb(30, 95, 110) 1.92034px -0.558831px 0px;
+  color: white;
+}
+
+.custom-confirm-button:hover, .custom-cancel-button:hover{
+  transform: scale(1.1);
+}
+
+.custom-cancel-button{
+  background-image: url("./assets/images/backgrounds/redbutton.png");
+  background-size: 100% 100%;
+  padding: .5rem .8rem;
+  margin: 0 5px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-shadow: rgb(30, 95, 110) 2px 0px 0px,
+    rgb(30, 95, 110) 1.75517px 0.958851px 0px,
+    rgb(30, 95, 110) 1.0806px 1.68294px 0px,
+    rgb(30, 95, 110) 0.141474px 1.99499px 0px,
+    rgb(30, 95, 110) -0.832294px 1.81859px 0px,
+    rgb(30, 95, 110) -1.60229px 1.19694px 0px,
+    rgb(30, 95, 110) -1.97998px 0.28224px 0px,
+    rgb(30, 95, 110) -1.87291px -0.701566px 0px,
+    rgb(30, 95, 110) -1.30729px -1.5136px 0px,
+    rgb(30, 95, 110) -0.421592px -1.95506px 0px,
+    rgb(30, 95, 110) 0.567324px -1.91785px 0px,
+    rgb(30, 95, 110) 1.41734px -1.41108px 0px,
+    rgb(30, 95, 110) 1.92034px -0.558831px 0px;
+  color: white;
 }
 
 .alert-popup {

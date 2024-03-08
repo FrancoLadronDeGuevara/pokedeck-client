@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import Box from "@mui/material/Box";
-import { Container, Divider, Typography } from "@mui/material";
+import { Container, Divider, Typography, Box } from "@mui/material";
 import { autoCloseAlert, customAlert } from "../../utils/alerts";
 import offertImage from "../../assets/images/offert.webp";
 import beforeImage from "../../assets/images/before.webp";
@@ -12,22 +11,21 @@ import { getUser } from "../../redux/actions/userActions";
 import clientAxios from "../../utils/clientAxios";
 
 const ChestStore = () => {
+  const dispatch = useDispatch();
   const { chests } = useSelector((state) => state.chest);
   const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+
   const [openModal, setOpenModal] = useState(false);
   const [drawnCards, setDrawnCards] = useState([]);
   const [animation, setAnimation] = useState([]);
+
   const listChests = chests.slice(0, 4);
   const cardChests = chests.slice(4);
 
   const handleOpenChest = async (chestId, price) => {
-    customAlert("", `¿Comprar por ₽${price}?`, "warning", async () => {
+    customAlert(`¿Comprar por ₽${price}?`, async () => {
       await clientAxios
-        .post(
-          `/chests/openChest`,
-          { userId: user._id, chestId }
-        )
+        .post(`/chests/openChest`, { userId: user._id, chestId })
         .then((res) => {
           setAnimation((prevState) => [...prevState, chestId]);
           setTimeout(() => {

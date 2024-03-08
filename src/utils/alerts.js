@@ -1,17 +1,19 @@
 import Swal from "sweetalert2";
 
-export const customAlert = (title, text, icon, action = null) => {
+export const customAlert = (title, action = null) => {
   Swal.fire({
-    title,
-    text,
-    icon,
+    title: `<div><span class="text-custom-modal">${title}</span></div>`,
     showCancelButton: true,
     confirmButtonColor: "#3085D6",
     cancelButtonColor: "#d33",
     cancelButtonText: "Cancelar",
     confirmButtonText: "Aceptar",
+    buttonsStyling: false,
     customClass: {
-      container: "alert-container",
+      container: "custom-container",
+      popup: "alert-custom",
+      confirmButton: "custom-confirm-button",
+      cancelButton: "custom-cancel-button"
     },
   }).then((result) => {
     if (result.isConfirmed) {
