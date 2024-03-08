@@ -91,7 +91,7 @@ const CreateCards = () => {
     };
 
     return (
-        <Container component="main" maxWidth="xs" sx={{ marginBottom: 5, overflowX: 'auto'}}>
+        <Container component="main" maxWidth="xs" sx={{ marginBottom: 5, overflowX: 'auto', pt: 10}}>
             <CssBaseline />
             <Box
                 sx={{

@@ -100,7 +100,7 @@ const CreateChests = () => {
 
     return (
         <>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ px: 3 }}>
+            <Box maxWidth="xl" component="form" noValidate onSubmit={handleSubmit} sx={{ px: 3, pt: 20, m: 'auto' }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Box sx={{ position: 'relative' }}>

@@ -107,8 +107,8 @@ const AllCards = () => {
       {loading ? (
         <Loader />
       ) : (
-        <Container sx={{ width: "100%", overflow: "hidden" }}>
-          <TableContainer sx={{ maxHeight: 450 }}>
+        <Container sx={{ width: "100%", overflow: "hidden", pt: 10 }}>
+          <TableContainer>
             <Table stickyHeader aria-label="sticky table" size="small">
               <TableHead>
                 <TableRow>

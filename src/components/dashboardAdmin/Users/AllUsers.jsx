@@ -69,7 +69,7 @@ const AllUsers = () => {
         <Loader />
       ) : (
         <Container>
-          <TableContainer sx={{ overflowX: "auto", minHeight: 400 }}>
+          <TableContainer sx={{ overflowX: "auto", pt: 10 }}>
             <Table aria-label="collapsible table" size="small">
               <TableHead>
                 <TableRow>
