@@ -1,17 +1,8 @@
 /* eslint-disable react/prop-types */
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
+import {Backdrop, Box, Modal, Fade, Button, Typography, InputLabel, MenuItem, FormControl, Select, TextField} from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { editUser } from '../../../redux/actions/userActions';
 import { customAlert } from '../../../utils/alerts';
 
@@ -49,7 +40,7 @@ const ModalEditUser = ({ userId, userBanned, userRole, userCoins, onClose }) => 
     const handleUpdateUser = () => {
         if(errorCoins) return
 
-        customAlert('Deseas modificar el usuario?', '', 'warning', ()=>{
+        customAlert('¿Modificar usuario?', ()=>{
             dispatch(editUser({
                 id: userId,
                 disabled,

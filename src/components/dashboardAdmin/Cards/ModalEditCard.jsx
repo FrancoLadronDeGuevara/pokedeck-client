@@ -1,27 +1,18 @@
 /* eslint-disable react/prop-types */
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
+import {Backdrop, Box, Modal, Fade, Button, InputLabel, MenuItem, FormControl, Select, TextField, Avatar, Grid} from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import CloseIcon from '@mui/icons-material/Close';
+import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
+
+import { VisuallyHiddenInput } from './CreateCards';
 import { autoCloseAlert, customAlert } from '../../../utils/alerts';
 import { cardRarity, firstTypeList, secondTypeList } from '../../../utils/pokemonHelper';
-import Avatar from '@mui/material/Avatar';
-import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
-import Grid from '@mui/material/Grid';
 import { handleError } from '../../../utils/handleInputError';
-import { VisuallyHiddenInput } from './CreateCards';
-import Loader from '../../loader/Loader';
 import { handleAvatarUpload } from '../../../utils/uploadImage';
-import CloseIcon from '@mui/icons-material/Close';
 import { deleteCard, editCard } from '../../../redux/actions/cardActions';
+
+import Loader from '../../loader/Loader';
 
 const regexPokedex = /^(?:[1-9]|[1-9][0-9]|1[0-4][0-9]|150|151)$/
 const regexName = /^[A-Za-z\s.'-]{3,10}$/
@@ -61,7 +52,7 @@ const ModalEditCard = ({ idCard, pokedex, pokemonName, pokemonTypes, pokemonRari
         const file = e.target.files[0];
         const reader = new FileReader();
 
-        if (!file.type.startsWith('image/')) return autoCloseAlert('Archivo no válido', 'error', 'red');
+        if (!file.type.startsWith('image/')) return autoCloseAlert('Archivo no válido', 'error');
 
         reader.onload = (e) => {
             const previewImage = e.target.result;
@@ -73,19 +64,18 @@ const ModalEditCard = ({ idCard, pokedex, pokemonName, pokemonTypes, pokemonRari
     const handleDeleteCard = async () => {
         setLoading(true)
         try {
-            await customAlert('¿Eliminar Carta?', '', 'warning', () => {
+            await customAlert('¿Eliminar Carta?', () => {
                 dispatch(deleteCard(idCard))
                     .then(res => {
-                        if (res.error) return autoCloseAlert(res.error.message, 'error', 'red');
-                        autoCloseAlert('Carta eliminada', 'success', 'green')
+                        if (res.error) return autoCloseAlert(res.error.message, 'error');
+                        autoCloseAlert('Carta eliminada', 'success')
                         setTimeout(() => {
                             window.location.reload()
-                        }, 1000)
+                        }, 1500)
                     })
             })
         } catch (error) {
-            console.log(error)
-            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error', 'red');
+            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error');
         } finally {
             setLoading(false)
         }
@@ -98,12 +88,12 @@ const ModalEditCard = ({ idCard, pokedex, pokemonName, pokemonTypes, pokemonRari
 
         if (nameError || pokedexError) {
             setLoading(false)
-            return autoCloseAlert('Por favor, completa bien el formulario', 'error', 'red');
+            return autoCloseAlert('Por favor, completa bien el formulario', 'error');
         }
 
         if (firstType == secondType) {
             setLoading(false)
-            return autoCloseAlert('No puede tener el mismo tipo dos veces', 'error', 'red')
+            return autoCloseAlert('No puede tener el mismo tipo dos veces', 'error')
         }
 
         if (pokedexNumber !== pokedex) {
@@ -132,11 +122,11 @@ const ModalEditCard = ({ idCard, pokedex, pokemonName, pokemonTypes, pokemonRari
         }
 
         try {
-            await customAlert('¿Guardar cambios?', '', 'warning', () => {
+            await customAlert('¿Guardar cambios?', () => {
                 dispatch(editCard(cardData))
                     .then(res => {
-                        if (res.error) return autoCloseAlert(res.error.message, 'error', 'red');
-                        autoCloseAlert('Carta actualizada', 'success', 'green')
+                        if (res.error) return autoCloseAlert(res.error.message, 'error');
+                        autoCloseAlert('Carta actualizada', 'success')
                         setTimeout(() => {
                             window.location.reload()
                         }, 1000)
@@ -144,7 +134,7 @@ const ModalEditCard = ({ idCard, pokedex, pokemonName, pokemonTypes, pokemonRari
             })
         } catch (error) {
             console.log(error)
-            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error', 'red');
+            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error');
         } finally {
             setLoading(false)
         }

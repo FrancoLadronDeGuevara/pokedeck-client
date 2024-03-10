@@ -1,5 +1,6 @@
-import { Box, Container, Typography } from "@mui/material";
 import "./Gameboy.css";
+
+import { Box, Container, Typography } from "@mui/material";
 
 const Gameboy = ({ children, score }) => {
   return (

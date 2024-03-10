@@ -4,7 +4,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 1rem;
-    background-image: url("../../assets/images/backgrounds/modal.png");
+    background-image: url("../../assets/images/backgrounds/modal.webp");
     background-size: 100% 100%;
     outline: none !important;
     display: flex !important;

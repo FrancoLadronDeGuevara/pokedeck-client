@@ -1,17 +1,21 @@
-import { Box } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
-import Gameboy from "../../gameboy/Gameboy";
 import "./LuckyWheel.css";
-import wheelImage from "../../../assets/images/minigames/wheel.webp";
-import pointerWheelImage from "../../../assets/images/minigames/pointerWheel.webp";
-import dancingPokemonImage from "../../../assets/images/minigames/dancingPokemon.gif";
-import SoundToggle from "../SoundToggle";
-import spinSound from "../../../assets/sounds/spinning.mp3";
-import luckyWheelBackground from "../../../assets/sounds/lucky-wheel-background.mp3";
+
+import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+
 import { getUser, spinWheel } from "../../../redux/actions/userActions";
 import { autoCloseAlert } from "../../../utils/alerts";
 import { formatLastSpinTime } from "../../../utils/formatTime";
+
+import wheelImage from "../../../assets/images/minigames/luckyWheel/wheel.webp";
+import pointerWheelImage from "../../../assets/images/minigames/luckyWheel/pointerWheel.webp";
+import dancingPokemonImage from "../../../assets/images/minigames/luckyWheel/dancingPokemon.gif";
+import spinSound from "../../../assets/sounds/spinning.mp3";
+import luckyWheelBackground from "../../../assets/sounds/lucky-wheel-background.mp3";
+
+import Gameboy from "../../gameboy/Gameboy";
+import SoundToggle from "../SoundToggle";
 
 const spinWheelSound = new Audio(spinSound);
 
@@ -52,7 +56,7 @@ const LuckyWheel = () => {
   const animarEvent = async () => {
     await dispatch(spinWheel()).then((res) => {
       dispatch(getUser())
-      if (res.error) return autoCloseAlert(res.error.message, "error", "red");
+      if (res.error) return autoCloseAlert(res.error.message, "error");
       setAnimatedRuleta(true);
       setUserPrize(res.payload.pointsData)
       const wheelResult = 45 * res.payload.randomValue;
@@ -71,10 +75,10 @@ const LuckyWheel = () => {
     ruletaRef.current.classList.remove("spin-animation");
     setTimeForNewSpin(formatLastSpinTime(user?.lastSpinTime))
     if (userPrize > 0) {
-      autoCloseAlert(`Felicidades! Ganaste ₽${userPrize} monedas`, 'success', 'green')
+      autoCloseAlert(`Felicidades! Ganaste ₽${userPrize} monedas`, 'success')
       setAnimatedRuleta(false);
     } else {
-      autoCloseAlert(`Perdiste! Vuelve a intentarlo luego!`, 'error', 'red')
+      autoCloseAlert(`Perdiste! Vuelve a intentarlo luego!`, 'error')
       setAnimatedRuleta(false);
     }
   };

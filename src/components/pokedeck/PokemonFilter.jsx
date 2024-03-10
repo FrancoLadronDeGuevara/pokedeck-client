@@ -14,6 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+
 import { rarityList, typeList } from "../../utils/pokemonHelper";
 
 const PokemonFilter = ({

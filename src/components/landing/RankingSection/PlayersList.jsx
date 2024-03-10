@@ -1,28 +1,31 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import { Box } from "@mui/material";
-import firstplace from "../../../assets/images/minigames/firstplace.webp";
-import secondplace from "../../../assets/images/minigames/secondplace.webp";
-import thirdplace from "../../../assets/images/minigames/thirdplace.webp";
-import fourthplace from "../../../assets/images/minigames/fourthplace.webp";
-import fifthplace from "../../../assets/images/minigames/fifthplace.webp";
+import {
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+
+import firstplace from "../../../assets/images/minigames/ranking/firstplace.webp";
+import secondplace from "../../../assets/images/minigames/ranking/secondplace.webp";
+import thirdplace from "../../../assets/images/minigames/ranking/thirdplace.webp";
+import fourthplace from "../../../assets/images/minigames/ranking/fourthplace.webp";
+import fifthplace from "../../../assets/images/minigames/ranking/fifthplace.webp";
 
 const thStyle = {
   padding: { xs: 0, sm: 0 },
   fontWeight: "bolder",
   fontSize: { xs: 16, sm: 20 },
-  color: '#227184'
+  color: "#227184",
 };
 
 const tableCellStyle = {
   fontSize: { xs: 11, sm: 16 },
   fontWeight: "bolder",
-  color: 'gray'
+  color: "gray",
 };
 
 const PlayerList = ({ rankingTopUsers, gameRanking }) => {
@@ -54,7 +57,11 @@ const PlayerList = ({ rankingTopUsers, gameRanking }) => {
   };
 
   return (
-    <TableContainer component={Box} className="table-ranking" sx={{p: '1rem 0'}}>
+    <TableContainer
+      component={Box}
+      className="table-ranking"
+      sx={{ p: "1rem 0" }}
+    >
       <Table>
         <TableHead>
           <TableRow>
@@ -77,7 +84,7 @@ const PlayerList = ({ rankingTopUsers, gameRanking }) => {
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
                 cursor: "pointer",
-                "&:hover": {backgroundColor: '#4fc4d636'}
+                "&:hover": { backgroundColor: "#4fc4d636" },
               }}
             >
               <TableCell

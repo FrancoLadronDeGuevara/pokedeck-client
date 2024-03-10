@@ -1,15 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Container, Divider, Typography, Box } from "@mui/material";
-import { autoCloseAlert, customAlert } from "../../utils/alerts";
-import offertImage from "../../assets/images/offert.webp";
-import beforeImage from "../../assets/images/before.webp";
-
 import "./ChestStore.css";
+
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import ModalOpenChest from "./ModalOpenChest";
+import { Container, Divider, Typography, Box } from "@mui/material";
+
+import { autoCloseAlert, customAlert } from "../../utils/alerts";
 import { getUser } from "../../redux/actions/userActions";
 import clientAxios from "../../utils/clientAxios";
+
+import ModalOpenChest from "./ModalOpenChest";
 import Loader from "../loader/Loader";
+
+import beforeImage from "../../assets/images/weeklyOffers/before.webp";
+import offertImage from "../../assets/images/weeklyOffers/offert.webp";
 
 const ChestStore = () => {
   const dispatch = useDispatch();
@@ -74,7 +77,7 @@ const ChestStore = () => {
                     animation.includes(chest._id) ? "buy-animation" : ""
                   }`}
                   src={chest.chestImage}
-                  alt=""
+                  alt={`Imagen cofre ${chest.typeName}`}
                 />
                 <button
                   className={`chest-button`}
@@ -117,7 +120,7 @@ const ChestStore = () => {
                     animation.includes(card._id) ? "buy-animation" : ""
                   }`}
                   src={card.chestImage}
-                  alt=""
+                  alt={`Imagen carta ${card.typeName}`}
                 />
                 <img
                   src={beforeImage}

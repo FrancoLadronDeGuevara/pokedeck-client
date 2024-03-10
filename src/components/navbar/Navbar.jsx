@@ -1,32 +1,34 @@
 import "./Navbar.css";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+
+import {AppBar, Box
+  ,Toolbar
+  ,IconButton
+  ,Typography
+  ,Menu
+  ,Container
+  ,Avatar
+  ,Tooltip
+  ,MenuItem, Divider, Skeleton} from "@mui/material";
+  import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+  import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+  import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
+  import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+  import CurrencyRubleOutlinedIcon from "@mui/icons-material/CurrencyRubleOutlined";
 import { useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import { customAlert } from "../../utils/alerts";
-import logoPokedeck from "../../assets/images/logo.png";
-import menuicon from "../../assets/images/icons/menu.png";
-import login from "../../assets/images/icons/login.png";
-import register from "../../assets/images/icons/register.png";
-import pokecard from "../../assets/images/icons/pokecard.png";
-import dropdown from "../../assets/images/backgrounds/dropdown.png";
-import chest from "../../assets/images/icons/chest.png";
-import { Divider, Skeleton } from "@mui/material";
-import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import CurrencyRubleOutlinedIcon from "@mui/icons-material/CurrencyRubleOutlined";
 import clientAxios from "../../utils/clientAxios";
+
+import logoPokedeck from "../../assets/images/logo.webp";
+import menuicon from "../../assets/images/icons/menu.webp";
+import login from "../../assets/images/icons/login.webp";
+import register from "../../assets/images/icons/register.webp";
+import pokecard from "../../assets/images/icons/pokecard.webp";
+import dropdown from "../../assets/images/backgrounds/dropdown.webp";
+import chest from "../../assets/images/icons/chest.webp";
+
 
 const Navbar = () => {
   const navigate = useNavigate();

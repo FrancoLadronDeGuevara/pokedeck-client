@@ -1,8 +1,7 @@
-import Backdrop from "@mui/material/Backdrop";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
-import { Box, Container } from "@mui/material";
 import "./ModalOpenChest.css";
+
+import { Box, Container, Modal, Backdrop, Fade } from "@mui/material";
+
 import PokemonCard from "../pokemonCard/PokemonCard";
 
 const ModalOpenChest = ({ openModal, cards, handleCloseModal }) => {

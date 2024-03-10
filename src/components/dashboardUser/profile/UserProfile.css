@@ -1,16 +1,16 @@
 .user-cards {
-  background-image: url("../../../assets/images/backgrounds/dropdown.png");
+  background-image: url("../../../assets/images/backgrounds/dropdown.webp");
   background-size: 100% 100%;
 }
 
 .user-username-background {
-  background-image: url("../../../assets/images/backgrounds/bluebutton.png");
+  background-image: url("../../../assets/images/backgrounds/bluebutton.webp");
   background-size: 100% 100%;
   padding: 1rem;
 }
 
 .user-coins-background {
-  background-image: url("../../../assets/images/backgrounds/yellowbutton.png");
+  background-image: url("../../../assets/images/backgrounds/yellowbutton.webp");
   background-size: 100% 100%;
   padding: 1rem;
 }

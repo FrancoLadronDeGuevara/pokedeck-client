@@ -1,24 +1,15 @@
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import { useState } from 'react';
-import { styled } from '@mui/material/styles';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import { cardRarity, firstTypeList, secondTypeList } from '../../../utils/pokemonHelper';
-import Avatar from '@mui/material/Avatar';
+
+import { styled, FormControl, InputLabel, MenuItem, Select, Container, Box, Grid, TextField, CssBaseline, Button, Avatar } from '@mui/material';
 import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
+import { useState } from 'react';
+
+import { cardRarity, firstTypeList, secondTypeList } from '../../../utils/pokemonHelper';
 import { autoCloseAlert } from '../../../utils/alerts';
 import { handleAvatarUpload, handleUploadImage } from '../../../utils/uploadImage';
-import clientAxios from '../../../utils/clientAxios';
-import Loader from '../../loader/Loader';
 import { handleError } from '../../../utils/handleInputError';
-import { server } from '../../../server';
+import clientAxios from '../../../utils/clientAxios';
+
+import Loader from '../../loader/Loader';
 
 export const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -56,12 +47,12 @@ const CreateCards = () => {
 
         if (nameError || pokedexError || !name || !rarity || !firstTipe || !imageUpload){
             setLoading(false)
-            return autoCloseAlert('Todos los campos con * con obligatorios', 'error', 'red');
+            return autoCloseAlert('Todos los campos con * con obligatorios', 'error');
         }
 
         if(firstTipe == secondTipe) {
             setLoading(false)
-            return autoCloseAlert('No puede tener el mismo tipo dos veces', 'error', 'red')
+            return autoCloseAlert('No puede tener el mismo tipo dos veces', 'error')
         }
 
         if(secondTipe){
@@ -76,14 +67,14 @@ const CreateCards = () => {
 
 
         try {
-            await clientAxios.post(`${server}/cards/create`, { imageCard, name, pokedexNumber, rarity, types }, {withCredentials: true})
-            autoCloseAlert('Carta creada con éxito', 'success', 'green')
+            await clientAxios.post(`/cards/create`, { imageCard, name, pokedexNumber, rarity, types })
+            autoCloseAlert('Carta creada con éxito', 'success')
             setTimeout(()=> {
                 window.location.reload()
             }, 1000)
         } catch (error) {
             console.log(error)
-            autoCloseAlert( error.message|| "Ups, ocurrió un error", 'error', 'red');
+            autoCloseAlert( error.message|| "Ups, ocurrió un error", 'error');
         } finally{
             setLoading(false)
         }

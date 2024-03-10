@@ -1,26 +1,17 @@
 /* eslint-disable react/prop-types */
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
+import {Backdrop, Box, Modal, Fade, Button, InputLabel, MenuItem, FormControl, Select, TextField, Avatar, Grid} from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { autoCloseAlert, customAlert } from '../../../utils/alerts';
-import Avatar from '@mui/material/Avatar';
-import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
-import Grid from '@mui/material/Grid';
 import { handleError } from '../../../utils/handleInputError';
+import { handleAvatarUpload, handleUploadImage } from '../../../utils/uploadImage';
+import { deleteChest, editChest } from '../../../redux/actions/chestActions';
+
 import { VisuallyHiddenInput } from '../Cards/CreateCards';
 import Loader from '../../loader/Loader';
-import { handleAvatarUpload, handleUploadImage } from '../../../utils/uploadImage';
-import CloseIcon from '@mui/icons-material/Close';
-import { deleteChest, editChest } from '../../../redux/actions/chestActions';
 
 const quantityOfCardsList = [1, 2, 3, 4, 5];
 const chestTypeList = ["Normal", "Raro", "Épico", "Legendario"]
@@ -64,11 +55,11 @@ const ModalEditChest = ({ chestName, chestPrice, chestDescription, chestType, qu
     const handleDeleteChest = async () => {
         setLoading(true)
         try {
-            await customAlert('¿Eliminar Cofre?', '', 'warning', () => {
+            await customAlert('¿Eliminar Cofre?', () => {
                 dispatch(deleteChest(idChest))
                     .then(res => {
-                        if (res.error) return autoCloseAlert(res.error.message, 'error', 'red');
-                        autoCloseAlert('Cofre eliminado', 'success', 'green')
+                        if (res.error) return autoCloseAlert(res.error.message, 'error');
+                        autoCloseAlert('Cofre eliminado', 'success')
                         setTimeout(() => {
                             window.location.reload()
                         }, 1000)
@@ -76,7 +67,7 @@ const ModalEditChest = ({ chestName, chestPrice, chestDescription, chestType, qu
             })
         } catch (error) {
             console.log(error)
-            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error', 'red');
+            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error');
         } finally {
             setLoading(false)
         }
@@ -84,12 +75,12 @@ const ModalEditChest = ({ chestName, chestPrice, chestDescription, chestType, qu
 
     const handleUpdateCard = async (e) => {
         e.preventDefault()
-        // setLoading(true)
+        setLoading(true)
         let chestData = { id: idChest }
 
         if (nameError || descriptionError || priceError) {
             setLoading(false)
-            return autoCloseAlert('Por favor, completa el formulario', 'error', 'red');
+            return autoCloseAlert('Por favor, completa el formulario', 'error');
         }
 
         if (name !== chestName) {
@@ -118,11 +109,11 @@ const ModalEditChest = ({ chestName, chestPrice, chestDescription, chestType, qu
         }
 
         try {
-            await customAlert('¿Guardar cambios?', '', 'warning', () => {
+            await customAlert('¿Guardar cambios?', () => {
                 dispatch(editChest(chestData))
                     .then(res => {
-                        if (res.error) return autoCloseAlert(res.error.message, 'error', 'red');
-                        autoCloseAlert('Cofre actualizado', 'success', 'green')
+                        if (res.error) return autoCloseAlert(res.error.message, 'error');
+                        autoCloseAlert('Cofre actualizado', 'success')
                         setTimeout(() => {
                             window.location.reload()
                         }, 0)
@@ -130,7 +121,7 @@ const ModalEditChest = ({ chestName, chestPrice, chestDescription, chestType, qu
             })
         } catch (error) {
             console.log(error)
-            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error', 'red');
+            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error');
         } finally {
             setLoading(false)
         }

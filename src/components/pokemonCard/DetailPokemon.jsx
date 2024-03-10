@@ -1,10 +1,12 @@
-import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
 import "./DetailPokemon.css";
-import GlobalModal from "../globalModal/GlobalModal";
+
+import { Typography, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
+
 import { autoCloseAlert, customAlert } from "../../utils/alerts";
 import { getUserDeck, sellCard } from "../../redux/actions/userActions";
+
+import GlobalModal from "../globalModal/GlobalModal";
 
 const DetailPokemon = ({
   pokedexNumber,

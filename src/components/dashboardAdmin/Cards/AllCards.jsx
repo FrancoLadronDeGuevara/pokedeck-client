@@ -1,16 +1,11 @@
-import Container from "@mui/material/Container";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
+import {Container, Table, TableBody, TableCell,TableContainer, TableHead, TablePagination,  TableRow} from "@mui/material";
 import Chip from "@mui/joy/Chip";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getAllCards } from "../../../redux/actions/cardActions";
 import { getTypeColor } from "../../../utils/pokemonHelper";
+
 import ModalEditCard from "./ModalEditCard";
 import Loader from "../../loader/Loader";
 
@@ -56,7 +51,7 @@ const columns = [
     minWidth: 170,
     align: "right",
     format: (value) => (
-      <img src={value} alt="Miniatura" style={{ width: 50, height: 64 }} />
+      <img src={value} alt="Miniatura imagen card pokemon" style={{ width: 50, height: 64 }} />
     ),
   },
 ];

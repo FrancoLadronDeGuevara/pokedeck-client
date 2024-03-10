@@ -1,12 +1,12 @@
+import "./DashboardAdmin.css";
+
 import { useState } from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import { Container, useMediaQuery, Tab, Tabs } from "@mui/material";
+import { Link } from "react-router-dom";
+
 import CatchingPokemonTwoToneIcon from "@mui/icons-material/CatchingPokemonTwoTone";
 import AllInboxTwoToneIcon from "@mui/icons-material/AllInboxTwoTone";
 import PeopleIcon from "@mui/icons-material/People";
-import { Link } from "react-router-dom";
-import { Container, useMediaQuery } from "@mui/material";
-import "./DashboardAdmin.css";
 
 const DashboardAdmin = () => {
   const [value, setValue] = useState(0);

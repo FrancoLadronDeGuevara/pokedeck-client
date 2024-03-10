@@ -1,179 +1,237 @@
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { Link, useNavigate } from 'react-router-dom';
-import { autoCloseAlert } from '../../utils/alerts';
-import { useState } from 'react';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import FormControl from '@mui/material/FormControl';
-import clientAxios from '../../utils/clientAxios';
-import Loader from '../loader/Loader';
-import { handleError } from '../../utils/handleInputError';
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  FormControl,
+} from "@mui/material";
+import {
+  LockOutlinedIcon,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material/LockOutlined";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const strongPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-const strongEmailRegex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+import clientAxios from "../../utils/clientAxios";
+import { autoCloseAlert } from "../../utils/alerts";
+import { handleError } from "../../utils/handleInputError";
+
+import Loader from "../loader/Loader";
+
+const strongPasswordRegex =
+  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+const strongEmailRegex =
+  /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
 const confIcon = {
-    position: 'absolute', right: 10, top: 15, cursor: 'pointer'
-}
+  position: "absolute",
+  right: 10,
+  top: 15,
+  cursor: "pointer",
+};
 
 const RegisterForm = () => {
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [emailError, setEmailError] = useState(false);
-    const [passwordError, setPasswordError] = useState(false);
-    const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowConfirmPassword = () =>
+    setShowConfirmPassword((show) => !show);
 
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-    const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
+  const handleErrorConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
 
+    if (password !== e.target.value) {
+      return setConfirmPasswordError(true);
+    } else {
+      setConfirmPasswordError(false);
+    }
+  };
 
-    const handleErrorConfirmPassword = (e) => {
-        setConfirmPassword(e.target.value)
+  const handleSubmit = async (e) => {
+    setLoading(true);
+    e.preventDefault();
 
-        if(password !== e.target.value){
-            return setConfirmPasswordError(true)
-        }else{
-            setConfirmPasswordError(false)
-        }
+    if (password !== confirmPassword) setConfirmPasswordError(true);
+
+    if (emailError || passwordError || confirmPasswordError || !isChecked) {
+      setLoading(false);
+      return autoCloseAlert(
+        "Por favor, rellena bien el formulario",
+        "error"
+      );
     }
 
-    const handleSubmit = async (e) => {
-        setLoading(true)
-        e.preventDefault();
+    try {
+      await clientAxios
+        .post(`/users/create`, { email, password })
+        .then((res) => autoCloseAlert(res.data.message, "warning"));
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setTimeout(() => navigate("/"), 2000);
+    } catch (error) {
+      const errorMsg = error.errors?.[0]?.msg;
+      autoCloseAlert(errorMsg || "Ups, ocurrió un error", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        if(password !== confirmPassword) setConfirmPasswordError(true)
-
-        if(emailError || passwordError || confirmPasswordError || !isChecked){
-            setLoading(false)
-            return autoCloseAlert('Por favor, rellena bien el formulario', 'error', 'red')
-        } 
-
-        try {
-            await clientAxios.post(`/users/create`, {email, password})
-            .then(res => autoCloseAlert(res.data.message, 'warning', 'orange'))
-            setEmail('')
-            setPassword('')
-            setConfirmPassword('')
-            setTimeout(()=> navigate("/"), 2000)
-        } catch (error) {
-            const errorMsg = error.errors?.[0]?.msg;
-            autoCloseAlert( errorMsg || "Ups, ocurrió un error", 'error', 'red');
-        } finally{
-            setLoading(false)
-        }
-    };
-
-    return (
-        <>
-        <Container component="main" maxWidth="xs" sx={{ marginBottom: 5 }}>
-            <CssBaseline />
-            <Box
-                sx={{
-                    marginTop: 5,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
+  return (
+    <>
+      <Container component="main" maxWidth="xs" sx={{ marginBottom: 5 }}>
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 5,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Registrarse
+          </Typography>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email"
+                  name="email"
+                  autoComplete="email"
+                  onChange={(e) =>
+                    handleError(e, setEmail, setEmailError, strongEmailRegex)
+                  }
+                  value={email}
+                  error={emailError}
+                  color={emailError ? "" : "success"}
+                  helperText={emailError ? "Email inválido" : ""}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth required variant="outlined">
+                  <TextField
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    label="Contraseña*"
+                    value={password}
+                    error={passwordError}
+                    color={passwordError ? "" : "success"}
+                    helperText={
+                      passwordError
+                        ? "La contraseña debe tener al menos 8 carácteres y contener al menos una letra mayúscula, una letra minúscula y un número"
+                        : ""
+                    }
+                    onChange={(e) =>
+                      handleError(
+                        e,
+                        setPassword,
+                        setPasswordError,
+                        strongPasswordRegex
+                      )
+                    }
+                  />
+                  {showPassword ? (
+                    <VisibilityOff
+                      sx={confIcon}
+                      onClick={handleClickShowPassword}
+                    />
+                  ) : (
+                    <Visibility
+                      sx={confIcon}
+                      onClick={handleClickShowPassword}
+                    />
+                  )}
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth required variant="outlined">
+                  <TextField
+                    id="password2"
+                    type={showConfirmPassword ? "text" : "password"}
+                    label="Repetir Contraseña*"
+                    value={confirmPassword}
+                    error={confirmPasswordError}
+                    color={confirmPasswordError ? "" : "success"}
+                    helperText={
+                      confirmPasswordError ? "Las contraseñas no coinciden" : ""
+                    }
+                    onChange={(e) => handleErrorConfirmPassword(e)}
+                  />
+                  {showConfirmPassword ? (
+                    <VisibilityOff
+                      sx={confIcon}
+                      onClick={handleClickShowConfirmPassword}
+                    />
+                  ) : (
+                    <Visibility
+                      sx={confIcon}
+                      onClick={handleClickShowConfirmPassword}
+                    />
+                  )}
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      value="allowExtraEmails"
+                      checked={isChecked}
+                      onChange={(e) => setIsChecked(e.target.checked)}
+                      color="primary"
+                    />
+                  }
+                  label="Acepto los terminos y condiciones"
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Registrarse
-                </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email"
-                                name="email"
-                                autoComplete="email"
-                                onChange={e => handleError(e, setEmail, setEmailError, strongEmailRegex)}
-                                value={email}
-                                error={emailError}
-                                color={emailError ? '' : 'success'}
-                                helperText={emailError? 'Email inválido' : ''}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <FormControl fullWidth required variant="outlined">
-                                <TextField
-                                    id="password"
-                                    type={showPassword ? 'text' : 'password'}
-                                    label="Contraseña*"
-                                    value={password}
-                                    error={passwordError}
-                                    color={passwordError? '' : 'success'}
-                                    helperText={ passwordError ? 'La contraseña debe tener al menos 8 carácteres y contener al menos una letra mayúscula, una letra minúscula y un número' : ''}
-                                    onChange={e => handleError(e, setPassword, setPasswordError, strongPasswordRegex)}
-                                />
-                                {showPassword ? <VisibilityOff sx={confIcon} onClick={handleClickShowPassword}/> : <Visibility sx={confIcon}  onClick={handleClickShowPassword}/>}
-                            </FormControl>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <FormControl fullWidth required variant="outlined">
-                            <TextField
-                                    id="password2"
-                                    type={showConfirmPassword ? 'text' : 'password'}
-                                    label="Repetir Contraseña*"
-                                    value={confirmPassword}
-                                    error={confirmPasswordError}
-                                    color={confirmPasswordError? '' : 'success'}
-                                    helperText={ confirmPasswordError ? 'Las contraseñas no coinciden' : ''}
-                                    onChange={e => handleErrorConfirmPassword(e)}
-                                />
-                                {showConfirmPassword ? <VisibilityOff sx={confIcon} onClick={handleClickShowConfirmPassword}/> : <Visibility sx={confIcon}  onClick={handleClickShowConfirmPassword}/>}
-                            </FormControl>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" checked={isChecked}
-                                onChange={(e) => setIsChecked(e.target.checked)} color="primary" />}
-                                label="Acepto los terminos y condiciones"
-                            />
-                        </Grid>
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                    >
-                        Registrarme
-                    </Button>
-                    <Grid container justifyContent="flex-end">
-                        <Grid item>
-                            <Link to='/login'>
-                                Ya tienes una cuenta? Inicia sesión
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Box>
-        </Container>
-        {loading && <Loader/>}
-        </>
-    );
-}
+              Registrarme
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link to="/login">Ya tienes una cuenta? Inicia sesión</Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+      {loading && <Loader />}
+    </>
+  );
+};
 
 export default RegisterForm;

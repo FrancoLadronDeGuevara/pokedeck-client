@@ -1,19 +1,13 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableHead from '@mui/material/TableHead';
-import { styled } from '@mui/material/styles';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableRow from '@mui/material/TableRow';
+import {Box, Collapse, IconButton, Table, TableBody, TableHead, styled, Avatar, TableCell, TableRow} from '@mui/material';
+import { tableCellClasses } from '@mui/material/TableCell';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Avatar from '@mui/material/Avatar';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
+
 import {formatDate} from '../../../utils/formatTime';
-import { useState } from 'react';
+
 import ModalEditUser from './ModalEditUser';
 
 

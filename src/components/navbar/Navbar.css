@@ -1,7 +1,7 @@
 .navbar-layout {
     background-color: transparent !important;
     box-shadow: none !important;
-    background-image: url('../../assets/images/backgrounds/navbar.png');
+    background-image: url('../../assets/images/backgrounds/navbar.webp');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     height: 85px;
@@ -10,7 +10,7 @@
 }
 
 .coins-background {
-    background-image: url('../../assets/images/backgrounds/coins.png');
+    background-image: url('../../assets/images/backgrounds/coins.webp');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     width: 140px;

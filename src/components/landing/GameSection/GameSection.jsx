@@ -3,9 +3,9 @@ import "./GameSection.css";
 import { Box, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import baseImage from "../../../assets/images/gameSection/base.png";
-import guessMinigameImage from "../../../assets/images/minigames/guessminigame.webp";
-import flapHaunterMinigameImage from "../../../assets/images/minigames/haunterminigame.webp";
+import baseImage from "../../../assets/images/gameSection/base.webp";
+import guessMinigameImage from "../../../assets/images/gameSection/guessminigame.webp";
+import flapHaunterMinigameImage from "../../../assets/images/gameSection/haunterminigame.webp";
 
 const GameSection = () => {
 
@@ -48,7 +48,7 @@ const GameSection = () => {
         >
           <Box className="left-minigame">
             <Box component={Link} to="/minigames/guess-pokemon">
-              <img src={guessMinigameImage} alt="" width="100%" height="100%" />
+              <img src={guessMinigameImage} alt="Imagen quien es ese pokemon" width="100%" height="100%" />
             </Box>
           </Box>
           <img className="base-image-left" src={baseImage} />
@@ -68,7 +68,7 @@ const GameSection = () => {
             <Box component={Link} to="/minigames/flap-haunter">
               <img
                 src={flapHaunterMinigameImage}
-                alt=""
+                alt="Imagen flap haunter"
                 width="100%"
                 height="100%"
               />

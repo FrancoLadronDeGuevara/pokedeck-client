@@ -1,8 +1,10 @@
+import "./WeeklyOffers.css";
+
 import { Box, Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import "./WeeklyOffers.css";
-import offertImage from "../../../assets/images/offert.webp";
 import { Link } from "react-router-dom";
+
+import offertImage from "../../../assets/images/weeklyOffers/offert.webp";
 
 const WeeklyOffers = () => {
   const { chests } = useSelector((state) => state.chest);

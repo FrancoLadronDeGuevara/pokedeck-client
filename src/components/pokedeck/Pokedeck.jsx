@@ -7,8 +7,8 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import PokemonCard from "../pokemonCard/PokemonCard";
 
+import PokemonCard from "../pokemonCard/PokemonCard";
 import PokemonFilter from "./PokemonFilter";
 
 const Pokedeck = () => {

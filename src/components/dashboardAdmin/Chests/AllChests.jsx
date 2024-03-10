@@ -1,16 +1,9 @@
-import Container from '@mui/material/Container';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
+import {Container,Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import ModalEditChest from './ModalEditChest';
 import Loader from '../../loader/Loader';
-import { Typography } from '@mui/material';
 
 const columns = [
     { id: 'name', label: 'Nombre', minWidth: 120 },
@@ -44,7 +37,7 @@ const columns = [
         minWidth: 80,
         align: 'right',
         format: (value) => (
-            <img src={value} alt="Miniatura" style={{ width: 50, height: 64 }} />
+            <img src={value} alt="Miniatura cofre" style={{ width: 50, height: 64 }} />
         ),
     },
 ];

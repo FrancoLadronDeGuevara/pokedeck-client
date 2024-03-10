@@ -1,27 +1,29 @@
 import Phaser from "phaser";
-import backgroundDayImg from "../../../assets/images/minigames/flapHaunter/background-day.png";
-import backgroundNightImg from "../../../assets/images/minigames/flapHaunter/background-night.png";
-import gastlySpriteImg from "../../../assets/images/minigames/flapHaunter/gastly-sprite.png";
-import haunterSpriteImg from "../../../assets/images/minigames/flapHaunter/haunter-sprite.png";
-import gengarSpriteImg from "../../../assets/images/minigames/flapHaunter/gengar-sprite.png";
-import gameoverImg from "../../../assets/images/minigames/flapHaunter/gameover.png";
-import groundImg from "../../../assets/images/minigames/flapHaunter/ground-sprite.png";
-import messageImg from "../../../assets/images/minigames/flapHaunter/message-initial.png";
-import number0Img from "../../../assets/images/minigames/flapHaunter/number0.png";
-import number1Img from "../../../assets/images/minigames/flapHaunter/number1.png";
-import number2Img from "../../../assets/images/minigames/flapHaunter/number2.png";
-import number3Img from "../../../assets/images/minigames/flapHaunter/number3.png";
-import number4Img from "../../../assets/images/minigames/flapHaunter/number4.png";
-import number5Img from "../../../assets/images/minigames/flapHaunter/number5.png";
-import number6Img from "../../../assets/images/minigames/flapHaunter/number6.png";
-import number7Img from "../../../assets/images/minigames/flapHaunter/number7.png";
-import number8Img from "../../../assets/images/minigames/flapHaunter/number8.png";
-import number9Img from "../../../assets/images/minigames/flapHaunter/number9.png";
-import treeDayBottomImg from "../../../assets/images/minigames/flapHaunter/tree-day-bottom.png";
-import treeDayTopImg from "../../../assets/images/minigames/flapHaunter/tree-day-top.png";
-import treeNightBottomImg from "../../../assets/images/minigames/flapHaunter/tree-night-bottom.png";
-import treeNightTopImg from "../../../assets/images/minigames/flapHaunter/tree-night-top.png";
-import restartImg from "../../../assets/images/minigames/flapHaunter/restart-button.png";
+
+import backgroundDayImg from "../../../assets/images/minigames/flapHaunter/background-day.webp";
+import backgroundNightImg from "../../../assets/images/minigames/flapHaunter/background-night.webp";
+import gastlySpriteImg from "../../../assets/images/minigames/flapHaunter/gastly-sprite.webp";
+import haunterSpriteImg from "../../../assets/images/minigames/flapHaunter/haunter-sprite.webp";
+import gengarSpriteImg from "../../../assets/images/minigames/flapHaunter/gengar-sprite.webp";
+import gameoverImg from "../../../assets/images/minigames/flapHaunter/gameover.webp";
+import groundImg from "../../../assets/images/minigames/flapHaunter/ground-sprite.webp";
+import messageImg from "../../../assets/images/minigames/flapHaunter/message-initial.webp";
+import number0Img from "../../../assets/images/minigames/flapHaunter/number0.webp";
+import number1Img from "../../../assets/images/minigames/flapHaunter/number1.webp";
+import number2Img from "../../../assets/images/minigames/flapHaunter/number2.webp";
+import number3Img from "../../../assets/images/minigames/flapHaunter/number3.webp";
+import number4Img from "../../../assets/images/minigames/flapHaunter/number4.webp";
+import number5Img from "../../../assets/images/minigames/flapHaunter/number5.webp";
+import number6Img from "../../../assets/images/minigames/flapHaunter/number6.webp";
+import number7Img from "../../../assets/images/minigames/flapHaunter/number7.webp";
+import number8Img from "../../../assets/images/minigames/flapHaunter/number8.webp";
+import number9Img from "../../../assets/images/minigames/flapHaunter/number9.webp";
+import treeDayBottomImg from "../../../assets/images/minigames/flapHaunter/tree-day-bottom.webp";
+import treeDayTopImg from "../../../assets/images/minigames/flapHaunter/tree-day-top.webp";
+import treeNightBottomImg from "../../../assets/images/minigames/flapHaunter/tree-night-bottom.webp";
+import treeNightTopImg from "../../../assets/images/minigames/flapHaunter/tree-night-top.webp";
+import restartImg from "../../../assets/images/minigames/flapHaunter/restart-button.webp";
+
 import { game, handleScore } from "./FlapHaunter";
 
 

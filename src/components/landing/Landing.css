@@ -5,7 +5,7 @@
 
 .left-top-image {
   position: absolute !important;
-  background-image: url("../../assets/images/left-top-image.png") !important;
+  background-image: url("../../assets/images/left-top-image.webp") !important;
   background-repeat: no-repeat;
   background-position: left top;
   background-size: contain;
@@ -18,7 +18,7 @@
 .right-top-image {
   position: absolute !important;
   display: block;
-  background: url("../../assets/images/right-top-image.png");
+  background: url("../../assets/images/right-top-image.webp");
   background-repeat: no-repeat;
   background-position: right top;
   background-size: contain;
@@ -31,7 +31,7 @@
 .logo-top-image {
   position: absolute !important;
   display: block;
-  background: url("../../assets/images/logo-presentation.png");
+  background: url("../../assets/images/logo-presentation.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;

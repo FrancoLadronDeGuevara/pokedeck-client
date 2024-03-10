@@ -1,25 +1,17 @@
+import {TextField, Grid, Box, FormControl, InputLabel, MenuItem, Select, Button, Avatar, Autocomplete} from '@mui/material';
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
+
+import clientAxios from "../../../utils/clientAxios";
 import { handleError } from "../../../utils/handleInputError";
 import { cardRarity } from "../../../utils/pokemonHelper";
-import Loader from "../../loader/Loader";
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import UploadFileTwoToneIcon from '@mui/icons-material/UploadFileTwoTone';
-import { VisuallyHiddenInput } from "../Cards/CreateCards";
 import { handleAvatarUpload, handleUploadImage } from "../../../utils/uploadImage";
-import Autocomplete from '@mui/material/Autocomplete';
-import { useDispatch, useSelector } from "react-redux";
-import { getAllCards } from "../../../redux/actions/cardActions";
 import { autoCloseAlert } from "../../../utils/alerts";
-import clientAxios from "../../../utils/clientAxios";
-import { server } from "../../../server";
+import { getAllCards } from "../../../redux/actions/cardActions";
+
+import { VisuallyHiddenInput } from "../Cards/CreateCards";
+import Loader from "../../loader/Loader";
 
 const quantityOfCardsList = [1, 2, 3, 4, 5];
 const chestTypeList = ["Normal", "Raro", "Épico", "Legendario"]
@@ -59,17 +51,17 @@ const CreateChests = () => {
 
         if (!imageUpload || !name || !description || !chestType) {
             setLoading(false)
-            return autoCloseAlert('Los campos con * son obligatorios', 'error', 'red');
+            return autoCloseAlert('Los campos con * son obligatorios', 'error');
         }
 
         if (nameError || descriptionError || priceError) {
             setLoading(false)
-            return autoCloseAlert('Por favor, completa el formulario', 'error', 'red');
+            return autoCloseAlert('Por favor, completa el formulario', 'error');
         }
 
         if (!rarityOfCards && selectedCards.length === 0) {
             setLoading(false)
-            return autoCloseAlert('El cofre debe tener al menos una carta o el tipo de cartas', 'error', 'red');
+            return autoCloseAlert('El cofre debe tener al menos una carta o el tipo de cartas', 'error');
         }
 
         const chestImage = await handleAvatarUpload(imageUpload, 'chestsImages');
@@ -86,13 +78,13 @@ const CreateChests = () => {
 
 
         try {
-            await clientAxios.post(`${server}/chests/create`, chestData, { withCredentials: true })
-            autoCloseAlert('Cofre creado con éxito', 'success', 'green')
+            await clientAxios.post(`/chests/create`, chestData)
+            autoCloseAlert('Cofre creado con éxito', 'success')
             setTimeout(()=> {
                 window.location.reload()
             }, 1000)
         } catch (error) {
-            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error', 'red');
+            autoCloseAlert(error.message || "Ups, ocurrió un error", 'error');
         } finally {
             setLoading(false)
         }

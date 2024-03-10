@@ -1,8 +1,9 @@
+import "./PokemonCard.css";
+
 import { Box } from "@mui/system";
 import { useState } from "react";
-import DetailPokemon from "./DetailPokemon.jsx";
 
-import "./PokemonCard.css";
+import DetailPokemon from "./DetailPokemon.jsx";
 
 const PokemonCard = ({
   pokedexNumber,

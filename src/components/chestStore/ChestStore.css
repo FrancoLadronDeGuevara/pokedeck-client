@@ -1,5 +1,5 @@
 .container-store {
-  background-image: url("../../assets/images/backgrounds/dropdown.png");
+  background-image: url("../../assets/images/backgrounds/dropdown.webp");
   background-size: 100% 100%;
   padding: 2rem !important;
 }
@@ -17,7 +17,7 @@
 }
 
 .chest-button {
-  background-image: url("../../assets/images/backgrounds/yellowbutton.png");
+  background-image: url("../../assets/images/backgrounds/yellowbutton.webp");
   background-size: 100% 100%;
   width: 100%;
   color: black;

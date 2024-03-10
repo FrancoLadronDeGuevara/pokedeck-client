@@ -1,13 +1,17 @@
+import "./FlapHaunter.css";
+
+import Phaser from "phaser";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
-import Gameboy from "../../gameboy/Gameboy";
-import { configurations } from "./game";
-import "./FlapHaunter.css";
 import { useDispatch, useSelector } from "react-redux";
+
+import { configurations } from "./game";
 import { getFlapHaunterCoins } from "../../../redux/actions/userActions";
-import SoundToggle from "../SoundToggle";
+
 import flapHaunterSong from "../../../assets/sounds/flap-haunter-song.mp3";
-import Phaser from "phaser";
+
+import SoundToggle from "../SoundToggle";
+import Gameboy from "../../gameboy/Gameboy";
 
 let game;
 let handleScore;

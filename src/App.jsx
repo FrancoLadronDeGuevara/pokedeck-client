@@ -6,7 +6,6 @@ import AllCards from "./components/dashboardAdmin/Cards/AllCards";
 import CreateCards from "./components/dashboardAdmin/Cards/CreateCards";
 import AllChests from "./components/dashboardAdmin/Chests/AllChests";
 import CreateChests from "./components/dashboardAdmin/Chests/CreateChests";
-import EditGames from "./components/dashboardAdmin/Games/EditGames";
 import AllUsers from "./components/dashboardAdmin/Users/AllUsers";
 import RootLayout from "./components/layout/RootLayout";
 import AdminPage from "./pages/AdminPage";
@@ -24,12 +23,14 @@ import GuessPokemonPage from "./pages/Minigames/GuessPokemonPage";
 import FlapHaunterPage from "./pages/Minigames/FlapHaunterPage";
 import LuckyWheelPage from "./pages/Minigames/LuckyWheelPage";
 import ActiveUserPage from "./pages/ActiveUserPage";
+import { getAllChests } from "./redux/actions/chestActions";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
       dispatch(getUser());
+      dispatch(getAllChests())
   }, []);
 
   return (
@@ -117,7 +118,6 @@ const App = () => {
             <Route path="allCards" element={<AllCards />} />
             <Route path="chests" element={<CreateChests />} />
             <Route path="allChests" element={<AllChests />} />
-            <Route path="editGames" element={<EditGames />} />
             <Route path="allUsers" element={<AllUsers />} />
           </Route>
         </Routes>

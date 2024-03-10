@@ -2,10 +2,11 @@ import "./Landing.css";
 
 import { Box, Container } from "@mui/material";
 
+import dividerImg from "../../assets/images/backgrounds/divider.webp";
+
 import GameSection from "./GameSection/GameSection";
 import RankingSection from "./RankingSection/RankingSection";
 import WeeklyOffers from "./WeeklyOffers/WeeklyOffers";
-import dividerImg from "../../assets/images/backgrounds/divider.png";
 import SupportSection from "./SupportSection/SupportSection";
 
 const Landing = () => {

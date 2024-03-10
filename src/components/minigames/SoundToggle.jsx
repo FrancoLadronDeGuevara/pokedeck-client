@@ -1,6 +1,4 @@
-import { FormControlLabel } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import Switch  from '@mui/material/Switch';
+import { FormControlLabel, styled, Switch } from '@mui/material';
 import { useState } from 'react';
 
 const Android12Switch = styled(Switch)(({ theme }) => ({

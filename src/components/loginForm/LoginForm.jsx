@@ -1,18 +1,21 @@
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  FormControl,
+} from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import FormControl from "@mui/material/FormControl";
 import { Link, useNavigate } from "react-router-dom";
-import { autoCloseAlert } from "../../utils/alerts";
 import { useState } from "react";
+
+import { autoCloseAlert } from "../../utils/alerts";
 import { handleError } from "../../utils/handleInputError";
 import clientAxios from "../../utils/clientAxios";
 
@@ -38,24 +41,28 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(!email || !password || emailError) return autoCloseAlert('Por favor, rellena el formulario correctamente', 'error', 'red')
+    if (!email || !password || emailError)
+      return autoCloseAlert(
+        "Por favor, rellena el formulario correctamente",
+        "error"
+      );
 
     await clientAxios
       .post(`/users/login-user`, { email, password })
       .then(() => {
-        autoCloseAlert("Bienvenido", "success", "green");
+        autoCloseAlert("Bienvenido", "success");
         setTimeout(() => {
           navigate("/");
           window.location.reload();
         }, 1000);
       })
       .catch((error) => {
-        autoCloseAlert(error.message, "error", "red");
+        autoCloseAlert(error.message, "error");
       });
   };
 
   return (
-    <Container component="main" maxWidth="xs" sx={{marginBottom: 5}}>
+    <Container component="main" maxWidth="xs" sx={{ marginBottom: 5 }}>
       <CssBaseline />
       <Box
         sx={{

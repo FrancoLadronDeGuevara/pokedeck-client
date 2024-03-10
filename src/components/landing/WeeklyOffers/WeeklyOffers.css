@@ -33,7 +33,7 @@
 
 .weekly-offers {
   height: 150px;
-  background-image: url("../../../assets/images/weeklyOffers.webp");
+  background-image: url("../../../assets/images/weeklyOffers/weeklyOffers.webp");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

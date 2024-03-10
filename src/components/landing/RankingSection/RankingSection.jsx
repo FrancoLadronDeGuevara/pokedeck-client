@@ -1,10 +1,14 @@
-import {  Box, Grid, Typography } from "@mui/material";
 import "./RankingSection.css";
-import guessPokemonRanking from "../../../assets/images/minigames/guessminigameranking.webp";
-import flaphaunterranking from "../../../assets/images/minigames/flaphaunterranking.webp";
-import PlayerList from "./PlayersList";
-import clientAxios from "../../../utils/clientAxios";
+
+import {  Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+
+import clientAxios from "../../../utils/clientAxios";
+
+import guessPokemonRanking from "../../../assets/images/minigames/ranking/guessminigameranking.webp";
+import flaphaunterranking from "../../../assets/images/minigames/ranking/flaphaunterranking.webp";
+
+import PlayerList from "./PlayersList";
 
 const RankingSection = () => {
   const [rankingGuessPokemon, setRankingGuessPokemon] = useState([])
@@ -30,11 +34,11 @@ const RankingSection = () => {
     <Typography variant="h3" className="title-ranking-bottom">Ranking</Typography>
     </Box>
       <Grid xs={12} md={5} item  display='flex' flexDirection='column' alignItems='center'  sx={{mt: {xs: 4, sm: 6, md: 0}}}>
-        <img className="minigame-image" src={guessPokemonRanking} alt="" />
+        <img className="minigame-image" src={guessPokemonRanking} alt="Imagen minijuego quien es ese pokemon" />
         <PlayerList gameRanking="GuessPokemon" rankingTopUsers={rankingGuessPokemon}/>
       </Grid>
       <Grid xs={12} md={5} item display='flex' flexDirection='column' alignItems='center' sx={{mt: {xs: 4, sm: 3, md: 0}, mb: {xs: 2, sm: 2, md: 0}}}>
-        <img className="minigame-image" src={flaphaunterranking} alt="" />
+        <img className="minigame-image" src={flaphaunterranking} alt="Imagen minijuego flap haunter" />
         <PlayerList gameRanking="FlapHaunter" rankingTopUsers={rankingFlapHaunter}/>
       </Grid>
     </Grid>

@@ -36,7 +36,7 @@
 
 .roulette-minigame {
   height: 150px;
-  background-image: url("../../../assets/images/minigames/lucky-wheel.webp");
+  background-image: url("../../../assets/images/gameSection/lucky-wheel.webp");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -51,7 +51,7 @@
 
 .left-minigame {
   position: absolute;
-  background-image: url("../../../assets/images/backgrounds/dropdown.png");
+  background-image: url("../../../assets/images/backgrounds/dropdown.webp");
   background-size: 100% 100%;
   left: 10%;
   width: 250px;
@@ -73,7 +73,7 @@
 
 .right-minigame {
   position: absolute;
-  background-image: url("../../../assets/images/backgrounds/dropdown.png");
+  background-image: url("../../../assets/images/backgrounds/dropdown.webp");
   background-size: 100% 100%;
   right: 10%;
   width: 250px;

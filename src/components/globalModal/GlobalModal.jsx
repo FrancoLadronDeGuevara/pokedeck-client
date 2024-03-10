@@ -1,8 +1,6 @@
-import Backdrop from "@mui/material/Backdrop";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
-import { Container } from "@mui/material";
-import './GlobalModal.css'
+import "./GlobalModal.css";
+
+import { Container, Backdrop, Modal, Fade } from "@mui/material";
 
 const GlobalModal = ({ children, onClose }) => {
   return (

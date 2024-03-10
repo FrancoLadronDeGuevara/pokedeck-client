@@ -1,15 +1,11 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+
 import { getAllUsers } from "../../../redux/actions/userActions";
+
 import Row from "./StyledTable";
 import Loader from "../../loader/Loader";
-import { Container } from "@mui/system";
 
 function createData(
   username,

@@ -1,25 +1,31 @@
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
-import { useSelector } from "react-redux";
-import Loader from "../../loader/Loader";
 import "./UserProfile.css";
+
+import {
+  Box,
+  Container,
+  ListItemText,
+  Avatar,
+  List,
+  Typography,
+  ListItem,
+  Divider,
+  Grid,
+} from "@mui/material";
 import CurrencyRubleOutlinedIcon from "@mui/icons-material/CurrencyRubleOutlined";
-import { Grid } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+
+import clientAxios from "../../../utils/clientAxios";
 import { autoCloseAlertWithImage } from "../../../utils/alerts";
+import { formatDate } from "../../../utils/formatTime";
+
 import scoreGuessPokemon from "../../../assets/images/backgrounds/scoreGuessPokemon.webp";
 import scoreFlapHaunter from "../../../assets/images/backgrounds/scoreFlapHaunter.webp";
 import errorPikachu from "../../../assets/images/alerts/errorPikachu.gif";
-import { formatDate } from "../../../utils/formatTime";
-import clientAxios from "../../../utils/clientAxios";
+
+import Loader from "../../loader/Loader";
 
 const listStyle = {
   py: 2,
