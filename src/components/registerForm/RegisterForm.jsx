@@ -11,11 +11,9 @@ import {
   Container,
   FormControl,
 } from "@mui/material";
-import {
-  LockOutlinedIcon,
-  Visibility,
-  VisibilityOff,
-} from "@mui/icons-material/LockOutlined";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
