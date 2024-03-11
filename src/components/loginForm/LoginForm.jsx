@@ -1,15 +1,15 @@
+import "./LoginForm.css";
+
 import {
   Avatar,
-  Button,
   CssBaseline,
   TextField,
-  Grid,
   Box,
   Typography,
   Container,
   FormControl,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import LoginIcon from "@mui/icons-material/Login";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Link, useNavigate } from "react-router-dom";
@@ -62,75 +62,105 @@ const LoginForm = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs" sx={{ marginBottom: 5 }}>
+    <>
       <CssBaseline />
-      <Box
+      <Container
+        maxWidth="sm"
         sx={{
-          paddingTop: 5,
           display: "flex",
-          flexDirection: "column",
+          justifyContent: "center",
           alignItems: "center",
+          height: "calc(100dvh - 85px - 65px)",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Iniciar Sesión
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            required
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            autoComplete="email"
-            onChange={(e) =>
-              handleError(e, setEmail, setEmailError, strongEmailRegex)
-            }
-            value={email}
-            error={emailError}
-            color={emailError ? "" : "success"}
-            helperText={emailError ? "Email inválido" : ""}
-          />
-          <FormControl fullWidth required variant="outlined">
+        <Box
+          className="login"
+          sx={{
+            paddingTop: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Avatar sx={{ m: 2, bgcolor: "primary.main" }}>
+            <LoginIcon />
+          </Avatar>
+          <Typography className="link-to" variant="h5">
+            Iniciar Sesión
+          </Typography>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
-              id="password"
-              margin="normal"
               required
               fullWidth
-              value={password}
-              type={showPassword ? "text" : "password"}
-              label="Contraseña"
-              name="password"
-              autoComplete="current-password"
-              onChange={(e) => setPassword(e.target.value)}
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
+              onChange={(e) =>
+                handleError(e, setEmail, setEmailError, strongEmailRegex)
+              }
+              value={email}
+              error={emailError}
+              color={emailError ? "" : "success"}
+              helperText={emailError ? "Email inválido" : ""}
             />
-            {showPassword ? (
-              <VisibilityOff sx={confIcon} onClick={handleClickShowPassword} />
-            ) : (
-              <Visibility sx={confIcon} onClick={handleClickShowPassword} />
-            )}
-          </FormControl>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Ingresar
-          </Button>
-          <Grid container>
-            <Grid item>
-              <Link to="/register" variant="body2">
-                {"No tienes una cuenta? Regístrate"}
-              </Link>
-            </Grid>
-          </Grid>
+            <FormControl fullWidth required variant="outlined">
+              <TextField
+                id="password"
+                margin="normal"
+                required
+                fullWidth
+                value={password}
+                type={showPassword ? "text" : "password"}
+                label="Contraseña"
+                name="password"
+                autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {showPassword ? (
+                <VisibilityOff
+                  sx={confIcon}
+                  onClick={handleClickShowPassword}
+                />
+              ) : (
+                <Visibility sx={confIcon} onClick={handleClickShowPassword} />
+              )}
+            </FormControl>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <button className="login-button" type="submit">
+                Ingresar
+              </button>
+            </Box>
+            <Box>
+              <Typography className="link-to">
+                No tienes una cuenta?
+                <Link
+                  to="/register"
+                  style={{
+                    textDecoration: "none",
+                    color: "rgb(255, 255, 0)",
+                    fontWeight: "bolder",
+                    marginLeft: 10,
+                  }}
+                >
+                  Regístrate
+                </Link>
+              </Typography>
+            </Box>
+          </Box>
         </Box>
-      </Box>
-    </Container>
+      </Container>
+    </>
   );
 };
 

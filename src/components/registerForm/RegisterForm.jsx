@@ -1,17 +1,16 @@
+import "./RegisterForm.css";
+
 import {
   Avatar,
-  Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Grid,
   Box,
   Typography,
   Container,
   FormControl,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
@@ -46,7 +45,6 @@ const RegisterForm = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickShowConfirmPassword = () =>
@@ -68,12 +66,9 @@ const RegisterForm = () => {
 
     if (password !== confirmPassword) setConfirmPasswordError(true);
 
-    if (emailError || passwordError || confirmPasswordError || !isChecked) {
+    if (emailError || passwordError || confirmPasswordError) {
       setLoading(false);
-      return autoCloseAlert(
-        "Por favor, rellena bien el formulario",
-        "error"
-      );
+      return autoCloseAlert("Por favor, rellena bien el formulario", "error");
     }
 
     try {
@@ -94,20 +89,29 @@ const RegisterForm = () => {
 
   return (
     <>
-      <Container component="main" maxWidth="xs" sx={{ marginBottom: 5 }}>
-        <CssBaseline />
+      <CssBaseline />
+      <Container
+        maxWidth="sm"
+        sx={{
+          my: {xs: 12, sm: 2, md: 10},
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "calc(100dvh - 85px - 65px)",
+        }}
+      >
         <Box
+          className="register"
           sx={{
-            marginTop: 5,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, bgcolor: "success.main" }}>
+            <PersonAddIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography className="link-to" variant="h5">
             Registrarse
           </Typography>
           <Box
@@ -198,32 +202,38 @@ const RegisterForm = () => {
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      value="allowExtraEmails"
-                      checked={isChecked}
-                      onChange={(e) => setIsChecked(e.target.checked)}
-                      color="primary"
-                    />
-                  }
-                  label="Acepto los terminos y condiciones"
-                />
+                <Typography className="link-to">
+                  Al completar el registro, recibirás un correo electrónico con
+                  un link para activar tu cuenta.
+                </Typography>
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
             >
-              Registrarme
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link to="/login">Ya tienes una cuenta? Inicia sesión</Link>
-              </Grid>
-            </Grid>
+              <button type="submit" className="register-button">
+                Registrarme
+              </button>
+            </Box>
+            <Box display="flex" justifyContent="flex-end">
+              <Typography className="link-to">
+                Ya tienes una cuenta?
+                <Link
+                  to="/login"
+                  style={{
+                    textDecoration: "none",
+                    color: "rgb(255, 255, 0)",
+                    fontWeight: "bolder",
+                    marginLeft: 10,
+                  }}
+                >
+                  Inicia sesión
+                </Link>
+              </Typography>
+            </Box>
           </Box>
         </Box>
       </Container>
