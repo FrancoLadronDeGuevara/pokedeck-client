@@ -54,7 +54,7 @@ const LoginForm = () => {
         setTimeout(() => {
           navigate("/");
           window.location.reload();
-        }, 1000);
+        }, 2000);
       })
       .catch((error) => {
         autoCloseAlert(error.message, "error");
