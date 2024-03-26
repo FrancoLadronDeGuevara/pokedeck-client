@@ -12,11 +12,11 @@
 <img src="https://img.shields.io/badge/React-61DAFB.svg?style=flat&logo=React&logoColor=black" alt="React" />
 <img src="https://img.shields.io/badge/ESLint-4B32C3.svg?style=flat&logo=ESLint&logoColor=white" alt="ESLint" />
 <img src="https://img.shields.io/badge/JSON-000000.svg?style=flat&logo=JSON&logoColor=white" alt="JSON" />
-<img src="https://velog.velcdn.com/images/sujeongji/post/74ad0a99-2d5f-46be-97f7-ee0c4acdd968/image.png" alt="RTK" />
-<img src="https://www.luisllamas.es/images/20141/phaser.webp" alt="Phaser" />
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/2101px-Adobe_Photoshop_CC_icon.svg.png" alt="Photoshop" />
-<img src="https://static-00.iconduck.com/assets.00/material-ui-icon-2048x1626-on580ia9.png" alt="Material UI" />
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Cloudinary_logo.svg/2560px-Cloudinary_logo.svg.png" alt="Material UI" />
+<img src="https://velog.velcdn.com/images/sujeongji/post/74ad0a99-2d5f-46be-97f7-ee0c4acdd968/image.png" alt="RTK" width="60" height="20"/>
+<img src="https://www.luisllamas.es/images/20141/phaser.webp" alt="Phaser"  width="60" height="20"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/2101px-Adobe_Photoshop_CC_icon.svg.png" alt="Photoshop"  width="60" height="20"/>
+<img src="https://static-00.iconduck.com/assets.00/material-ui-icon-2048x1626-on580ia9.png" alt="Material UI"  width="60" height="20"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Cloudinary_logo.svg/2560px-Cloudinary_logo.svg.png" alt="Cloudinary"  width="60" height="20"/>
 </p>
 </div>
 
