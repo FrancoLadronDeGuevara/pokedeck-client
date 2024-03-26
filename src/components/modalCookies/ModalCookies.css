@@ -1,0 +1,19 @@
+.container-cookies{
+    background-image: url("../../assets/images/backgrounds/background-login.webp");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 80%;
+    height: fit-content;
+    text-align: center;
+    padding: 1rem;
+    z-index: 9999;
+}
+
+.text-login{
+    margin: 0;
+    color: yellow;
+}
