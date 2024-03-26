@@ -18,6 +18,8 @@ import { useState } from "react";
 import { autoCloseAlert } from "../../utils/alerts";
 import { handleError } from "../../utils/handleInputError";
 import clientAxios from "../../utils/clientAxios";
+import { useDispatch } from "react-redux";
+import { getUser } from "../../redux/actions/userActions";
 
 const confIcon = {
   position: "absolute",
@@ -30,6 +32,7 @@ const strongEmailRegex =
   /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
 const LoginForm = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -52,9 +55,7 @@ const LoginForm = () => {
       .then(() => {
         autoCloseAlert("Bienvenido", "success");
         navigate("/");
-        setTimeout(() => {
-         window.location.reload()
-        }, 2000);
+        dispatch(getUser())
       })
       .catch((error) => {
         autoCloseAlert(error.message, "error");
