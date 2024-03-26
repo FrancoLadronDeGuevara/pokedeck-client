@@ -5,19 +5,20 @@
 <p>Pokedeck is a project that offers an immersive gaming experience for Pokémon enthusiasts. This client is part of a larger ecosystem that includes mini-games designed to entertain users while they collect cards, open chests, and earn coins.</p>
 <h3>◦ Developed with the software and tools below.</h3>
 
-<p align="center">
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=JavaScript&logoColor=black" alt="JavaScript" />
-<img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=flat&logo=HTML5&logoColor=white" alt="HTML5" />
-<img src="https://img.shields.io/badge/Vite-646CFF.svg?style=flat&logo=Vite&logoColor=white" alt="Vite" />
-<img src="https://img.shields.io/badge/React-61DAFB.svg?style=flat&logo=React&logoColor=black" alt="React" />
-<img src="https://img.shields.io/badge/ESLint-4B32C3.svg?style=flat&logo=ESLint&logoColor=white" alt="ESLint" />
-<img src="https://img.shields.io/badge/JSON-000000.svg?style=flat&logo=JSON&logoColor=white" alt="JSON" />
-<img src="https://velog.velcdn.com/images/sujeongji/post/74ad0a99-2d5f-46be-97f7-ee0c4acdd968/image.png" alt="RTK" width="60" height="20"/>
-<img src="https://www.luisllamas.es/images/20141/phaser.webp" alt="Phaser"  width="60" height="20"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/2101px-Adobe_Photoshop_CC_icon.svg.png" alt="Photoshop"  width="60" height="20"/>
-<img src="https://static-00.iconduck.com/assets.00/material-ui-icon-2048x1626-on580ia9.png" alt="Material UI"  width="60" height="20"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Cloudinary_logo.svg/2560px-Cloudinary_logo.svg.png" alt="Cloudinary"  width="60" height="20"/>
-</p>
+</p> -->
+<ul>
+<li>Javascript</li>
+<li>HTML5</li>
+<li>Vite</li>
+<li>ReactJS</li>
+<li>ESLint</li>
+<li>JSon</li>
+<li>Redux Toolkit</li>
+<li>Phaser</li>
+<li>Photoshop</li>
+<li>Material UI</li>
+<li>Cloudinary</li>
+</ul>
 </div>
 
 ---
@@ -26,7 +27,6 @@
 
 - [📖 Table of Contents](#-table-of-contents)
 - [🚀 Final Deploy](#-final-deploy)
-- [📂 Repository Structure](#-repository-structure)
 - [⚙️ Getting Started](#-getting-started)
   - [🔧 Installation](#-installation)
   - [🤖 Running Pokedeck](#-running-pokedeck)
@@ -38,37 +38,6 @@
 # 🚀 Final Deploy
 
 https://pokedeck-game.vercel.app/
-
----
-
-# 📂 Repository Structure
-
-```sh
-└── pokedeck-client/
-    ├── .eslintrc.cjs
-    ├── index.html
-    ├── package-lock.json
-    ├── package.json
-    ├── vite.config.js
-    ├── src/
-    │   ├── App.css
-    │   ├── App.jsx
-    │   ├── components/
-    │   │   ├── Card/
-    │   │   ├── CharacterButton/
-    │   │   ├── FlipAnimation/
-    │   │   ├── Footer/
-    │   │   ├── Landing/
-    │   │   ├── Loader/
-    │   │   ├── Modal/
-    │   │   └── Navbar/
-    │   ├── hooks/
-    │   │   └── useForm.js
-    │   ├── index.css
-    │   └── main.jsx
-    └── vite.config.js
-
-```
 
 ---
 
@@ -132,9 +101,9 @@ npm test
 
 Contributions are welcome! Here are several ways you can contribute:
 
-- **[Submit Pull Requests](https://github.com/FrancoLadronDeGuevara/franco-guevara-portfolio/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-- **[Join the Discussions](https://github.com/FrancoLadronDeGuevara/franco-guevara-portfolio/discussions)**: Share your insights, provide feedback, or ask questions.
-- **[Report Issues](https://github.com/FrancoLadronDeGuevara/franco-guevara-portfolio/issues)**: Submit bugs found or log feature requests for FRANCOLADRONDEGUEVARA.
+- **[Submit Pull Requests](https://github.com/FrancoLadronDeGuevara/pokedeck-client/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+- **[Join the Discussions](https://github.com/FrancoLadronDeGuevara/pokedeck-client/discussions)**: Share your insights, provide feedback, or ask questions.
+- **[Report Issues](https://github.com/FrancoLadronDeGuevara/pokedeck-client/issues)**: Submit bugs found or log feature requests for FRANCOLADRONDEGUEVARA.
 
 #### _Contributing Guidelines_
 
