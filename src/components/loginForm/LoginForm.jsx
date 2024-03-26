@@ -51,9 +51,9 @@ const LoginForm = () => {
       .post(`/users/login-user`, { email, password })
       .then(() => {
         autoCloseAlert("Bienvenido", "success");
+        navigate("/");
         setTimeout(() => {
-          navigate("/");
-          window.location.reload();
+         window.location.reload()
         }, 2000);
       })
       .catch((error) => {
