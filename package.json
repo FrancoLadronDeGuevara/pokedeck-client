@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@cloudinary/react": "^1.11.2",
-    "@cloudinary/url-gen": "^1.15.0",
+    "@cloudinary/url-gen": "^1.19.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.3",
