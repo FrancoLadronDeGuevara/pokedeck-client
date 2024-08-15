@@ -19,7 +19,7 @@
     "@mui/material": "^5.15.3",
     "@reduxjs/toolkit": "^2.0.1",
     "animate.css": "^4.1.1",
-    "axios": "^1.6.4",
+    "axios": "^1.7.4",
     "js-cookie": "^3.0.5",
     "lottie-react": "^2.4.0",
     "phaser": "^3.80.0",
